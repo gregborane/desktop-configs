@@ -1,0 +1,14 @@
+#!/bin/bash 
+
+cd $HOME/.fonts/
+git clone https://github.com/fcambus/spleen.git
+
+sudo mv $HOME/.fonts/spleen /usr/share/fonts/misc
+
+sudo mkfontscale
+sudo mkfontdir
+sudo fc-cache -fv
+xset +fp /usr/share/fonts/misc/spleen
+
+echo "xset +fp /usr/share/fonts/misc/spleen" >> ~/.xinitrc
+

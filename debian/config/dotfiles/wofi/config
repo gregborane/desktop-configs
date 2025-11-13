@@ -1,0 +1,15 @@
+height=40%
+hide_scroll=true
+insensitive=true
+location=2
+matching=fuzzy
+mode=run
+allow_images=true
+allow_markup=true
+prompt=Depressing Wofi Theme
+term=ghostty
+width=30%
+height=30%
+yoffset=350
+line_wrap=word
+signle_click=true

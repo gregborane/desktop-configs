@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=System Utility Controls
+Comment=Sliders to set up Sounds and Brightness
+Exec=system-utility-controls
+Terminal=false
+Type=Application

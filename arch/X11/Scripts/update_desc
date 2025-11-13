@@ -1,0 +1,72 @@
+#!/bin/bash
+
+# update dwm config
+rm -rf "$HOME/.config/dwmdesktop/dwm"
+cp -r  "$HOME/.config/dwm" "$HOME/.config/dwmdesktop"
+
+# update autostart
+rm -f "$HOME/.config/dwmdesktop/autostart.sh"
+cp "$HOME/.dwm/autostart.sh"  "$HOME/.config/dwmdesktop"
+
+# update scripts
+rm -rf "$HOME/.config/dwmdesktop/Scripts"
+cp -r "$HOME/Scripts" "$HOME/.config/dwmdesktop"
+
+#update python
+rm -r $HOME/.connfig/dwmdesktop/Wayland/python
+cp -r $HOME/Scripts/python $HOME/.config/dwmdesktop/Wayland/python
+
+#update mpip
+rm -r $HOME/.connfig/dwmdesktop/Wayland/mpip
+cp -r $HOME/Scripts/mpip $HOME/.config/dwmdesktop/Wayland/Scripts/mpip
+
+#updates desc
+rm $HOME/.config/dwmdesktop/Wayland/update_desc
+cp $HOME/Scripts/update_desc $HOME/.config/dwmdesktop/Wayland/Scripts/update_desc
+
+# update alacritty
+rm -rf "$HOME/.config/dwmdesktop/alacritty"
+cp -r "$HOME/.config/alacritty" "$HOME/.config/dwmdesktop/"
+
+# update tmux
+rm -f "$HOME/.config/dwmdesktop/.tmux.config"
+cp -r "$HOME/.tmux.conf" "$HOME/.config/dwmdesktop"
+
+# update oh my posh
+rm -rf "$HOME/.config/dwmdesktop/omp"
+cp -r "$HOME/.config/omp" "$HOME/.config/dwmdesktop/omp"
+
+# update neovim
+rm -rf "$HOME/.config/dwmdesktop/nvim"
+cp -r "$HOME/.config/nvim" "$HOME/.config/dwmdesktop/nvim"
+
+# update font configuration
+rm -rf "$HOME/.config/dwmdesktop/fontconfig"
+cp -r "$HOME/.config/fontconfig" "$HOME/.config/dwmdesktop/fontconfig"
+
+# update picom conf
+rm -rf "$HOME/.config/dwmdesktop/picom"
+cp -r "$HOME/.config/picom" "$HOME/.config/dwmdesktop/picom"
+
+# update rofi conf
+rm -rf "$HOME/.config/dwmdesktop/rofi"
+cp -r "$HOME/.config/rofi" "$HOME/.config/dwmdesktop/rofi"
+
+# update tmux conf
+rm -rf "$HOME/.config/dwmdesktop/tmux"
+cp -r "$HOME/.config/tmux" "$HOME/.config/dwmdesktop/tmux"
+
+# update slock config
+rm -rf "$HOME/.config/dwmdesktop/slock"
+cp -r "$HOME/.config/slock" "$HOME/.config/dwmdesktop/slock"
+
+# update backgrounds
+rm -rf "$HOME/.config/dwmdesktop/wallpaper.png"
+cp -r "$HOME/.config/wallpaper.png" "$HOME/.config/dwmdesktop"
+
+rm -rf "$HOME/.config/dwmdesktop/lock.png"
+cp -r "$HOME/.config/lock.png" "$HOME/.config/dwmdesktop"
+
+
+
+

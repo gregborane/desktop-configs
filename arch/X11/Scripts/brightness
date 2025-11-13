@@ -1,0 +1,37 @@
+#!/usr/bin/env /usr/bin/python3
+
+import gi
+import subprocess
+
+gi.require_version("Gtk", "3.0")
+from gi.repository import Gtk
+
+def run_command(cmd):
+    return subprocess.run(cmd, shell=True, text=True, capture_output=True).stdout.strip()
+
+def set_brightness(value):
+    subprocess.run(f"xrandr --output DP-0 --brightness {float(value)/100}", shell=True)
+
+def get_brightness():
+    out = run_command("xrandr --verbose | grep -i brightness | head -n1")
+    return int(float(out.split()[1]) * 100)
+
+class BrightnessWindow(Gtk.Window):
+    def __init__(self):
+        Gtk.Window.__init__(self, title="Brightness Control")
+        self.set_border_width(10)
+        self.set_default_size(300, 80)
+        vbox = Gtk.VBox(spacing=10)
+        self.add(vbox)
+
+        brightness = Gtk.Scale.new_with_range(Gtk.Orientation.HORIZONTAL, 0, 100, 1)
+        brightness.set_value(get_brightness())
+        brightness.connect("value-changed", lambda s: set_brightness(s.get_value()))
+        vbox.pack_start(Gtk.Label(label="Brightness"), False, False, 0)
+        vbox.pack_start(brightness, False, False, 0)
+
+win = BrightnessWindow()
+win.connect("destroy", Gtk.main_quit)
+win.show_all()
+Gtk.main()
+
