@@ -1,0 +1,8 @@
+#!/bin/bash
+export g16root="$HOME/App/gaussian"
+export GAUSS_SCRDIR="$HOME/App/gaussian/scratch"
+PATH="$g16root/gv:$PATH"
+. "$g16root/g16/bsd/g16.profile"
+export GAUSS_CDEF=0
+export GAUSS_LFLAGS="-op"
+

@@ -197,3 +197,8 @@ require("remote-sshfs").setup({
 		},
 	},
 })
+
+require("lsp_lines").setup()
+vim.diagnostic.config({
+    virtual_lines = true,
+})

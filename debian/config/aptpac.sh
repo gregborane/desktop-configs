@@ -1,11 +1,9 @@
 #!/bin/bash
 set -e
 
-# Update and upgrade
 sudo apt update
 sudo apt full-upgrade 
 
-# Core and utilities
 sudo apt -t unstable install  \
 eza aspell atril \
 build-essential bash-completion \
@@ -15,27 +13,24 @@ curl dkms \
 ffmpeg fontconfig fuse3 fzf \
 gimp gimp-data-extra gimp-help-en ghostscript git \
 hdf5-tools hspell htop imagemagick \
-default-jdk \
-less libreoffice libopenal-dev neovim ninja-build fonts-noto-color-emoji \
-nuspell nwg-look \
+gamemode gamescope default-jdk \
+less libreoffice libopenal-dev neovim ninja-build fonts-noto-color-emoji luarocks\
+nuspell nwg-look lutris\
 obs-studio openssh-server openssh-client \
 pavucontrol python3-neovim \
-wireplumber \
+wireplumber nodejs npm \
+mariadb-server mariadb-client \
 pipewire-pulse pipewire-alsa pipewire-jack pavucontrol \
 qtbase5-dev qt6-wayland* \
 r-base ripgrep ruby-full \
 sqlite3 sshfs steam-installer starship \
 nautilus texlive timeshift tree-sitter-cli thunderbird \
 upower unzip \
+libdbus-1-dev  libinih-dev  libsystemd-de \
 vlc wget wine64 wine32 \
 zathura zip zoxide
 
-# Databases, diagramming, misc
-sudo apt -t unstable install  \
-mariadb-server mariadb-client \
-nodejs npm
-
-# Clean up
+# clean up
 sudo apt autoremove -y
 sudo apt clean
 
@@ -49,7 +44,7 @@ sudo apt install ueberzugpp
 cd $HOME/App
 git clone https://github.com/Vladimir-csp/uwsm
 cd uwsm
-./build-deb -i
+./build-deb.sh -i
 
 # installing hyprshot
 cd $HOME/App && mkdir -p ~/.local/bin
@@ -81,4 +76,31 @@ cd $HOME/App
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 chmod +x Mini*
 ./Mini*
+rm Mini*
 
+# install linux-zabblyn
+sudo mkdir -p /etc/apt/keyrings/
+sudo curl -fsSL https://pkgs.zabbly.com/key.asc -o /etc/apt/keyrings/zabbly.asc
+sudo sh -c 'cat <<EOF > /etc/apt/sources.list.d/zabbly-kernel-stable.sources
+Enabled: yes
+Types: deb
+URIs: https://pkgs.zabbly.com/kernel/stable
+Suites: trixie
+Components: main
+Architectures: $(dpkg --print-architecture)
+Signed-By: /etc/apt/keyrings/zabbly.asc
+
+EOF'
+sudo apt update 
+sudo apt install linux-zabbly
+
+# qt customisation
+sudo add-apt-repository ppa:papirus/papirus
+sudo apt update
+sudo apt install qt-style-kvantum qt-style-kvantum-themes
+
+# localsend 
+sudo apt install -t unstable gir1.2-ayatanaappindicator3-0.1  libayatana-appindicator3-1  libayatana-ido3-0.4-0  libayatana-indicator3-7
+wget https://github.com/localsend/localsend/releases/download/v1.17.0/LocalSend-1.17.0-linux-x86-64.deb
+sudo dpkg -i Local*
+rm Local*
