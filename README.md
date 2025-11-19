@@ -1,17 +1,9 @@
 # desktop-configs
 
-Find my different packages and app I usually use on my systems. 
+Find my different packages and app I usually use on my systems.
 
-I have a config for both debian and arch at the moment. 
+Bash
+Local
+Config
 
-## Wayland : 
-
-- Debian : hyprland
-- Arch   : Omarchy set up 
-
-## X11 :
-
-- Arch : DWM 
-- Debian : Nothing but the configuration can be used as well just the packages file was not adapted to APT package manager
-
-
+I tried to put as best as I could to seperate X11 to Wayland.

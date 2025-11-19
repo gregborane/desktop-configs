@@ -1,0 +1,27 @@
+# GRUB Theme Configuration
+desktop-image:"grub.png"
+title-text: "~ Grubby Chan ~"
+
+
++ boot_menu {
+left = 0%
+top = 25%
+width = 50%
+height = 50%
+item_height = 20
+item_padding = 5
+item_font = "Electroharmonix 14"
+item_color = "#000000"
+selected_item_color = "#ffffff"
+}
+
++ progress_bar {
+__id__ = "timeout"
+left = 0%
+top = 85%
+width = 100%
+height = 20
+bg_color = "#000000"
+border_color = "#000000"
+fg_color = "#ffffff"
+}
