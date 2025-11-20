@@ -13,6 +13,7 @@ item_padding = 5
 item_font = "Electroharmonix 14"
 item_color = "#000000"
 selected_item_color = "#ffffff"
+selected_item_pixmap_style = "selected_item_*.png"
 }
 
 + progress_bar {

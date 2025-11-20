@@ -11,7 +11,7 @@ sudo pacman -S --noconfirm --needed base base-devel bash-completion biber
 sudo pacman -S --noconfirm --needed cmake composer curl chromium
 sudo pacman -S --noconfirm --needed dkms dotnet-runtime-7.0 dotnet-runtime-8.0
 sudo pacman -S --noconfirm --needed eza
-sudo pacman -S --noconfirm --needed fastfetch fcitx5 feh ffmpeg fontconfig fuse-common fzf
+sudo pacman -S --noconfirm --needed fastfetch fcitx5 firewalld feh ffmpeg fontconfig fuse-common fzf
 sudo pacman -S --noconfirm --needed gamescope gimp ghostscript ghostty git gtk3 gtk4
 sudo pacman -S --noconfirm --needed hdf5 hspell htop
 sudo pacman -S --noconfirm --needed imagemagick
@@ -26,7 +26,7 @@ sudo pacman -S --noconfirm --needed qt5 qt6
 sudo pacman -S --noconfirm --needed r ripgrep ruby
 sudo pacman -S --noconfirm --needed sqlite sshfs steam starship
 sudo pacman -S --noconfirm --needed tectonic texlive thunar timeshift tree-sitter-cli thunderbird
-sudo pacman -S --noconfirm --needed ueberzugpp upower unzip
+sudo pacman -S --noconfirm --needed ueberzugpp ufw upower unzip
 sudo pacman -S --noconfirm --needed vlc vlc-plugin-ffmpeg
 sudo pacman -S --noconfirm --needed waybar wget wine-staging wofi
 sudo pacman -S --noconfirm --needed xwayland-satellite xorg-xhost xournalapp

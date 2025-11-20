@@ -1,31 +1,10 @@
 #!/bin/bash
 
-set -e
-
-cd $HOME/.local/share
-git clone https://aur.archlinux.org/yay.git
-cd yay
-makepkg -si
-
-yay -S vesktop
-yay -S hyprshot
-yay -S hyprlock
-yay -S hypridle
-yay -S hyprpaper
-yay -S hyprsunset
-yay -S wiremix
-yay -S proton-ge-custom-bin
-yay -S ttf-ms-fonts
-yay -S plymouth-theme-dna-git
-yay -S kvantum-qt6-git
-yay -S localsend
-
 cd $HOME/.local/share/
 wget https://github.com/PancakeTAS/lsfg-vk/releases/download/v1.0.0/lsfg-vk-1.0.0.x86_64.tar.zst
 sudo pacman -U lsfg-vk*
 rm lsfg-vk*
 
-# install miniconda
 cd $HOME/.local/share
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 chmod +x Mini*
@@ -40,4 +19,14 @@ rm *.zip
 sudo plymouth-set-default-theme -R dna
 # add plymouth in hook /etc/mkinitcpio.conf and sudo mkinitcpio -P
 
+sudo systemctl stop ly.service
+sudo systemctl disable ly.service
+git clone https://codeberg.org/fairyglade/ly.git "$HOME/.local/share/ly"
+cd "$HOME/.local/share/ly"
+zig build
+zig build installexe -Dinit_system=systemd
+sudo systemctl disable getty@tty.service
+sudo cp "$HOME/.config/desktop-configs/dotfiles/ly/config.ini" /etc/ly/config.ini
 
+sudo ln -s /usr/share/applications/com.mitchellh.ghostty.desktop /usr/share/xdg-terminals
+echo com.mitchellh.ghostty.desktop > ~/.config/xdg-terminals.list
