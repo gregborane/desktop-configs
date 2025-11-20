@@ -9,7 +9,7 @@ sudo pacman -Syu
 sudo pacman -S --noconfirm --needed aspell atril
 sudo pacman -S --noconfirm --needed base-devel bash-completion biber
 sudo pacman -S --noconfirm --needed cmake composer curl
-sudo pacman -S --noconfirm --needed dkms dotnet-runtime-7.0 dotnet-runtime-8.0
+sudo pacman -S --noconfirm --needed dkms dotnet-runtime-7.0 dotnet-runtime-8.0 dunst
 #sudo pacman -S --nocnfirm --needed e
 sudo pacman -S --noconfirm --needed ffmpeg fontconfig fuse-common fzf
 sudo pacman -S --noconfirm --needed gamescope gamemode gimp giflip ghostty gnome-text-editor ghostscript git gtk3 gtk4
@@ -23,7 +23,7 @@ sudo pacman -S --noconfirm --needed nautilus ncurses neovim ninja noto-fonts-emo
 sudo pacman -S --noconfirm --needed obs-studio openal openssh
 sudo pacman -S --noconfirm --needed pavucontrol php picom python-neovim
 sudo pacman -S --noconfirm --needed qt5 qt6
-sudo pacman -S --noconfirm --needed r ripgrep ruby
+sudo pacman -S --noconfirm --needed r rofi rofi-calc ripgrep ruby
 sudo pacman -S --noconfirm --needed sqlite sshfs steam starship
 sudo pacman -S --noconfirm --needed tectonic texlive timeshift tree-sitter-cli thunderbird
 sudo pacman -S --noconfirm --needed ueberzugpp upower unzip

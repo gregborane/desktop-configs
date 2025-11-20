@@ -4,30 +4,28 @@ set -e
 sudo apt update
 sudo apt full-upgrade 
 
-sudo apt -t unstable install  \
-eza aspell atril \
-build-essential bash-completion \
-chromium ghostty biber \
-cmake composer php-cli php-curl php-zip php-xml php-gd php-mbstring \
-curl dkms \
-ffmpeg fontconfig fuse3 fzf \
-gimp gimp-data-extra gimp-help-en ghostscript git \
-hdf5-tools hspell htop imagemagick \
-gamemode gamescope default-jdk \
-less libreoffice libopenal-dev neovim ninja-build fonts-noto-color-emoji luarocks\
-nuspell nwg-look lutris\
-obs-studio openssh-server openssh-client \
-pavucontrol python3-neovim \
-wireplumber nodejs npm \
-mariadb-server mariadb-client \
-pipewire-pulse pipewire-alsa pipewire-jack pavucontrol \
-qtbase5-dev qt6-wayland* \
+sudo apt -t unstable install \
+aspell atril \
+bash-completion biber build-essential \
+chromium cmake composer curl \
+default-jdk dkms \
+eza \
+ffmpeg fontconfig fonts-noto-color-emoji fuse3 fzf \
+gamemode gamescope gimp gimp-data-extra gimp-help-en ghostscript ghostty git \
+hdf5-tools hspell htop \
+imagemagick \
+less libdbus-1-dev libinih-dev libopenal-dev libreoffice libsystemd-de lutris luarocks \
+mariadb-client mariadb-server \
+nautilus neovim ninja-build nodejs npm nuspell nwg-look \
+obs-studio openssh-client openssh-server \
+pavucontrol php-cli php-curl php-gd php-mbstring php-xml php-zip pipewire-alsa pipewire-jack pipewire-pulse python3-neovim \
+qt6-wayland* qtbase5-dev \
 r-base ripgrep ruby-full \
-sqlite3 sshfs steam-installer starship \
-nautilus texlive timeshift tree-sitter-cli thunderbird \
-upower unzip \
-libdbus-1-dev  libinih-dev  libsystemd-de \
-vlc wget wine64 wine32 \
+sqlite3 sshfs starship steam-installer \
+texlive thunderbird timeshift tree-sitter-cli \
+unzip upower \
+vlc \
+wget wine32 wine64 wireplumber \
 zathura zip zoxide
 
 # clean up
