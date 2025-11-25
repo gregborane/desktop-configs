@@ -22,3 +22,4 @@ yay -S localsend
 yay -S ufw-docker
 yay -S vscodium-bin
 yay -S xdg-terminal-exec
+yay -S qbittorrent

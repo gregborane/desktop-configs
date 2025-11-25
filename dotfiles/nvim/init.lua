@@ -13,8 +13,6 @@ elseif conda_env then
 end
 
 -- load files
-require("keymaps")
-require("options")
-require("plugins.lazy")
-require("plugins.keymaps")
-require("plugins.options")
+require("config.keybinds")
+require("config.lazy")
+require("config.options")
