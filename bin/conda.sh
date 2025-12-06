@@ -7,3 +7,4 @@ conda activate base
 conda install conda-forge::xtb -y
 conda install conda-forge::crest -y
 conda install conda-forge::morfeus-ml -y
+conda install -c conda-forge cadet
