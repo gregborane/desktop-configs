@@ -10,4 +10,3 @@ I tried to separate as best as I could X11 from Wayland.
 
 - Most of the rice is coming from Omarchy set up, bash set up as well. [Omarchy](https://omarchy.org/)
 - Grub theme applier is from christitus tech repo : [Grub themes](https://christitus.com/bootloader-themes/)
-
