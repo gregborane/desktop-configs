@@ -55,4 +55,8 @@ ln -s "$CONFIG/desktop-configs/config/starship.toml" "$CONFIG/starship.toml"
 rm -rf "$CONFIG/tmux.conf"
 ln -s "$CONFIG/desktop-configs/config/tmux.conf" "$CONFIG/tmux.conf"
 
+rm -rf "$HOME/.XCompose"
+ln -s "$CONFIG/desktop-configs/config/XCompose" "$HOME/.XCompose"
+
+
 
