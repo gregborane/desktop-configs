@@ -13,7 +13,9 @@ sudo systemctl disable getty@tty2.service
 sudo ln -s "$HOME/.config/desktop-configs/dotfiles/ly/config.ini" /etc/ly/config.ini
 
 sudo systemctl enable power-profiles-daemon.service
+sudo usermod -aG video $USER
 
-git clone https://github.com/nicoestrada/batty $HOME/.local/share/batty
-cd $HOME/.local/share/batty
-cargo install batty
+cd "$HOME/.local/share"
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+chmod +x Mini*
+./Mini*

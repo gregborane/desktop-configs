@@ -7,7 +7,7 @@ sudo pacman -Syu
 
 # Core and utilities
 sudo pacman -S --noconfirm --needed alsa-plugins aspell atril
-sudo pacman -S --noconfirm --needed base base-devel bash-completion biber bluetui
+sudo pacman -S --noconfirm --needed base base-devel bash-completion biber bluetui brightnessctl
 sudo pacman -S --noconfirm --needed cmake composer curl chromium
 sudo pacman -S --noconfirm --needed dkms 
 sudo pacman -S --noconfirm --needed eza
@@ -21,11 +21,10 @@ sudo pacman -S --noconfirm --needed lazygit less libreoffice-fresh luarocks lutr
 sudo pacman -S --noconfirm --needed mako mariadb mermaid-cli
 sudo pacman -S --noconfirm --needed ncurses nemo neovim ninja noto-fonts-emoji noto-fonts noto-fonts-cjk nuspell nwg-look
 sudo pacman -S --noconfirm --needed obs-studio openal openssh
-sudo pacman -S --noconfirm --needed pavucontrol polkit-gnome power-profiles-daemon
-php python-neovim plymouth
+sudo pacman -S --noconfirm --needed pavucontrol polkit-gnome power-profiles-daemon php python-neovim plymouth
 sudo pacman -S --noconfirm --needed qt5 qt6
 sudo pacman -S --noconfirm --needed r ripgrep ruby
-sudo pacman -S --noconfirm --needed sqlite sshfs steam starship stylua swaybg swayosd
+sudo pacman -S --noconfirm --needed shfmt sqlite sshfs steam starship stylua swaybg swayosd
 sudo pacman -S --noconfirm --needed tectonic texlive timeshift tree-sitter-cli thunderbird
 sudo pacman -S --noconfirm --needed ueberzugpp ufw upower unzip
 sudo pacman -S --noconfirm --needed vlc vlc-plugin-ffmpeg
