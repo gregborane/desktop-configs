@@ -21,12 +21,4 @@ return {
             require('nvim-highlight-colors').setup({})
         end
     },
-
-    -- Display error beneath the line
-    {
-        "ErichDonGubler/lsp_lines.nvim",
-        config = function()
-            require("lsp_lines").setup()
-        end,
-    },
 }

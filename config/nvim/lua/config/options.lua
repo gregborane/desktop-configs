@@ -22,7 +22,3 @@ set.scrolloff = 20
 
 -- remove swap files
 vim.opt.swapfile = false
-
--- options for lsp_lines plugins
-vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
-

@@ -1,94 +1,50 @@
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter-textobjects",
-        },
-        config = function()
-            local configs = require("nvim-treesitter.configs")
-            ---@diagnostic disable-next-line: missing-fields
-            configs.setup({
-                textobjects = {
-                    select = {
-                        enable = true,
-                        lookahead = true,
-                        keymaps = {
-                            ["af"] = "@function.outer",
-                            ["if"] = "@function.inner",
-                        },
-                    },
-                },
-                -- enable syntax highlighting
-                highlight = {
-                    enable = true,
-                },
-                -- enable indentation
-                indent = { enable = true },
-                -- enable autotagging (w/ nvim-ts-autotag plugin)
-                autotag = { enable = true },
-                -- ensure these language parsers are installed
-                ensure_installed = {
-                    "json",
-                    "python",
-                    "javascript",
-                    "query",
-                    "typescript",
-                    "tsx",
-                    "php",
-                    "yaml",
-                    "html",
-                    "css",
-                    "markdown",
-                    "markdown_inline",
-                    "bash",
-                    "lua",
-                    "vim",
-                    "vimdoc",
-                    "c",
-                    "dockerfile",
-                    "gitignore",
-                    "astro",
-                    "bash",
-                    "latex",
-                    "norg",
-                    "scss",
-                    "svelte",
-                    "typst",
-                    "vue",
-                    "regex"
-                },
-                -- auto install above language parsers
-                auto_install = true,
-            })
-        end
-    },
-    {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        event = "VeryLazy",
-        enabled = true,
-        config = function()
-            local move = require("nvim-treesitter.textobjects.move")
-            local configs = require("nvim-treesitter.configs")
-            for name, fn in pairs(move) do
-                if name:find("goto") == 1 then
-                    move[name] = function(q, ...)
-                        if vim.wo.diff then
-                            local config = configs.get_module("textobjects.move")[name]
-                            for key, query in pairs(config or {}) do
-                                if q == query and key:find("[%]%[][cC]") then
-                                    vim.cmd("normal! " .. key)
-                                    return
-                                end
-                            end
-                        end
-                        return fn(q, ...)
-                    end
-                end
-            end
+  {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "master",
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
+
+    opts = {
+      ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "python", "regex", "c", "cpp", "latex" },
+      sync_install = false,
+      auto_install = false,  -- set true only if tree-sitter CLI is installed
+      ignore_install = { "javascript" },
+
+      highlight = {
+        enable = true,
+        disable = function(lang, buf)
+          local max_filesize = 100 * 1024 -- 100 KB
+          local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+          return ok and stats and stats.size > max_filesize
         end,
-    }
+        additional_vim_regex_highlighting = false,
+      },
+
+      textobjects = {
+        select = { enable = true },
+        move = {
+          enable = true,
+          set_jumps = true,
+          goto_next_start = { ["]f"] = "@function.outer" },
+          goto_previous_start = { ["[f"] = "@function.outer" },
+        },
+      },
+    },
+
+    config = function(_, opts)
+      local ok, configs = pcall(require, "nvim-treesitter.configs")
+      if ok then
+        configs.setup(opts)
+      end
+    end,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "master",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    lazy = true,  -- load after core
+  },
 }
-
-
 

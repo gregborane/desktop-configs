@@ -1,6 +1,6 @@
 # desktop-configs
 
-Find my different packages and app I usually use on my systems.
+Find my different packages and app I usually use for my arch config
 
 Bash \
 Local \
