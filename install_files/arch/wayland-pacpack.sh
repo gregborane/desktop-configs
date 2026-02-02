@@ -6,7 +6,7 @@ set -e
 sudo pacman -Syu
 
 # Core and utilities
-sudo pacman -S --noconfirm --needed alsa-plugins aspell atril
+sudo pacman -S --noconfirm --needed alsa-plugins android-tools aspell atril
 sudo pacman -S --noconfirm --needed base base-devel bash-completion biber bluetui brightnessctl
 sudo pacman -S --noconfirm --needed cmake composer curl chromium
 sudo pacman -S --noconfirm --needed dkms 
@@ -18,7 +18,7 @@ sudo pacman -S --noconfirm --needed imagemagick
 sudo pacman -S --noconfirm --needed jdk-openjdk julia
 # sudo pacman -S --noconfirm --needed k
 sudo pacman -S --noconfirm --needed lazygit less libreoffice-fresh luarocks lutris
-sudo pacman -S --noconfirm --needed mako mariadb mermaid-cli
+sudo pacman -S --noconfirm --needed mako mariadb mermaid-cli mkinitcpio-utils mkinitcpio-nfs-utils
 sudo pacman -S --noconfirm --needed ncurses nemo neovim ninja noto-fonts-emoji noto-fonts noto-fonts-cjk nuspell nwg-look
 sudo pacman -S --noconfirm --needed obs-studio openal openssh
 sudo pacman -S --noconfirm --needed pavucontrol polkit-gnome power-profiles-daemon php python-neovim plymouth

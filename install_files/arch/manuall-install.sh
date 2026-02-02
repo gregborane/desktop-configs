@@ -13,7 +13,7 @@ sudo systemctl disable getty@tty2.service
 sudo ln -s "$HOME/.config/desktop-configs/dotfiles/ly/config.ini" /etc/ly/config.ini
 
 sudo systemctl enable power-profiles-daemon.service
-sudo usermod -aG video $USER
+sudo usermod -aG video rfkill $USER
 
 cd "$HOME/.local/share"
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh

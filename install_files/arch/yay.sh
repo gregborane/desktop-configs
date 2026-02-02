@@ -7,6 +7,9 @@ makepkg -si
 
 yay -S vesktop
 
+yay -S mkinitcpio-tailscale
+yay -S mkinitcpio-extras 
+
 yay -S hyprshot
 yay -S hyprlock
 yay -S hypridle
