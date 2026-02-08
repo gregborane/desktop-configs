@@ -1,2 +1,3 @@
 # Editor used by CLI
 export SUDO_EDITOR="vim"
+export TERMINFO=/usr/share/terminfo
