@@ -19,3 +19,10 @@ cd "$HOME/.local/share"
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 chmod +x Mini*
 ./Mini*
+
+BIN="$HOME/.local/bin"
+cd "$BIN"
+
+wget https://github.com/moonlight-stream/moonlight-qt/releases/download/v6.1.0/Moonlight-6.1.0-x86_64.AppImage
+mv Moon* moonlight.appimage
+chmod +x moon*
