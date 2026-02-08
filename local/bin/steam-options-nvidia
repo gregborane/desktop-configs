@@ -1,8 +1,8 @@
 #!/bin/bash
 
-VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/nvidia_icd.json
+VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/nvidia_icd.json \
 LSFG_LEGACY=1 \
-LSFG_DLL_PATH="/home/greg/.steam/steam/steamapps/common/Lossless Scaling/Lossless.dll" \
+LSFG_DLL_PATH="~/.steam/steam/steamapps/common/Lossless Scaling/Lossless.dll" \
 LSFG_MULTIPLIER=4 \
 LSFG_FLOW_SCALE=1 \
 LSFG_PERFORMANCE_MODE=0 \
