@@ -6,7 +6,7 @@ set -e
 sudo pacman -Syu
 
 # Core and utilities
-sudo pacman -S --noconfirm --needed alsa-plugins android-tools aspell atril
+sudo pacman -S --noconfirm --needed alsa-plugins android-tools android-file-transfer aspell atril
 sudo pacman -S --noconfirm --needed base base-devel bash-completion biber bluetui brightnessctl
 sudo pacman -S --noconfirm --needed cmake composer curl chromium
 sudo pacman -S --noconfirm --needed dkms 
@@ -28,7 +28,7 @@ sudo pacman -S --noconfirm --needed shfmt sqlite sshfs steam starship stylua swa
 sudo pacman -S --noconfirm --needed tectonic texlive timeshift tree-sitter-cli thunderbird
 sudo pacman -S --noconfirm --needed ueberzugpp ufw upower unzip
 sudo pacman -S --noconfirm --needed vlc vlc-plugin-ffmpeg
-sudo pacman -S --noconfirm --needed waybar wget wine-gecko wine-mono wine-staging wofi
+sudo pacman -S --noconfirm --needed waybar wget wine-gecko wine-mono wine-staging wofi wol
 sudo pacman -S --noconfirm --needed xdotool xorg-xhost
 #sudo pacman -S --noconfirm --needed y
 sudo pacman -S --noconfirm --needed zathura zip zoxide

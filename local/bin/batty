@@ -1,7 +1,0 @@
-#!/bin/bash
-
-echo $(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "state")
-echo $(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "time to full")
-echo $(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "percentage")
-echo $(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep "capacity")
-
