@@ -9,7 +9,7 @@ fi
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
 alias connect-phone="ssh -i ~/.ssh/simplesshd_key -p 2222 myphone@greg-phone"
-alias connect-initrd="ssh -i ~/.ssh/simplesshd_key -p 222 root@greg-initrd"
+alias connect-initrd="ssh -i ~/.ssh/remote-unlock-key -p 222 root@greg-initrd"
 alias connect-desktop="ssh greg@greg-desktop"
 
 if command -v zoxide &> /dev/null; then
@@ -24,18 +24,4 @@ if command -v zoxide &> /dev/null; then
     fi
   }
 fi
-
-open() {
-  xdg-open "$@" >/dev/null 2>&1 &
-}
-
-# Directories
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-
-# Tools
-alias d='docker'
-alias r='rails'
-n() { if [ "$#" -eq 0 ]; then nvim .; else nvim "$@"; fi; }
 
