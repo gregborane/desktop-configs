@@ -40,7 +40,10 @@ lib32-libgpg-error lib32-libjpeg-turbo lib32-libldap lib32-libpulse \
 lib32-libxcomposite lib32-libxinerama lib32-libxslt lib32-mpg123 lib32-ncurses \
 lib32-opencl-icd-loader lib32-sqlite libgcrypt libgpg-error libjpeg-turbo \
 libldap libpng libxcomposite libxinerama libxslt libva v4l-utils \
-winetricks protontricks
+winetricks protontricks dosbox gst-plugins-bad gst-plugins-good gst-plugins-ugly libgphoto2 samba sane unixodbc
+
+# sunshine dependenciesHost github.com
+sudo pacman -S avahi curl libayatana-appindicator libcap libdrm libevdev libmfx libnotify libpulse libva libx11 libxcb libxfixes libxrandr libxtst miniupnpc numactl openssl opus udev which appstream appstream-glib cmake desktop-file-utils gcc${_gcc_dep_suffix} git make nodejs npm
 
 # Vulkan support for AMD, Intel, and NVIDIA
 sudo pacman -S --noconfirm --needed \
