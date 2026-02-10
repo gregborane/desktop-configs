@@ -17,11 +17,11 @@ selected_item_pixmap_style = "selected_item_*.png"
 }
 
 + progress_bar {
-__id__ = "timeout"
+id = "__timeout__"
 left = 0%
-top = 85%
+top = 90%
 width = 100%
-height = 20
+height = 1%
 bg_color = "#000000"
 border_color = "#000000"
 fg_color = "#ffffff"
