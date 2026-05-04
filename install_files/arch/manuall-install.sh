@@ -22,7 +22,6 @@ chmod +x Mini*
 
 BIN="$HOME/.local/bin"
 cd "$BIN"
-
 wget https://github.com/moonlight-stream/moonlight-qt/releases/download/v6.1.0/Moonlight-6.1.0-x86_64.AppImage
 mv Moon* moonlight.appimage
 chmod +x moon*

@@ -12,6 +12,8 @@ alias connect-phone="ssh -p 2222 myphone@greg-phone"
 alias connect-initrd="ssh -p 222 root@greg-initrd"
 alias connect-desktop="ssh greg@greg-desktop"
 
+alias vim="nvim"
+alias nano="nvim"
 if command -v zoxide &> /dev/null; then
   alias cd="zd"
   zd() {

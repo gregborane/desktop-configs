@@ -1,0 +1,43 @@
+#!/bin/bash
+
+TARGET="/var/lib/waydroid"
+
+echo "[*] Stopping Waydroid services"
+sudo systemctl stop waydroid-container 2>/dev/null || true
+sudo systemctl stop waydroid-session 2>/dev/null || true
+
+echo "[*] Killing remaining processes"
+sudo pkill -9 -f waydroid 2>/dev/null || true
+sudo pkill -9 -f lxc 2>/dev/null || true
+
+echo "[*] Unmounting known problematic mounts (deepest first)"
+sudo umount -l "$TARGET/rootfs/vendor/waydroid.prop" 2>/dev/null || true
+
+# repeat vendor unmounts (overlay + image)
+for i in {1..3}; do
+    sudo umount -l "$TARGET/rootfs/vendor" 2>/dev/null || true
+done
+
+# repeat rootfs unmounts (overlay + base image)
+for i in {1..3}; do
+    sudo umount -l "$TARGET/rootfs" 2>/dev/null || true
+done
+
+echo "[*] Recursive lazy unmount"
+sudo umount -lR "$TARGET" 2>/dev/null || true
+
+sudo umount $HOME/.local/share/waydroid/data/media/0/Movies
+sudo umount $HOME/.local/share/waydroid/data/media/0/Documents
+sudo umount $HOME/.local/share/waydroid/data/media/0/Download
+sudo umount $HOME/.local/share/waydroid/data/media/0/Music
+sudo umount $HOME/.local/share/waydroid/data/media/0/Movies
+sudo umount $HOME/.local/share/waydroid/data/media/0/Pictures
+
+echo "[*] Final mount check"
+mount | grep waydroid || echo "No mounts remain"
+
+echo "[*] Removing directory"
+sudo rm -rf "$TARGET"
+sudo rm -r ~/.local/share/waydroid
+
+echo "[*] Done"
