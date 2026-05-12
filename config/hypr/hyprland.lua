@@ -82,7 +82,6 @@ end)
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
-
 hl.env("GDK_BACKEND", "wayland,x11,*")
 hl.env("QT_QPA_PLATFORM", "wayland;xcb")
 hl.env("SDL_VIDEODRIVER", "wayland,x11")
@@ -108,10 +107,17 @@ hl.env("XCOMPOSEFILE", "~/.XCompose")
 
 hl.config({
 
+	general = {
+		resize_on_border = false,
+		allow_tearing = false,
+		layout = "dwindle",
+	},
+
 	xwayland = {
 		enabled = true,
 		force_zero_scaling = true,
 	},
+
 	render = {
 		direct_scanout = 0,
 	},
@@ -121,32 +127,26 @@ hl.config({
 	general = {
 		gaps_in = 1,
 		gaps_out = 2,
-		border_size = 2,
+		border_size = 1,
 
 		col = {
 			active_border = activeBorderColor,
 			inactive_border = inactiveBorderColor,
 		},
-
-		resize_on_border = false,
-
-		allow_tearing = false,
-
-		layout = "dwindle",
 	},
 
 	decoration = {
 		rounding = 5,
 		rounding_power = 2,
-		active_opacity = 1.0,
-		inactive_opacity = 0.95,
+		active_opacity = 1.00,
+		inactive_opacity = 1.00,
 
 		shadow = {
 			enabled = false,
 		},
 
 		blur = {
-			enabled = true,
+			enabled = false,
 			size = 5,
 			passes = 1,
 			vibrancy = 0.7,
@@ -167,7 +167,7 @@ hl.config({
 		sensitivity = 0,
 
 		touchpad = {
-			natural_scroll = false,
+			natural_scroll = true,
 		},
 	},
 
@@ -191,10 +191,10 @@ hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("wofi-scripts"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("wofi-repos"))
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. "+ SHIFT + L", hl.dsp.exec_cmd("hyprlock"))
 
 -- Hyprctl stuffs
-hl.bind(mainMod .. " + Q", hl.dsp.window.kill())
+hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + M", hl.dsp.exit())
 hl.bind(mainMod .. " + T", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
@@ -220,8 +220,17 @@ hl.bind(mainMod .. " + L", hl.dsp.window.move({ direction = "down" }))
 hl.bind("ALT + Tab", hl.dsp.window.cycle_next())
 
 -- Move windows to screen
-hl.bind(mainMod .. " + CTRL + " .. keyboard_keys[1], hl.dsp.window.move({ monitor = "DP-1" }))
-hl.bind(mainMod .. " + CTRL + " .. keyboard_keys[1], hl.dsp.window.move({ monitor = "eDP-1" }))
+local handle = io.popen("hyprctl monitors")
+local monitors = handle:read("*a")
+handle:close()
+local laptop_screen_connected = monitors:match("eDP%-1") ~= nil
+
+if laptop_screen_connected then
+	hl.bind(mainMod .. " + CTRL + " .. keyboard_keys[1], hl.dsp.window.move({ monitor = "eDP-1" }))
+else
+	hl.bind(mainMod .. " + CTRL + " .. keyboard_keys[1], hl.dsp.window.move({ monitor = "DP-1" }))
+end
+
 hl.bind(mainMod .. " + CTRL + " .. keyboard_keys[2], hl.dsp.window.move({ monitor = "HDMI-A-1" }))
 
 --------------------------------------------------
@@ -240,8 +249,8 @@ hl.bind(mainMod .. " + " .. keyboard_keys[10], hl.dsp.focus({ workspace = 10 }))
 hl.bind(mainMod .. " + SHIFT + " .. keyboard_keys[10], hl.dsp.window.move({ workspace = 10 }))
 
 -- Quick switch workspace
-hl.bind("CTRL + ALT + left", hl.dsp.focus({ workspace = "e-1" }))
-hl.bind("CTRL + ALT + right", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind("CTRL + ALT + left", hl.dsp.focus({ workspace = "r-1" }))
+hl.bind("CTRL + ALT + right", hl.dsp.focus({ workspace = "r+1" }))
 
 --------------------------------------------------
 -- MOUSE / RESIZE
@@ -249,7 +258,7 @@ hl.bind("CTRL + ALT + right", hl.dsp.focus({ workspace = "e+1" }))
 
 -- resize with mouse
 hl.bind("ALT + mouse:272", hl.dsp.window.drag(), { mouse = true })
-hl.bind("ALT + mouse:272", hl.dsp.window.resize(), { mouse = true })
+hl.bind("ALT + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- resize with keyboard
 hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.resize({ x = 30, y = 0 }))
