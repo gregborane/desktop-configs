@@ -144,7 +144,7 @@ animations {
 
 # See https://wiki.hypr.land/Configuring/Dwindle-Layout/ for more
 dwindle {
-    pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+    #pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
     preserve_split = true # You probably want this
 }
 
@@ -203,7 +203,7 @@ bind = $mainMod, Q, killactive,
 bind = $mainMod, M, exit,
 bind = $mainMod, SPACE, exec, $menu
 bindd = $mainMod, T, Toggle window floating/tiling, togglefloating,
-bind = $mainMod, J, togglesplit, # dwindle
+#bind = $mainMod, J, togglesplit, # dwindle
 bind = $mainMod, B, exec, $browser
 bind = $mainMod, L, exec, hyprlock
 bind = $mainMod, C, exec, wofi-scripts

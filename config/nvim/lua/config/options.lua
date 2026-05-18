@@ -23,4 +23,4 @@ set.scrolloff = 20
 -- remove swap files
 vim.opt.swapfile = false
 
-vim.g.vscode = true
+vim.g.vscode = false

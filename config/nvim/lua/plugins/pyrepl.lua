@@ -19,7 +19,7 @@ return {
         -- for other terminals use "image" provider
         image_provider = "placeholders",
         -- can also be a function for advanced use cases
-        cell_pattern = "^# %%.*$",
+        cell_pattern = "^# %%%%.*$",
         python_path = "python",
         preferred_kernel = "jupyter-console",
         -- automatically prompt to convert notebook files into python scripts

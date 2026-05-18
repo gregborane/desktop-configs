@@ -52,13 +52,13 @@ hl.monitor({
 hl.monitor({
 	output = "eDP-1",
 	mode = "1920x1080@60",
-	position = "0x0",
+	position = "auto",
 	scale = 1,
 })
 hl.monitor({
 	output = "HDMI-A-1",
 	mode = "1920x1080@60",
-	position = "0x-1080",
+	position = "auto",
 	scale = 1,
 })
 
@@ -239,14 +239,11 @@ hl.bind(mainMod .. " + CTRL + " .. keyboard_keys[2], hl.dsp.window.move({ monito
 
 -- Change worskpace
 
-for i = 1, 9 do
+for i = 1, 10 do
 	local key = keyboard_keys[i]
 	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
 	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
-
-hl.bind(mainMod .. " + " .. keyboard_keys[10], hl.dsp.focus({ workspace = 10 }))
-hl.bind(mainMod .. " + SHIFT + " .. keyboard_keys[10], hl.dsp.window.move({ workspace = 10 }))
 
 -- Quick switch workspace
 hl.bind("CTRL + ALT + left", hl.dsp.focus({ workspace = "r-1" }))
@@ -261,10 +258,10 @@ hl.bind("ALT + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind("ALT + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- resize with keyboard
-hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.resize({ x = 30, y = 0 }))
-hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.resize({ x = -30, y = 0 }))
-hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.resize({ x = 0, y = 30 }))
-hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.resize({ x = 0, y = -30 }))
+hl.bind(mainMod .. " + SHIFT + right", hl.dsp.window.resize({ x = 30, y = 0, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + left", hl.dsp.window.resize({ x = -30, y = 0, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + up", hl.dsp.window.resize({ x = 0, y = 30, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.resize({ x = 0, y = -30, relative = true }), { repeating = true })
 
 --------------------------------------------------
 -- MEDIA KEYS

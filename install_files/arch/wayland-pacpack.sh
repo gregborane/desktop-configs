@@ -6,10 +6,10 @@ set -e
 sudo pacman -Syu
 
 # Core and utilities
-sudo pacman -S --noconfirm --needed alsa-plugins android-tools android-file-transfer aspell atril
+sudo pacman -S --noconfirm --needed alsa-plugins android-tools android-file-transfer aspell
 sudo pacman -S --noconfirm --needed base base-devel bash-completion biber bluetui brightnessctl
 sudo pacman -S --noconfirm --needed cmake composer curl chromium
-sudo pacman -S --noconfirm --needed dkms 
+sudo pacman -S --noconfirm --needed dkms
 sudo pacman -S --noconfirm --needed eza
 sudo pacman -S --noconfirm --needed fastfetch fd firewalld feh ffmpeg fontconfig fuse-common fzf
 sudo pacman -S --noconfirm --needed gamescope gimp gnome-keyring ghostscript ghostty git gtk3 gtk4
@@ -35,20 +35,19 @@ sudo pacman -S --noconfirm --needed zathura zip zoxide
 
 # Libraries — include X11-related ones only as needed for Wine
 sudo pacman -S --noconfirm --needed \
-lib32-alsa-lib lib32-alsa-plugins lib32-giflib lib32-gmp lib32-gnutls \
-lib32-libgpg-error lib32-libjpeg-turbo lib32-libldap lib32-libpulse \
-lib32-libxcomposite lib32-libxinerama lib32-libxslt lib32-mpg123 lib32-ncurses \
-lib32-opencl-icd-loader lib32-sqlite libgcrypt libgpg-error libjpeg-turbo \
-libldap libpng libxcomposite libxinerama libxslt libva v4l-utils \
-winetricks protontricks dosbox gst-plugins-bad gst-plugins-good gst-plugins-ugly libgphoto2 samba sane unixodbc
+    lib32-alsa-lib lib32-alsa-plugins lib32-giflib lib32-gmp lib32-gnutls \
+    lib32-libgpg-error lib32-libjpeg-turbo lib32-libldap lib32-libpulse \
+    lib32-libxcomposite lib32-libxinerama lib32-libxslt lib32-mpg123 lib32-ncurses \
+    lib32-opencl-icd-loader lib32-sqlite libgcrypt libgpg-error libjpeg-turbo \
+    libldap libpng libxcomposite libxinerama libxslt libva v4l-utils \
+    winetricks protontricks dosbox gst-plugins-bad gst-plugins-good gst-plugins-ugly libgphoto2 samba sane unixodbc
 
 # sunshine dependenciesHost github.com
 sudo pacman -S avahi curl libayatana-appindicator libcap libdrm libevdev libmfx libnotify libpulse libva libx11 libxcb libxfixes libxrandr libxtst miniupnpc numactl openssl opus udev which appstream appstream-glib cmake desktop-file-utils gcc${_gcc_dep_suffix} git make nodejs npm
 
 # Vulkan support for AMD, Intel, and NVIDIA
 sudo pacman -S --noconfirm --needed \
-vulkan-icd-loader vulkan-headers vulkan-tools vulkan-validation-layers \
-mesa vulkan-radeon vulkan-intel \
-lib32-mesa lib32-vulkan-radeon lib32-vulkan-intel \
-lib32-vulkan-icd-loader lib32-vulkan-validation-layers
-
+    vulkan-icd-loader vulkan-headers vulkan-tools vulkan-validation-layers \
+    mesa vulkan-radeon vulkan-intel \
+    lib32-mesa lib32-vulkan-radeon lib32-vulkan-intel \
+    lib32-vulkan-icd-loader lib32-vulkan-validation-layers

@@ -9,8 +9,7 @@ PACKAGES="$@"
 
 # Loop through all environments
 for env in $(conda env list | awk 'NR>2 {print $1}'); do
-	conda activate $env
-	pip install $PACKAGES
+    conda activate $env
+    pip install $PACKAGES
 done
 echo "Pip install completed in all environments"
-
