@@ -6,7 +6,7 @@ vim.g.jukit_shell_cmd = "ipython3"
 
 -- Use Neovim's built-in terminal.
 -- Change to "kitty" only if you specifically want jukit's Kitty integration.
-vim.g.jukit_terminal = "kitty"
+vim.g.jukit_terminal = "nvimterm"
 
 -- Save IPython cell output.
 vim.g.jukit_save_output = 1
