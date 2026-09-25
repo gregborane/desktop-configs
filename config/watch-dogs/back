@@ -1,0 +1,108 @@
+// Frames image-0.png through image-310.png and background.png must be in ImageDir.
+frame_count = 311;
+frame_index = 0;
+showing_prompt = 0;
+
+Window.SetBackgroundTopColor(0, 0, 0);
+Window.SetBackgroundBottomColor(0, 0, 0);
+
+background_image = Image("background.png");
+background_sprite = Sprite(background_image);
+background_sprite.SetZ(-10);
+background_sprite.SetPosition(
+    Window.GetX() + (Window.GetWidth() - background_image.GetWidth()) / 2,
+    Window.GetY() + (Window.GetHeight() - background_image.GetHeight()) / 2
+);
+
+for (i = 0; i < frame_count; i++)
+    frames[i] = Image("image-" + i + ".png");
+
+animation_sprite = Sprite(frames[0]);
+animation_sprite.SetPosition(
+    Window.GetX() + (Window.GetWidth() - frames[0].GetWidth()) / 2,
+    Window.GetY() + (Window.GetHeight() - frames[0].GetHeight()) / 2
+);
+
+prompt_sprite = null;
+entry_sprite = null;
+message_sprite = null;
+password_bullets = null;
+bullet_image = Image.Text("*", 1, 1, 1);
+
+fun refresh_callback() {
+    if (showing_prompt == 0) {
+        frame_index = (frame_index + 1) % frame_count;
+        animation_sprite.SetImage(frames[frame_index]);
+    }
+}
+Plymouth.SetRefreshFunction(refresh_callback);
+
+fun display_password_callback(prompt, bullet_count) {
+    showing_prompt = 1;
+    prompt_sprite = null;
+    entry_sprite = null;
+    password_bullets = null;
+
+    if (prompt == "")
+        prompt = "Enter password";
+
+    prompt_image = Image.Text(prompt, 1, 1, 1);
+    prompt_sprite = Sprite(prompt_image);
+    prompt_sprite.SetPosition(
+        Window.GetX() + (Window.GetWidth() - prompt_image.GetWidth()) / 2,
+        Window.GetY() + Window.GetHeight() - 4 * prompt_image.GetHeight()
+    );
+
+    bullet_width = bullet_count * bullet_image.GetWidth();
+    for (j = 0; j < bullet_count; j++) {
+        password_bullets[j] = Sprite(bullet_image);
+        password_bullets[j].SetPosition(
+            Window.GetX() + (Window.GetWidth() - bullet_width) / 2 + j * bullet_image.GetWidth(),
+            Window.GetY() + Window.GetHeight() - 2 * bullet_image.GetHeight()
+        );
+    }
+}
+Plymouth.SetDisplayPasswordFunction(display_password_callback);
+
+fun display_question_callback(prompt, entry) {
+    showing_prompt = 1;
+    prompt_sprite = null;
+    entry_sprite = null;
+    password_bullets = null;
+
+    prompt_image = Image.Text(prompt, 1, 1, 1);
+    prompt_sprite = Sprite(prompt_image);
+    prompt_sprite.SetPosition(
+        Window.GetX() + (Window.GetWidth() - prompt_image.GetWidth()) / 2,
+        Window.GetY() + Window.GetHeight() - 4 * prompt_image.GetHeight()
+    );
+
+    entry_image = Image.Text(entry, 1, 1, 1);
+    entry_sprite = Sprite(entry_image);
+    entry_sprite.SetPosition(
+        Window.GetX() + (Window.GetWidth() - entry_image.GetWidth()) / 2,
+        Window.GetY() + Window.GetHeight() - 2 * entry_image.GetHeight()
+    );
+}
+Plymouth.SetDisplayQuestionFunction(display_question_callback);
+
+fun display_normal_callback() {
+    showing_prompt = 0;
+    prompt_sprite = null;
+    entry_sprite = null;
+    password_bullets = null;
+}
+Plymouth.SetDisplayNormalFunction(display_normal_callback);
+
+fun message_callback(text) {
+    message_sprite = null;
+    if (text != "") {
+        message_image = Image.Text(text, 1, 1, 1);
+        message_sprite = Sprite(message_image);
+        message_sprite.SetPosition(
+            Window.GetX() + (Window.GetWidth() - message_image.GetWidth()) / 2,
+            Window.GetY() + message_image.GetHeight()
+        );
+    }
+}
+Plymouth.SetMessageFunction(message_callback);

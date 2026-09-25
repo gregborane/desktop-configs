@@ -1,0 +1,9 @@
+[Plymouth Theme]
+Name=watch-dogs
+Description=Watch Dogs boot animation
+ModuleName=script
+
+[script]
+# The NixOS package substitutes /usr/share with its own store output.
+ImageDir=/usr/share/plymouth/themes/watch-dogs
+ScriptFile=/usr/share/plymouth/themes/watch-dogs/watch-dogs.script
