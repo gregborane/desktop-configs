@@ -15,7 +15,7 @@ vim.g.jukit_save_output = 1
 vim.g.jukit_auto_output_hist = 1
 
 -- Default jukit mappings.
-vim.g.jukit_mappings = 1
+vim.g.jukit_mappings = 0
 
 -- Layout:
 --
