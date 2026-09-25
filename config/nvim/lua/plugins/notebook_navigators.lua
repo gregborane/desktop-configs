@@ -33,6 +33,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
     vim.schedule(function()
       require("notebook-navigator").setup({
         activate_hydra_keys = "<leader>h",
+        repl_provider = "jukit",
       })
     end)
   end,
