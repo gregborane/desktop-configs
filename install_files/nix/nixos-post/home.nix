@@ -7,7 +7,7 @@
   
   home.packages = with pkgs; [
     # --- Terminal & CLI Utilities ---
-    btop eza fastfetch fetch fd fzf lazygit less neovim ripgrep sshs starship tmux wiremix zoxide blink
+    btop eza fastfetch fetch fd fzf lazygit less ripgrep sshs starship tmux wiremix zoxide blink
     
     # --- Desktop & GUI Apps ---
     qbittorrent localsend chromium feh ghostty gimp loupe nemo obs-studio thunderbird vlc zathura discord whatsapp-electron
@@ -101,10 +101,13 @@
     }; 
 
     programs.neovim = {
+        enable = true;
+        package =
+            inputs.neovim-nightly-overlay.packages
+            .${pkgs.stdenv.hostPlatform.system}.default;
         defaultEditor = true;
         };
 
-    xdg.configFile."nvim".source = ../../../config/nvim;
 
     home.file.".config/" = {
    	source = ../../../config;
