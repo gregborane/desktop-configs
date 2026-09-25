@@ -27,7 +27,6 @@ local parsers = {
   "javascript",
   "jsdoc",
   "json",
-  "jsonc",
   "latex",
   "lua",
   "luadoc",
