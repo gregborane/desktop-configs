@@ -4,9 +4,7 @@
 -- The master branch uses the old nvim-treesitter.configs API.
 -- This configuration targets the current main branch and Neovim 0.12+.
 vim.pack.add({
-  {
-    src = "https://github.com/nvim-treesitter/nvim-treesitter",
-  },
+  "https://github.com/nvim-treesitter/nvim-treesitter",
 })
 
 local ts = require("nvim-treesitter")

@@ -1,6 +1,6 @@
 -- 1. Load the plugin
 vim.pack.add({
-  src = { "nvim-treesitter/nvim-treesitter-textobjects" },
+  "nvim-treesitter/nvim-treesitter-textobjects",
 })
 
 -- 2. Define options
