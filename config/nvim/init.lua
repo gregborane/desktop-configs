@@ -32,7 +32,13 @@ require("config.keybinds")
 require("config.load")
 require("config.options")
 
-vim.o.packlockfile = vim.fn.stdpath("state") .. "/nvim-pack-lock.json"
+if vim.fn.exists("+packlockfile") == 1 then
+  vim.o.packlockfile = vim.fs.joinpath(
+    vim.fn.stdpath("state"),
+    "nvim-pack-lock.json"
+  )
+end
+
 vim.api.nvim_create_autocmd("PackChanged", {
   group = vim.api.nvim_create_augroup("UserPackBuild", {
     clear = true,
