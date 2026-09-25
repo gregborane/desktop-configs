@@ -24,6 +24,9 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
+            extraSpecialArgs = {
+                inherit inputs;
+                };
             users.greg = import ./home.nix;
             backupFileExtension = "backup";
           };

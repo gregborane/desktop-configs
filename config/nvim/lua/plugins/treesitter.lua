@@ -1,62 +1,87 @@
--- 1. Load the plugin
+-- Load nvim-treesitter.
+--
+-- Do NOT pin to "master".
+-- The master branch uses the old nvim-treesitter.configs API.
+-- This configuration targets the current main branch and Neovim 0.12+.
 vim.pack.add({
   {
-    src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
-    version = "main",
+    src = "https://github.com/nvim-treesitter/nvim-treesitter",
   },
 })
 
--- 2. Define the configuration options
+local ts = require("nvim-treesitter")
+
+-- Parser installation directory.
+-- Calling setup() is optional when using the default, but keeping it explicit
+-- makes the configuration clear.
+ts.setup({
+  install_dir = vim.fn.stdpath("data") .. "/site",
+})
+
 local parsers = {
-    "bash",
-    "c",
-    "css",
-    "diff",
-    "html",
-    "javascript",
-    "jsdoc",
-    "json",
-    "jsonc",
-    "latex",
-    "lua",
-    "luadoc",
-    "luap",
-    "markdown",
-    "markdown_inline",
-    "norg",
-    "printf",
-    "python",
-    "query",
-    "regex",
-    "scss",
-    "svelte",
-    "toml",
-    "tsx",
-    "typescript",
-    "typst",
-    "vim",
-    "vimdoc",
-    "vue",
-    "xml",
-    "yaml",
+  "bash",
+  "c",
+  "css",
+  "diff",
+  "html",
+  "javascript",
+  "jsdoc",
+  "json",
+  "jsonc",
+  "latex",
+  "lua",
+  "luadoc",
+  "luap",
+  "markdown",
+  "markdown_inline",
+  "printf",
+  "python",
+  "query",
+  "regex",
+  "scss",
+  "svelte",
+  "toml",
+  "tsx",
+  "typescript",
+  "typst",
+  "vim",
+  "vimdoc",
+  "vue",
+  "xml",
+  "yaml",
 }
 
--- 3. Execute setup
--- Note: The `main` branch uses `require("nvim-treesitter").setup`,
--- while stable releases still use `require("nvim-treesitter.configs").setup`.
--- This pcall ensures it works safely regardless of which version you end up pulling.
-local status_ok, ts = pcall(require, "nvim-treesitter")
-if status_ok and ts.setup then
-  ts.setup(opts)
-else
-  -- Fallback for standard/stable nvim-treesitter API
-  require("nvim-treesitter.configs").setup(opts)
-end
+-- Install missing parsers.
+--
+-- This is asynchronous and is a no-op for parsers that are already installed.
+ts.install(parsers)
 
--- 4. Enable Native Treesitter Folding (Neovim 0.10+)
--- LazyVim used a complex FileType autocommand for this, but in modern Neovim
--- you can safely enable it globally. It will gracefully fall back to standard
--- folding if a treesitter parser isn't available for the current file.
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldtext = "" -- Optional: Modern clean foldtext in Neovim 0.10+
+-- Enable Tree-sitter features whenever a parser exists for the current
+-- filetype.
+--
+-- On the current nvim-treesitter main branch, highlighting and folding are
+-- provided by Neovim itself. They are no longer configured with:
+--
+--   require("nvim-treesitter.configs").setup(...)
+--
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("treesitter.setup", { clear = true }),
+
+  callback = function(args)
+    -- Start native Tree-sitter highlighting.
+    local ok = pcall(vim.treesitter.start, args.buf)
+
+    -- No installed parser for this buffer's language.
+    if not ok then
+      return
+    end
+
+    -- Native Tree-sitter folding.
+    vim.wo.foldmethod = "expr"
+    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    vim.wo.foldtext = ""
+
+    -- Tree-sitter indentation provided by nvim-treesitter.
+    vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end,
+})
