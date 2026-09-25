@@ -66,6 +66,12 @@
         vim = "nvim";
         nano = "nvim";
         rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix/nixos-post#xii";
+
+        apply = ''
+            git add ../../.. &&
+            git commit -m "tracking changed" &&
+            sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix/nixos-post#xii
+            '';
         };
 	    profileExtra = ''	
 
