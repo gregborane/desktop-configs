@@ -2,7 +2,13 @@
 -- These globals must be defined before vim-jukit is loaded.
 -- The plugin explicitly requires that configuration variables are set first.
 
-vim.g.jukit_shell_cmd = "ipython3"
+local conda_prefix = vim.env.CONDA_PREFIX
+
+if conda_prefix and conda_prefix ~= "" then
+  vim.g.jukit_shell_cmd = vim.fn.shellescape(conda_prefix .. "/bin/python") .. " -m IPython"
+else
+  vim.g.jukit_shell_cmd = vim.fn.shellescape(vim.fn.exepath("python3")) .. " -m IPython"
+end
 
 -- Use Neovim's built-in terminal.
 -- Change to "kitty" only if you specifically want jukit's Kitty integration.
