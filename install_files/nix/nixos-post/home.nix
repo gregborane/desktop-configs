@@ -26,7 +26,8 @@
 
 
     # --- Development & Compilers ---
-    cmake gcc hdf5 jdk julia lua node nodejs ruby perl luarocks mariadb ninja (lib.lowPrio ncurses) ruby tree-sitter zig
+    cmake gcc hdf5 jdk julia lua nodejs ruby perl luarocks mariadb ninja (lib.lowPrio ncurses) ruby tree-sitter zig
+    elmPackages.nodejs
 
     # --- Language Specific & Editor Tools ---
     composer-require-checker mermaid-cli python3Packages.pynvim conda
