@@ -105,10 +105,10 @@
         };
 
     
-   # home.file.".config/" = {
-    #	source = ../../../config;
-    #	recursive = true ;
-    #	};
+    home.file.".config/" = {
+   	source = ../../../config;
+    	recursive = true ;
+    	};
 
     home.file.".local/" = {
 	source = ../../../local;
