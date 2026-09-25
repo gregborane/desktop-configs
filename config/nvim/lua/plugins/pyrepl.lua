@@ -21,7 +21,7 @@ pyrepl.setup({
   image_provider = "placeholders",
   -- can also be a function for advanced use cases
   cell_pattern = "^# %%%%.*$",
-  python_path = "python",
+  python_path = vim.g.python3_host_prog or "python3",
   preferred_kernel = "jupyter-console",
   -- automatically prompt to convert notebook files into python scripts
   jupytext_hook = false,

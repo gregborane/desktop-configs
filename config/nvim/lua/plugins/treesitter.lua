@@ -1,7 +1,7 @@
 -- 1. Load the plugin
 vim.pack.add({
   {
-    src = "https://github.com/nvim-treesitter/nvim-treesitter",
+    src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
     version = "main",
   },
 })

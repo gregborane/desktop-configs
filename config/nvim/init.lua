@@ -1,18 +1,31 @@
--- load python env accordingly
-local conda_env = os.getenv("CONDA_DEFAULT_ENV")
+-- Prefer the active virtualenv or Conda environment, then PATH.
+local candidates = {}
 
-if not conda_env then
-  local python = "/usr/bin/python"
-  vim.g.python3_host_prog = python
-elseif conda_env ~= "base" then
-  local python = "/home/greg/anaconda3/envs/" .. conda_env .. "/bin/python"
-  vim.g.python3_host_prog = python
-elseif conda_env then
-  local python = "/home/greg/anaconda3/bin/python"
-  vim.g.python3_host_prog = python
+for _, name in ipairs({ "VIRTUAL_ENV", "CONDA_PREFIX" }) do
+  local prefix = vim.env[name]
+  if prefix and prefix ~= "" then
+    table.insert(candidates, prefix .. "/bin/python")
+  end
 end
 
--- load files
+vim.list_extend(candidates, { "python3", "python" })
+
+local python
+for _, candidate in ipairs(candidates) do
+  if vim.fn.executable(candidate) == 1 then
+    python = vim.fn.exepath(candidate)
+    break
+  end
+end
+
+if python then
+  vim.g.python3_host_prog = python
+else
+  vim.notify(
+    "No Python interpreter found. Start Neovim inside your Python environment.",
+    vim.log.levels.WARN
+  )
+end-- load files
 require("config.keybinds")
 require("config.load")
 require("config.options")

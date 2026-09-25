@@ -1,6 +1,6 @@
 -- 1. Load the plugin and its dependency
 vim.pack.add({
-  "https://github.com/GCBallesteros/NotebookNavigator.nvim",
+  "https://github.com/gregborane/NotebookNavigator.nvim",
   "https://github.com/echasnovski/mini.hipatterns",
 })
 
