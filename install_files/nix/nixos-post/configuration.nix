@@ -156,6 +156,7 @@
   environment.systemPackages = with pkgs; [
     acpi
     gcc13
+    cargo
     cmake
     acpid
     libnotify

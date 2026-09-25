@@ -25,11 +25,14 @@ else
     "No Python interpreter found. Start Neovim inside your Python environment.",
     vim.log.levels.WARN
   )
-end-- load files
+end
+
+-- load files
 require("config.keybinds")
 require("config.load")
 require("config.options")
 
+vim.o.packlockfile = vim.fn.stdpath("state") .. "/nvim-pack-lock.json"
 vim.api.nvim_create_autocmd("PackChanged", {
   group = vim.api.nvim_create_augroup("UserPackBuild", {
     clear = true,
