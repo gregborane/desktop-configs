@@ -104,9 +104,7 @@
         defaultEditor = true;
         };
 
-   xdg.configFile."nvim".source =
-        config.lib.file.mkOutOfStoreSymlink
-            "/home/greg/desktop-configs/config/nvim";
+    xdg.configFile."nvim".source = ../../../config/nvim;
 
     home.file.".config/" = {
    	source = ../../../config;
