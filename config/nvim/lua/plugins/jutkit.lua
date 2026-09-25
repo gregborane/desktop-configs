@@ -5,9 +5,15 @@
 local conda_prefix = vim.env.CONDA_PREFIX
 
 if conda_prefix and conda_prefix ~= "" then
-  vim.g.jukit_shell_cmd = vim.fn.shellescape(conda_prefix .. "/bin/python") .. " -m IPython"
+  local ipython = conda_prefix .. "/bin/ipython"
+
+  if vim.fn.executable(ipython) == 1 then
+    vim.g.jukit_shell_cmd = vim.fn.shellescape(ipython)
+  else
+    error("IPython not found in Conda environment: " .. ipython)
+  end
 else
-  vim.g.jukit_shell_cmd = vim.fn.shellescape(vim.fn.exepath("python3")) .. " -m IPython"
+  vim.g.jukit_shell_cmd = "ipython3"
 end
 
 -- Use Neovim's built-in terminal.
