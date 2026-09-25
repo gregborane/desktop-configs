@@ -1,6 +1,6 @@
 -- 1. Load the plugin
 vim.pack.add({
-    "https://github.com/dangooddd/pyrepl.nvim",
+  "https://github.com/dangooddd/pyrepl.nvim",
 })
 
 -- 2. Execute the setup

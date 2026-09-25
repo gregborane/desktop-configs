@@ -74,9 +74,14 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 
     -- Native Tree-sitter folding.
-    vim.wo.foldmethod = "expr"
-    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-    vim.wo.foldtext = ""
+    vim.opt.foldmethod = "expr"
+    vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    vim.opt.foldtext = ""
+
+    -- Start with all folds open
+    vim.opt.foldlevel = 99
+    vim.opt.foldlevelstart = 99
+    vim.opt.foldenable = true
 
     -- Tree-sitter indentation provided by nvim-treesitter.
     vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"

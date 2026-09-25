@@ -1,8 +1,9 @@
 -- 1. Load the plugin and its dependencies
-vim.pack.add({"https://github.com/echasnovski/mini.comment",
-              "https://github.com/dangooddd/pyrepl.nvim",
-              "https://github.com/anuvyklack/hydra.nvim",
-              "https://github.com/gregborane/NotebookNavigator.nvim",
+vim.pack.add({
+  "https://github.com/echasnovski/mini.comment",
+  "https://github.com/dangooddd/pyrepl.nvim",
+  "https://github.com/anuvyklack/hydra.nvim",
+  "https://github.com/gregborane/NotebookNavigator.nvim",
 })
 
 -- 2. Define the Keymaps

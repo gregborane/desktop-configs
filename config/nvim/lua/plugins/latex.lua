@@ -15,7 +15,7 @@ vim.g.tex_indent_items = false -- Disable indent for enumerate
 vim.g.tex_indent_brace = false -- Disable brace indent
 
 -- Compiler settings
-vim.g.vimtex_compiler_method = "tectonic" -- Explicit compiler backend selection
+vim.g.vimtex_compiler_method = "latexmk" -- Explicit compiler backend selection
 vim.g.vimtex_compiler_latexmk = { -- latexmk configuration
   build_dir = "build", -- Build artifacts directory
   out_dir = "", -- Output directory for PDF and aux files
