@@ -21,7 +21,7 @@ end
 vim.g.jukit_terminal = "nvimterm"
 vim.opt.termguicolors = true
 vim.g.jukit_graphics_backend = "kitty"
-vimg.g.jukit_inline_plotting = 1
+vim.g.jukit_inline_plotting = 1
 
 vim.g.jukit_kitty_cell_aspect = 2.0
 -- Save IPython cell output.
