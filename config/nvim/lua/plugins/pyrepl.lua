@@ -26,7 +26,7 @@ pyrepl.setup({
   -- automatically prompt to convert notebook files into python scripts
   jupytext_hook = false,
 })
-
+vim.opt.termguicolors = true
 -- 3. Define the keymaps
 local map = vim.keymap.set
 
