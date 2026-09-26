@@ -17,5 +17,5 @@ battery
 
 speed=1
 depth=1
-light=bottom-right
+light=right
 shading_mode=sextants
