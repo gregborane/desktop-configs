@@ -166,6 +166,11 @@
     curl
     fuse3
     pipewire
+    sshfs
+    ghostscript
+    sqlite
+    xdotool
+    haskellPackages.gio
     pipewire.jack
     nix-index
     git
