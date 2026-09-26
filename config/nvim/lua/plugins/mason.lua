@@ -15,6 +15,7 @@ local opts = {
     "basedpyright",
     "stylua",
     "shfmt",
+    "ruff",
     "lua-language-server",
     "tex-fmt",
     "ltex-ls-plus",

@@ -34,6 +34,7 @@ local parsers = {
   "printf",
   "python",
   "query",
+  "norg",
   "regex",
   "scss",
   "svelte",
