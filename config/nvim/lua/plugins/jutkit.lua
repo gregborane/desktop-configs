@@ -57,5 +57,5 @@ vim.g.jukit_layout = {
 
 -- Install vim-jukit with Neovim's native vim.pack.
 vim.pack.add({
-  "https://github.com/luk400/vim-jukit",
+  "https://github.com/gregborane/vim-jukit",
 })
