@@ -3,7 +3,7 @@ vim.pack.add({
   "https://github.com/echasnovski/mini.comment",
   "https://github.com/anuvyklack/hydra.nvim",
   "https://github.com/gregborane/NotebookNavigator.nvim",
-  "https://github.com/luk400/vim-jukit",
+  "https://github.com/gregborane/pyrepl.nvim",
 })
 
 -- 2. Define the Keymaps
