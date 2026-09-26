@@ -19,7 +19,11 @@ end
 -- Use Neovim's built-in terminal.
 -- Change to "kitty" only if you specifically want jukit's Kitty integration.
 vim.g.jukit_terminal = "nvimterm"
+vim.opt.termguicolors = true
+vim.g.jukit_graphics_backend = "kitty"
+vimg.g.jukit_inline_plotting = 1
 
+vim.g.jukit_kitty_cell_aspect = 2.0
 -- Save IPython cell output.
 vim.g.jukit_save_output = 1
 
