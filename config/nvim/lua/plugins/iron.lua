@@ -38,7 +38,7 @@ iron.setup({
     dap_integration = true,
     -- How the repl window will be displayed
     -- See below for more information
-    repl_open_cmd = view.bottom(20),
+    -- repl_open_cmd = view.bottom(20),
 
     -- repl_open_cmd can also be an array-style table so that multiple
     -- repl_open_commands can be given.
@@ -49,8 +49,8 @@ iron.setup({
     -- toggle_repl_with_cmd_1, ..., toggle_repl_with_cmd_k
     -- For example,
     --
-    -- repl_open_cmd = {
-    --   view.split.vertical.rightbelow("%40"), -- cmd_1: open a repl to the right
+    repl_open_cmd = {
+        view.split.vertical.rightbelow("%40"), -- cmd_1: open a repl to the right
     --   view.split.rightbelow("%25")  -- cmd_2: open a repl below
     -- }
   },
