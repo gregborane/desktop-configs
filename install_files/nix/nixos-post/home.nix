@@ -70,6 +70,7 @@
         rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix/nixos-post#xii";
 
         apply = ''
+            cd ~/nixos-dotfiles/desktop-configs/install_files/nix/nixos-post
             git add ../../.. &&
             git commit -m "tracking changed" &&
             sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix/nixos-post#xii
@@ -85,7 +86,7 @@
             PATH="$PATH:$HOME/.config/shell/qs_bin"
         fi
 
-        export OMARCHY_PATH="$HOME/.config"
+        export HYPRLAND_CONFIG="$HOME/nixos-dotfiles/desktop-configs/config/hypr"
         export PATH
 
         if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then

@@ -1,4 +1,3 @@
-# Editor used by CLI
-export OMARCHY_PATH="$HOME/.config"
+# ENV variables for bash etc
 export SUDO_EDITOR="nvim"
 export TERMINFO="/usr/share/terminfo"
