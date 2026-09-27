@@ -174,6 +174,7 @@
     nix-index
     git
     hypridle
+    hyprmon
     hyprlock
     hyprshot
     killall
