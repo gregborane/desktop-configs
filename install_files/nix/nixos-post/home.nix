@@ -86,7 +86,7 @@
             PATH="$PATH:$HOME/.config/shell/qs_bin"
         fi
 
-        export HYPRLAND_CONFIG="$HOME/nixos-dotfiles/desktop-configs/config/hypr"
+        export HYPRLAND_CONFIG="$HOME/nixos-dotfiles/desktop-configs/config/hypr/hyprland.lua"
         export PATH
 
         if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
