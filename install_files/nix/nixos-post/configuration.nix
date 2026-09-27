@@ -30,7 +30,6 @@
             ];
         };
         
-        availableKernelModules = [ "simpledrm" ];
         systemd.enable = true;
         };
 
