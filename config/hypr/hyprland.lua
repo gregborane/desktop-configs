@@ -85,7 +85,6 @@ hl.env("MOZ_ENABLE_WAYLAND", "1")
 hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
 hl.env("OZONE_PLATFORM", "wayland")
 hl.env("XDG_SESSION_TYPE", "wayland")
-hl.env("$HYPRLAND_CONFIG", "~/nixos-dotfiles/desktop-configs/config/hypr")
 -- hl.env("LIBVA_DRIVER_NAME", "nvidia")
 
 -- if os.execute("nvidia-smi") ~= nil then

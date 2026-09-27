@@ -60,7 +60,10 @@
             email = "madaradellac@gmail.com";
         };
     };
-
+    
+    home.sessionVariables = {
+        HYPRLAND_CONFIG = "${config.home.homeDirectory}/nixos-dotfiles/desktop-configs/config/hypr";
+        };
     programs.bash = {   
         enable = true;
         shellAliases = {
