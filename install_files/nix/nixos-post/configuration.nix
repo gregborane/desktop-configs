@@ -178,6 +178,7 @@
     hyprlock
     hyprshot
     killall
+    innoextract
     swaybg
     stdenv
     hdf5
