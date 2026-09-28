@@ -37,7 +37,9 @@ vim.g.vimtex_quickfix_ignore_filters = { -- Filter out common noise
   "Package hyperref Warning",
 }
 
-vim.g.vimtex_log_ignore = { -- Suppress specific log messages
+vim.g.vimtex_log_ignore = {
+  "LaTeX Warning",
+  "Missing",
   "Underfull",
   "Overfull",
   "specifier changed to",
