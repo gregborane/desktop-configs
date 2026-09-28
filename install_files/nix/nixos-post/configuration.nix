@@ -182,6 +182,9 @@
     swaybg
     stdenv
     hdf5
+    unrar
+    rar
+    p7zip
     pkg-config
     sundials
     superlu
