@@ -84,6 +84,23 @@
           "pinned": []
         },
         {
+          "defaultSettings": {
+            "compactMode": false,
+            "defaultPeerAction": "copy-ip",
+            "hideDisconnected": false,
+            "hideMullvadExitNodes": true,
+            "loginServer": "",
+            "pingCount": 5,
+            "refreshInterval": 5000,
+            "showIpAddress": true,
+            "showPeerCount": true,
+            "showSearchBar": false,
+            "sshUsername": "",
+            "taildropDownloadDir": "~/Downloads",
+            "taildropEnabled": true,
+            "taildropReceiveMode": "operator",
+            "terminalCommand": ""
+          },
           "id": "plugin:tailscale"
         },
         {
@@ -550,8 +567,10 @@
   "notifications": {
     "enabled": true,
     "enableMarkdown": false,
-    "density": "default",
-    "monitors": [],
+    "density": "compact",
+    "monitors": [
+      "eDP-1"
+    ],
     "location": "top_right",
     "overlayLayer": true,
     "backgroundOpacity": 1,
@@ -580,7 +599,7 @@
   },
   "osd": {
     "enabled": true,
-    "location": "top_right",
+    "location": "top",
     "autoHideMs": 2000,
     "overlayLayer": true,
     "backgroundOpacity": 1,
