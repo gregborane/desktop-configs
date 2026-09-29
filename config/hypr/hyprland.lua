@@ -153,12 +153,13 @@ hl.config({
 })
 
 hl.curve("easeOut", { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1.0 } } })
+-- hl.curve("easeOut", { type = "spring", mass = 1, stiffness = 180, dampening = 1 })
 
-hl.animation({ leaf = "windows", enabled = true, speed = 5, bezier = "easeOut" })
-hl.animation({ leaf = "windowsOut", enabled = true, speed = 5, bezier = "easeOut" })
-hl.animation({ leaf = "border", enabled = true, speed = 5, bezier = "default" })
+hl.animation({ leaf = "windows", enabled = true, speed = 5, bezier = "easeOut", windows = "gnomed" })
+hl.animation({ leaf = "layers", enabled = false, speed = 5, bezier = "easeOut" })
+hl.animation({ leaf = "border", enabled = false, speed = 5, bezier = "default" })
 hl.animation({ leaf = "fade", enabled = false, speed = 4, bezier = "default" })
-hl.animation({ leaf = "workspaces", enabled = true, speed = 7, bezier = "default" })
+hl.animation({ leaf = "workspaces", enabled = false, speed = 7, bezier = "default", style = "slidevert" })
 
 hl.config({
 	input = {
