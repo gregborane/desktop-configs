@@ -1,5 +1,4 @@
 ---
-custom_Hardware=
 host
 cpu
 gpu
@@ -7,7 +6,6 @@ display
 memory
 swap
 ---
-custom_Software=
 os
 kernel
 wm
