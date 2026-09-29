@@ -1,11 +1,11 @@
 background = #000000
-foreground = #EAEAEA
+foreground = #ffffff
 
-cursor-color = #EAEAEA
-cursor-text = #121212
+cursor-color = #ffffff
+cursor-text = #000000
 
-selection-background = #333333
-selection-foreground = #EAEAEA
+selection-background = #000000
+selection-foreground = #ffffff
 
 # normal colors
 palette = 0=#333333
