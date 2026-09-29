@@ -1,6 +1,5 @@
 ---
-custom_HW=Hardware
----
+custom_Hardware=
 host
 cpu
 gpu
@@ -8,8 +7,7 @@ display
 memory
 swap
 ---
-custom_Soft=Software
----
+custom_Software=
 os
 kernel
 wm
@@ -21,7 +19,7 @@ custom_Editor=neovim
 uptime
 ---
 
-speed=1
-depth=1
+speed=1.0
+depth=1.0
 light=right
 shading_mode=sextants
