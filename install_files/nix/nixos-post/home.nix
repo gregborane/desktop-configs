@@ -10,7 +10,7 @@
     btop eza fastfetch fetch fd fzf lazygit less ripgrep sshs starship tmux wiremix zoxide blink
     
     # --- Desktop & GUI Apps ---
-    qbittorrent localsend chromium feh ghostty gimp loupe nemo obs-studio thunderbird vlc zathura discord whatsapp-electron
+    qbittorrent localsend brave-origin feh ghostty gimp loupe thunar obs-studio thunderbird vlc zathura discord whatsapp-electron
     onlyoffice-desktopeditors
 
     # --- Wayland / TUI Tools ---
@@ -125,6 +125,21 @@
 
     home.file.".local/" = {
 	source = ../../../local;
+	recursive = true;
+	};
+    
+    home.file.".local/share/icons" = {
+	source = ../../../icons;
+	recursive = true;
+	};
+
+    home.file.".local/share/fonts" = {
+	source = ../../../fonts;
+	recursive = true;
+	};
+
+    home.file.".local/share/themes" = {
+	source = ../../../themes;
 	recursive = true;
 	};
 
