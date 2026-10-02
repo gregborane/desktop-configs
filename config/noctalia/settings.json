@@ -48,6 +48,15 @@
           "textColor": "none",
           "useMonospaceFont": true,
           "usePadding": false
+        },
+        {
+          "deviceNativePath": "__default__",
+          "displayMode": "icon-always",
+          "hideIfIdle": false,
+          "hideIfNotDetected": true,
+          "id": "Battery",
+          "showNoctaliaPerformance": false,
+          "showPowerProfiles": true
         }
       ],
       "center": [
@@ -102,6 +111,13 @@
             "terminalCommand": ""
           },
           "id": "plugin:tailscale"
+        },
+        {
+          "displayMode": "onhover",
+          "iconColor": "none",
+          "id": "Volume",
+          "middleClickCommand": "pwvucontrol || pavucontrol",
+          "textColor": "none"
         },
         {
           "displayMode": "onhover",
@@ -398,7 +414,7 @@
           "stateChecksJson": "[]"
         },
         {
-          "id": "PowerProfile"
+          "id": "Notifications"
         }
       ]
     },
