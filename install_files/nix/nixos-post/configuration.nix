@@ -158,7 +158,7 @@
     brightnessctl killall
     pipewire pipewire.jack alsa-plugins
     haskellPackages.gio nix-index pkg-config fuse3
-    hypridle hyprmon hyprlock hyprshot swaybg
+    hypridle hyprmon hyprlock hyprshot
     unrar rar p7zip unzip zip innoextract
     sundials superlu eigen mkl hdf5
     noctalia-shell inotify-tools polkit_gnome libnotify kitty xdotool
