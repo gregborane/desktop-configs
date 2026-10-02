@@ -67,7 +67,7 @@ hl.monitor({
 hl.on("hyprland.start", function()
 	-- Fixed UWSM spacing syntax
 	hl.exec_cmd("uwsm app -- swaybg -i ~/.config/hypr/background.png")
-	hl.exec_cmd("uwsm app -- noctalia-shell")
+	hl.exec_cmd("uwsm app -- noctalia")
 	hl.exec_cmd("uwsm app -- hypridle")
 	hl.exec_cmd("uwsm app -- /run/current-system/sw/libexec/polkit-gnome-authentication-agent-1")
 end)
