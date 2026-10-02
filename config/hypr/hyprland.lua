@@ -16,9 +16,9 @@
 --------------------------------------------------
 
 local terminal = "ghostty"
-local filemanager = "nemo"
-local menu = "noctalia-shell ipc call launcher toggle"
-local browser = "chromium"
+local filemanager = "thunar"
+local menu = "noctalia msg panel-toggle launcher"
+local browser = "brave-origin"
 local mainMod = "SUPER"
 
 local activeBorderColor = "rgb(FFFFFF)"
@@ -276,6 +276,8 @@ hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.resize({ x = 0, y = -30, rel
 -- MEDIA KEYS
 --------------------------------------------------
 
+local ipc = "noctalia msg "
+
 hl.bind(
 	"XF86AudioRaiseVolume",
 	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"),
@@ -296,8 +298,8 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 5%-"), { locke
 -- NOTIFICATIONS / SCREENSHOT
 --------------------------------------------------
 
-hl.bind("SUPER + comma", hl.dsp.exec_cmd("noctalia-shell ipc call notifications dismissAll"))
-hl.bind("SUPER + SHIFT + comma", hl.dsp.exec_cmd("noctalia-shell ipc call notifications toggleDND"))
+hl.bind("SUPER + comma", hl.dsp.exec_cmd(ipc .. " notification-clear-active"))
+hl.bind("SUPER + SHIFT + comma", hl.dsp.exec_cmd(ipc .. " notification-dnd-toggle"))
 
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
 hl.bind("SUPER + S", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
