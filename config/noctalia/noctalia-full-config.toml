@@ -667,13 +667,13 @@ wallpaper_scheme = "m3-content"
     enable_community_templates = true
 
 [wallpaper]
-directory = ""
-directory_dark = ""
-directory_light = ""
+directory = "/home/greg/.config/hypr"
+directory_dark = "/home/greg/.config/hypr"
+directory_light = "/home/greg/.config/hypr"
 edge_smoothness = 0.30000001192092896
-enabled = false
+enabled = true
 fill_color = ""
-fill_mode = "crop"
+fill_mode = "fit"
 per_monitor_directories = false
 transition = [ "fade", "wipe", "disc", "stripes", "zoom", "honeycomb" ]
 transition_duration = 1500.0
