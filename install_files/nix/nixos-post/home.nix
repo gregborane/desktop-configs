@@ -10,7 +10,7 @@
     btop eza fastfetch fd fzf lazygit less ripgrep sshs starship tmux zoxide blink
     
     # --- Desktop & GUI Apps ---
-    qbittorrent localsend brave-origin ghostty gimp loupe thunar obs-studio thunderbird vlc zathura discord whatsapp-electron
+    qbittorrent localsend brave-origin ghostty gimp loupe thunar obs-studio thunderbird vlc zathura legcord zapzap
     onlyoffice-desktopeditors
 
     # --- Wayland / TUI Tools ---
@@ -51,6 +51,10 @@
       text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
     })
   ];
+    
+    programs.noctalia = {
+      enable = true;
+    };
 
     programs.git = {
         enable = true;

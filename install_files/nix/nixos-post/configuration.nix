@@ -78,7 +78,8 @@
    };
 
   security.polkit.enable = true;
- 
+  services.gnome.gnome-keyring.enable = true;
+
   services.tailscale = {
     enable = true;
   };
@@ -135,7 +136,6 @@
 
   # Properly configuring fonts at the system level
   fonts.packages = with pkgs; [
-    nerd-fonts.fira-code
     noto-fonts
     noto-fonts-color-emoji
   ];
@@ -161,7 +161,7 @@
     hypridle hyprmon hyprlock hyprshot swaybg
     unrar rar p7zip unzip zip innoextract
     sundials superlu eigen mkl hdf5
-    noctalia-shell inotify-tools polkit_gnome libnotify kitty xdotool
+    noctalia-shell inotify-tools polkit_gnome libnotify kitty xdotool clipboard
     wget wol openssl sshfs git curl
   ];
 

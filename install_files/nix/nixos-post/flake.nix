@@ -3,6 +3,11 @@
 
   inputs = {
       nixpkgs.url = "nixpkgs/nixos-unstable";
+        
+      noctalia = {
+        url = "github:noctalia-dev/noctalia";
+        inputs.nixpkgs.follows = "nixpkgs";
+        };
 
       neovim-nightly-overlay.url =
         "github:nix-community/neovim-nightly-overlay";
@@ -13,13 +18,15 @@
       };
   };
 
-  outputs = { self, nixpkgs, neovim-nightly-overlay, home-manager, ... } @ inputs: { # Capture inputs here
+  outputs = { self, nixpkgs, neovim-nightly-overlay, home-manager, ... } @ inputs: {
+    
     nixosConfigurations.xii = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; }; # Pass inputs to modules
       modules = [
         ./configuration.nix
         home-manager.nixosModules.home-manager
+        ./noctalia.nix
         {
           home-manager = {
             useGlobalPkgs = true;
