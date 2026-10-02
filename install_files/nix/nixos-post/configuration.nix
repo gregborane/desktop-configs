@@ -154,12 +154,10 @@
   # All desktop apps and dev tools are now safely inside home.nix
   environment.systemPackages = with pkgs; [
     acpi acpid
-    cargo cmake stdenv
+    cargo cmake stdenv gnumake gcc
     brightnessctl killall
-    fuse3
     pipewire pipewire.jack alsa-plugins
-    ghostscript
-    haskellPackages.gio nix-index pkg-config
+    haskellPackages.gio nix-index pkg-config fuse3
     hypridle hyprmon hyprlock hyprshot swaybg
     unrar rar p7zip unzip zip innoextract
     sundials superlu eigen mkl hdf5

@@ -369,7 +369,7 @@
           "generalTooltipText": "",
           "icon": "align-box-bottom-center",
           "id": "CustomButton",
-          "onClicked": "xdg-terminal-exec --app-id=com.Util -e fetch &",
+          "onClicked": "xdg-terminal-exec --app-id=com.Util -e fastfetch &",
           "onMiddleClicked": "",
           "onRightClicked": "",
           "showExecTooltip": true,
