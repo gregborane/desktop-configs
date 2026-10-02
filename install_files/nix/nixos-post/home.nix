@@ -39,7 +39,7 @@
     aspell hspell nuspell tectonic texliveFull zotero
 
     # --- Miscellaneous / Media ---
-    android-tools ffmpeg imagemagick ueberzug
+    android-tools ffmpeg imagemagick ueberzug jq
 
     # --- Custom Scripts ---
     (pkgs.writeShellApplication {
