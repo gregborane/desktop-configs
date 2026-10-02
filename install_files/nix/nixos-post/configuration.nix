@@ -161,7 +161,7 @@
     hypridle hyprmon hyprlock hyprshot swaybg
     unrar rar p7zip unzip zip innoextract
     sundials superlu eigen mkl hdf5
-    noctalia-shell inotify-tools polkit_gnome libnotify kitty xdotool clipboard
+    noctalia-shell inotify-tools polkit_gnome libnotify kitty xdotool
     wget wol openssl sshfs git curl
   ];
 
