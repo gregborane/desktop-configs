@@ -7,14 +7,14 @@
   
   home.packages = with pkgs; [
     # --- Terminal & CLI Utilities ---
-    btop eza fastfetch fetch fd fzf lazygit less ripgrep sshs starship tmux wiremix zoxide blink
+    btop eza fastfetch fd fzf lazygit less ripgrep sshs starship tmux zoxide blink
     
     # --- Desktop & GUI Apps ---
-    qbittorrent localsend brave-origin feh ghostty gimp loupe thunar obs-studio thunderbird vlc zathura discord whatsapp-electron
+    qbittorrent localsend brave-origin ghostty gimp loupe thunar obs-studio thunderbird vlc zathura discord whatsapp-electron
     onlyoffice-desktopeditors
 
     # --- Wayland / TUI Tools ---
-    bluetui nwg-look quickshell wofi
+    bluetui nwg-look quickshell wofi wiremix
 
     # --- Utilities ---
     lutris wineWow64Packages.stable winetricks qjackctl (wineasio.overrideAttrs {
@@ -27,7 +27,7 @@
 
     # --- Development & Compilers ---
     cmake gcc hdf5 jdk julia lua nodejs ruby perl luarocks mariadb ninja (lib.lowPrio ncurses) ruby tree-sitter zig go php phpPackages.composer
-    elmPackages.nodejs
+    elmPackages.nodejs sqlite
 
     # --- Language Specific & Editor Tools ---
     composer-require-checker mermaid-cli python3Packages.pynvim conda

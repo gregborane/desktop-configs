@@ -153,51 +153,18 @@
   # Kept strictly to core system / hardware utilities
   # All desktop apps and dev tools are now safely inside home.nix
   environment.systemPackages = with pkgs; [
-    acpi
-    gcc13
-    cargo
-    cmake
-    acpid
-    libnotify
-    gnumake
-    alsa-plugins
-    brightnessctl
-    curl
+    acpi acpid
+    cargo cmake stdenv
+    brightnessctl killall
     fuse3
-    pipewire
-    sshfs
+    pipewire pipewire.jack alsa-plugins
     ghostscript
-    sqlite
-    xdotool
-    haskellPackages.gio
-    pipewire.jack
-    nix-index
-    git
-    hypridle
-    hyprmon
-    hyprlock
-    hyprshot
-    killall
-    innoextract
-    swaybg
-    stdenv
-    hdf5
-    unrar
-    rar
-    p7zip
-    pkg-config
-    sundials
-    superlu
-    eigen
-    mkl
-    kitty
-    noctalia-shell
-    inotify-tools
-    polkit_gnome
-    unzip
-    wget
-    wol
-    openssl
+    haskellPackages.gio nix-index pkg-config
+    hypridle hyprmon hyprlock hyprshot swaybg
+    unrar rar p7zip unzip zip innoextract
+    sundials superlu eigen mkl hdf5
+    noctalia-shell inotify-tools polkit_gnome libnotify kitty xdotool
+    wget wol openssl sshfs git curl
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
