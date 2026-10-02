@@ -15,9 +15,10 @@
 -- VARIABLES
 --------------------------------------------------
 
+local ipc = "noctalia msg"
 local terminal = "ghostty"
 local filemanager = "thunar"
-local menu = "noctalia msg panel-toggle launcher"
+local menu = ipc .. " panel-toggle launcher"
 local browser = "brave-origin"
 local mainMod = "SUPER"
 
@@ -65,11 +66,8 @@ hl.monitor({
 --------------------------------------------------
 
 hl.on("hyprland.start", function()
-	-- Fixed UWSM spacing syntax
-	hl.exec_cmd("uwsm app -- swaybg -i ~/.config/hypr/background.png")
 	hl.exec_cmd("uwsm app -- noctalia")
 	hl.exec_cmd("uwsm app -- hypridle")
-	hl.exec_cmd("uwsm app -- /run/current-system/sw/libexec/polkit-gnome-authentication-agent-1")
 end)
 
 --------------------------------------------------
@@ -86,10 +84,7 @@ hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
 hl.env("OZONE_PLATFORM", "wayland")
 hl.env("XDG_SESSION_TYPE", "wayland")
 -- hl.env("LIBVA_DRIVER_NAME", "nvidia")
-
--- if os.execute("nvidia-smi") ~= nil then
---    hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
--- end
+-- hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
 
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 
@@ -117,7 +112,7 @@ hl.config({
 	},
 
 	render = {
-		direct_scanout = 0,
+		direct_scanout = 1,
 	},
 })
 
@@ -134,10 +129,7 @@ hl.config({
 	},
 
 	decoration = {
-		rounding = 5,
-		rounding_power = 2,
-		active_opacity = 1.00,
-		inactive_opacity = 1.00,
+		rounding = false,
 
 		shadow = {
 			enabled = false,
@@ -145,15 +137,11 @@ hl.config({
 
 		blur = {
 			enabled = false,
-			size = 5,
-			passes = 1,
-			vibrancy = 0.7,
 		},
 	},
 })
 
 hl.curve("easeOut", { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1.0 } } })
--- hl.curve("easeOut", { type = "spring", mass = 1, stiffness = 180, dampening = 1 })
 
 hl.animation({ leaf = "windows", enabled = true, speed = 5, bezier = "easeOut", windows = "gnomed" })
 hl.animation({ leaf = "layers", enabled = false, speed = 5, bezier = "easeOut" })
@@ -203,7 +191,7 @@ hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + ALT + M", hl.dsp.exit())
 hl.bind(mainMod .. " + T", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
+hl.bind(mainMod .. " + SHIFT + J", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 
 --------------------------------------------------
@@ -224,24 +212,6 @@ hl.bind(mainMod .. " + L", hl.dsp.window.move({ direction = "down" }))
 
 -- Quick switch between windows
 hl.bind("ALT + Tab", hl.dsp.window.cycle_next())
-
--- Move windows to screen
-local function define_screen()
-	for _, v in ipairs(hl.get_monitors()) do
-		if v == "eDP-1" then
-			return true
-		end
-	end
-	return false
-end
-
-if define_screen() then
-	hl.bind(mainMod .. " + CTRL + " .. keyboard_keys[1], hl.dsp.window.move({ monitor = "eDP-1" }))
-else
-	hl.bind(mainMod .. " + CTRL + " .. keyboard_keys[1], hl.dsp.window.move({ monitor = "DP-1" }))
-end
-
-hl.bind(mainMod .. " + CTRL + " .. keyboard_keys[2], hl.dsp.window.move({ monitor = "HDMI-A-1" }))
 
 --------------------------------------------------
 -- WORKSPACES
@@ -275,8 +245,6 @@ hl.bind(mainMod .. " + SHIFT + down", hl.dsp.window.resize({ x = 0, y = -30, rel
 --------------------------------------------------
 -- MEDIA KEYS
 --------------------------------------------------
-
-local ipc = "noctalia msg "
 
 hl.bind(
 	"XF86AudioRaiseVolume",
