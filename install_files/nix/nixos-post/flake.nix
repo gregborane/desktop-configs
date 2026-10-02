@@ -26,7 +26,6 @@
       modules = [
         ./configuration.nix
         home-manager.nixosModules.home-manager
-        ./noctalia.nix
         {
           home-manager = {
             useGlobalPkgs = true;
