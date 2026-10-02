@@ -202,8 +202,8 @@
     "smoothScrollEnabled": false
   },
   "ui": {
-    "fontDefault": "FiraCode Nerd Font Mono",
-    "fontFixed": "FiraCode Nerd Font Mono",
+    "fontDefault": "Iosevka NFM",
+    "fontFixed": "Iosevka NFM",
     "fontDefaultScale": 1,
     "fontFixedScale": 1,
     "tooltipsEnabled": false,
@@ -250,7 +250,7 @@
   "wallpaper": {
     "enabled": false,
     "overviewEnabled": false,
-    "directory": "/home/greg/.config/hypr",
+    "directory": "/home/greg/Pictures/Wallpapers",
     "monitorDirectories": [],
     "enableMultiMonitorDirectories": false,
     "showHiddenFiles": false,
