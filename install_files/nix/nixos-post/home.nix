@@ -7,7 +7,7 @@
   
   home.packages = with pkgs; [
     # --- Terminal & CLI Utilities ---
-    btop eza fastfetch fd fzf lazygit less ripgrep sshs starship tmux zoxide blink
+    btop eza fastfetch fd fzf lazygit less ripgrep sshs starship tmux zoxide blink ncdu
     
     # --- Desktop & GUI Apps ---
     qbittorrent localsend brave-origin ghostty gimp loupe thunar obs-studio thunderbird vlc zathura legcord zapzap

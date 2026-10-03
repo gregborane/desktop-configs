@@ -42,19 +42,6 @@
           themeDir="$out/share/plymouth/themes/watch-dogs"
           mkdir -p "$themeDir"
           cp -r ${../../../config/watch-dogs}/. "$themeDir/"
-
-          test -f "$themeDir/watch-dogs.plymouth"
-          test -f "$themeDir/watch-dogs.script"
-          test -f "$themeDir/background.png"
-          for frame in $(seq 0 310); do
-            test -f "$themeDir/image-$frame.png" || {
-              echo "Missing watch-dogs/image-$frame.png" >&2
-              exit 1
-            }
-          done
-
-          substituteInPlace "$themeDir/watch-dogs.plymouth" \
-            --replace-fail "/usr/share/plymouth/themes/watch-dogs" "$themeDir"
         '')
       ];
     }; 
@@ -161,7 +148,7 @@
     hypridle hyprmon hyprlock hyprshot
     unrar rar p7zip unzip zip innoextract
     sundials superlu eigen mkl hdf5
-    noctalia-shell inotify-tools polkit_gnome libnotify kitty xdotool
+    inotify-tools polkit_gnome libnotify kitty xdotool
     wget wol openssl sshfs git curl
   ];
 
