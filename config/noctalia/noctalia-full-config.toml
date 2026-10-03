@@ -432,7 +432,7 @@ enabled = [
     [[plugins.source]]
     enabled = true
     kind = "path"
-    location = "~/.local/state/noctalia/plugins/materialized/community/custom-shortcut"
+    location = "~/.config/noctalia/plugins"
     name = "my-plugins"
 
 [shell]
