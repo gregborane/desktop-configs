@@ -42,6 +42,9 @@
           themeDir="$out/share/plymouth/themes/watch-dogs"
           mkdir -p "$themeDir"
           cp -r ${../../../config/watch-dogs}/. "$themeDir/"
+
+          substituteInPlace "$themeDir/watch-dogs.plymouth" \
+            --replace-fail "/usr/share/plymouth/themes/watch-dogs" "$themeDir"
         '')
       ];
     }; 

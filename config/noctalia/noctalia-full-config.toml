@@ -32,7 +32,7 @@ order = [ "default" ]
     concave_edge_corners = false
     contact_shadow = false
     enabled = true
-    end = [ "tray", "status", "clock", "date" ]
+    end = [ "tray", "status", "bluetooth", "network", "clock", "date" ]
     font_family = "Iosevka NFM"
     font_scale = 1.1000000238418579
     font_weight = 500
@@ -432,7 +432,7 @@ enabled = [
     [[plugins.source]]
     enabled = true
     kind = "path"
-    location = "~/.config/noctalia/plugins"
+    location = "~/.local/state/noctalia/plugins/materialized/community/custom-shortcut"
     name = "my-plugins"
 
 [shell]
@@ -707,7 +707,7 @@ stat = "cpu_usage"
 type = "sysmon"
 
 [widget.date]
-format = "{:%a %d %b %y}"
+format = "{:%a %d %b}"
 type = "clock"
 
 [widget.input_volume]
@@ -732,6 +732,10 @@ max_length = 220.0
 min_length = 80.0
 title_scroll = "none"
 type = "media"
+
+[widget.network]
+show_label = false
+type = "network"
 
 [widget.network_rx]
 stat = "net_rx"
