@@ -40,7 +40,8 @@
     },
     { "type": "display",
       "key": " ├─ 󱄄 ",
-      "keyColor": "38;5;240" },
+      "keyColor": "38;5;240" 
+    },
     {
      "type": "disk",
      "key": " ├─ 󰋊 ",
@@ -53,7 +54,7 @@
     },
     {
       "type": "swap",
-      "key": " └─ 󰓡 "
+      "key": " └─ 󰓡 ",
       "keyColor": "38;5;240"
     },
     {
