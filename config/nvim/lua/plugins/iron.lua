@@ -20,7 +20,7 @@ iron.setup({
       },
       python = {
         command = { "jupyter-console", "--ZMQTerminalInteractiveShell" }, -- or { "ipython", "--no-autoindent" }
-        format = common.bracketed_paste_python,
+        format = common.bracketed_paste,
         image = true,
         block_dividers = { "# %%", "#%%" },
         env = { PYTHON_BASIC_REPL = "1" }, --this is needed for python3.13 and up.
