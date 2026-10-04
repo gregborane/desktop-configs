@@ -26,7 +26,7 @@
     },
     {
       "type": "custom",
-      "format": "┌--------------------- Hardware --------------------┐"
+      "format": "┌───────────────────── Hardware ─────────────────────┐"
     },
     {
       "type": "cpu",
@@ -38,21 +38,34 @@
       "key": " ├─ 󰍛 ",
       "keyColor": "38;5;240"
     },
+    { "type": "display",
+      "key": " ├─ 󱄄 ",
+      "keyColor": "38;5;240" },
+    {
+     "type": "disk",
+     "key": " ├─ 󰋊 ",
+     "keyColor": "38;5;240"
+    },
     {
       "type": "memory",
       "key": " ├─ 󰘚 ",
       "keyColor": "38;5;240"
     },
     {
+      "type": "swap",
+      "key": " └─ 󰓡 "
+      "keyColor": "38;5;240"
+    },
+    {
       "type": "custom",
-      "format": "└---------------------------------------------------┘"
+      "format": "└────────────────────────────────────────────────┘"
     },
 
 
     // --- Software Section ---
     {
       "type": "custom",
-      "format": "┌--------------------- Software --------------------┐"
+      "format": "┌───────────────────── Software ─────────────────────┐"
     },
     {
       "type": "os",
@@ -69,12 +82,23 @@
       "key": " ├─ 󰨇 ",
       "keyColor": "38;5;240"
     },
-    { "type": "packages",
+    { 
+      "type": "de",
+      "key": " ├─  ",
+      "keyColor": "38;5;240" 
+    },
+    { 
+      "type": "packages",
       "key": " ├─ 󰏖 ",
       "keyColor": "38;5;240" },
     {
       "type": "terminal",
       "key": " ├─ 󰞷 ",
+      "keyColor": "38;5;240"
+    },
+    { 
+      "type": "terminalfont",
+      "key": " ├─  ",
       "keyColor": "38;5;240"
     },
     {
@@ -84,7 +108,32 @@
     },
     {
       "type": "custom",
-      "format": "└---------------------------------------------------┘"
+      "format": "└────────────────────────────────────────────────┘"
     },
+    { 
+      "type": "custom",
+      "format": "┌──────────────────────┤ Uptime / Age ├──────────────────────┐" 
+    },
+
+    { 
+      "type": "command",
+      "key": "󱦟 OS Age",
+      "keyColor": "38;5;240",
+      "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days" 
+    },
+
+{ 
+  "type": "uptime",
+  "key": "󱫐 Uptime",
+  "keyColor": "38;5;240" 
+},
+
+{ 
+  "type": "custom",
+  "format": "└────────────────────────────────────────────────────────────┘" 
+},
+
+"break"
+
   ]
 }
