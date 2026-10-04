@@ -19,18 +19,18 @@ key = "label"
 type = "string"
 label_key = "settings.label.label"
 description_key = "settings.label.description"
-default = "Custom"
+default = "systeminfo"
 
 [[setting]]
 key = "icon"
 type = "glyph"
 label_key = "settings.icon.label"
 description_key = "settings.icon.description"
-default = "question-mark"
+default = "file-info-filled"
 
 [[setting]]
 key = "onclick_cmd"
 type = "string"
 label_key = "settings.onclick_cmd.label"
 description_key = "settings.onclick_cmd.description"
-default = "notify-send \"Custom Shortcut\""
+default = "noctalia msg panel-close control-center & xdg-terminal-exec --app-id=com.Util bash -c 'fastfetch; while true; do read -n 1 -r key; [[ "$key" =~ ^[qQ]$ ]] && break; done'"
