@@ -4,9 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     
-    nixpkgs-unstable = {
-      url = "git+https://github.com/nixos/nixpkgs?ref=nixos-unstable&rev=7000e30129a0075d5f2f5341f237bf3a5f25950e";
-    };
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
         
     noctalia = {
       url = "github:noctalia-dev/noctalia";
@@ -26,15 +24,20 @@
   let
     system = "x86_64-linux";
     
-    # Instantiate unstable package set with unfree enabled
+    # Instantiate unstable package set with zotero overridden from stable nixpkgs
     pkgs-unstable = import nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
+      overlays = [
+        (final: prev: {
+          # Pulls the working Zotero build from stable 26.05
+          zotero = (import nixpkgs { inherit system; config.allowUnfree = true; }).zotero;
+        })
+      ];
     };
   in {
     nixosConfigurations.xii = nixpkgs.lib.nixosSystem {
       inherit system;
-      # Pass inputs and pkgs-unstable to NixOS modules
       specialArgs = { inherit inputs pkgs-unstable; }; 
       modules = [
         ./configuration.nix
@@ -43,7 +46,6 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            # Pass inputs and pkgs-unstable to Home Manager modules
             extraSpecialArgs = {
               inherit inputs pkgs-unstable;
             };
