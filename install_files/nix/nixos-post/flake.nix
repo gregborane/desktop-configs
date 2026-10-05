@@ -28,12 +28,6 @@
     pkgs-unstable = import nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
-      overlays = [
-        (final: prev: {
-          # Pulls the working Zotero build from stable 26.05
-          zotero = (import nixpkgs { inherit system; config.allowUnfree = true; }).zotero;
-        })
-      ];
     };
   in {
     nixosConfigurations.xii = nixpkgs.lib.nixosSystem {
