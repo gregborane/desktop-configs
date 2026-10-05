@@ -4,8 +4,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     
-    # Pinned nixpkgs-unstable revision with a working Zotero 7 build
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/90e227a9c3798950bc44654cfca872bc55d09e86";
+    nixpkgs-unstable = {
+      url = "git+https://github.com/nixos/nixpkgs?ref=nixos-unstable&rev=7000e30129a0075d5f2f5341f237bf3a5f25950e";
+    };
         
     noctalia = {
       url = "github:noctalia-dev/noctalia";
