@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/131cf0f911b8fee10ae531f91e391db3e74672a6";
         
     noctalia = {
       url = "github:noctalia-dev/noctalia";
