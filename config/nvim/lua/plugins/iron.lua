@@ -11,6 +11,7 @@ iron.setup({
   config = {
     -- Whether a repl should be discarded or not
     scratch_repl = true,
+    close_window_on_exit = false,
     -- Your repl definitions come here
     repl_definition = {
       sh = {
