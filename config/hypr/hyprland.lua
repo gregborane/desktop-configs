@@ -167,6 +167,12 @@ hl.config({
 	cursor = { hide_on_key_press = true },
 })
 
+hl.config({
+	misc = {
+		disable_hyprland_logo = 0,
+	},
+})
+
 --------------------------------------------------
 -- GESTURES
 --------------------------------------------------
