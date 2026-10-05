@@ -20,7 +20,7 @@ iron.setup({
         command = { "sh" },
       },
       python = {
-        command = { "jupyter-console", "--ZMQTerminalInteractiveShell" }, -- or { "ipython", "--no-autoindent" }
+        command = { "jupyter-console" }, -- or { "ipython", "--no-autoindent" }
         format = common.bracketed_paste,
         image = true,
         block_dividers = { "# %%", "#%%" },
