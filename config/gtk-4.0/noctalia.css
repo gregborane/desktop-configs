@@ -1,0 +1,72 @@
+@define-color dialog_bg_color #000000;
+@define-color dialog_fg_color #ffffff;
+
+@define-color overview_bg_color #1e1e1e;
+@define-color overview_fg_color #ffffff;
+
+@define-color sidebar_bg_color #1e1e1e;
+@define-color sidebar_fg_color #ffffff;
+@define-color sidebar_backdrop_color @window_bg_color;
+@define-color sidebar_border_color #424242;
+
+@define-color secondary_sidebar_bg_color #000000;
+@define-color secondary_sidebar_fg_color #ffffff;
+
+/* Backdrop/unfocused states */
+@define-color theme_unfocused_fg_color @window_fg_color;
+@define-color theme_unfocused_text_color @view_fg_color;
+@define-color theme_unfocused_bg_color @window_bg_color;
+@define-color theme_unfocused_base_color @window_bg_color;
+@define-color theme_unfocused_selected_bg_color @accent_bg_color;
+@define-color theme_unfocused_selected_fg_color @accent_fg_color;
+
+:root {
+    --accent-color: #ffffff;
+    --accent-bg-color: #ffffff;
+    --accent-fg-color: #000000;
+
+    --destructive-bg-color: #c98282;
+    --destructive-fg-color: #000000;
+
+    --error-bg-color: #c98282;
+    --error-fg-color: #000000;
+    --error-color: #c98282;
+
+    --window-bg-color: #000000;
+    --window-fg-color: #ffffff;
+
+    --view-bg-color: #000000;
+    --view-fg-color: #ffffff;
+
+    --headerbar-bg-color: #000000;
+    --headerbar-fg-color: #ffffff;
+    --headerbar-backdrop-color: @window_bg_color;
+
+    --popover-bg-color: #1e1e1e;
+    --popover-fg-color: #ffffff;
+
+    --card-bg-color: #1e1e1e;
+    --card-fg-color: #ffffff;
+
+    --dialog-bg-color: #000000;
+    --dialog-fg-color: #ffffff;
+
+    --overview-bg-color: #1e1e1e;
+    --overview-fg-color: #ffffff;
+
+    --sidebar-bg-color: #1e1e1e;
+    --sidebar-fg-color: #ffffff;
+    --sidebar-backdrop-color: @window_bg_color;
+    --sidebar-border-color: #424242;
+
+    --warning-bg-color: #616161;
+    --warning-fg-color: #ffffff;
+    --warning-color: #b0b0b0;
+
+    --success-color: #ffffff;
+    --success-bg-color: #1e1e1e;
+    --success-fg-color: #ffffff;
+
+    --shade-color: rgba(0, 0, 0, 0.36);
+}
+

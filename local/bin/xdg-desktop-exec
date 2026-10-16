@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+browser=$(xdg-settings get default-web-browser)
+
+IFS=: read -ra dirs <<< "${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+
+for dir in "${XDG_DATA_HOME:-$HOME/.local/share}" "${dirs[@]}"; do
+    file="$dir/applications/$browser"
+    if [[ -f "$file" ]]; then
+        dex "$file"
+        exit
+    fi
+done
+
+echo "Desktop entry not found: $browser" >&2
+exit 1

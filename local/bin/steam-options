@@ -1,0 +1,10 @@
+#!/bin/bash
+
+LSFG_LEGACY=1 \
+LSFG_DLL_PATH="/home/greg/.steam/steam/steamapps/common/Lossless Scaling/Lossless.dll" \
+LSFG_MULTIPLIER=4 \
+LSFG_FLOW_SCALE=1 \
+LSFG_PERFORMANCE_MODE=0 \
+LSFG_DLL_PATHLSFG_HDR_MODE=0 \
+LSFG_EXPERIMENTAL_PRESENT_MODE="fifo" "$@"
+

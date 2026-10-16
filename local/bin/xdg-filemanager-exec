@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+manager=$(xdg-mime query default inode/directory)
+
+IFS=: read -ra dirs <<<"${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+
+for dir in "${XDG_DATA_HOME:-$HOME/.local/share}" "${dirs[@]}"; do
+    file="$dir/applications/$manager"
+
+    if [[ -f "$file" ]]; then
+        exec dex "$file"
+    fi
+done
+
+echo "Desktop entry not found: $manager" >&2
+exit 1
