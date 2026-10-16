@@ -54,13 +54,14 @@ application/vnd.oasis.opendocument.spreadsheet=onlyoffice-desktopeditors.desktop
 application/vnd.oasis.opendocument.presentation=onlyoffice-desktopeditors.desktop
 text/csv=onlyoffice-desktopeditors.desktop
 application/rtf=onlyoffice-desktopeditors.desktop
-x-scheme-handler/mailto=userapp-Thunderbird-0W5HX3.desktop
-x-scheme-handler/mid=userapp-Thunderbird-0W5HX3.desktop
-message/rfc822=userapp-Thunderbird-0W5HX3.desktop
-x-scheme-handler/net.thunderbird=userapp-Thunderbird-RC4FX3.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-6TSCX3.desktop
+x-scheme-handler/mid=userapp-Thunderbird-6TSCX3.desktop
+message/rfc822=userapp-Thunderbird-6TSCX3.desktop
+x-scheme-handler/net.thunderbird=userapp-Thunderbird-OLQBX3.desktop
+x-scheme-handler/discord=legcord.desktop
 
 [Added Associations]
-x-scheme-handler/mailto=userapp-Thunderbird-0W5HX3.desktop;
-x-scheme-handler/mid=userapp-Thunderbird-0W5HX3.desktop;
-message/rfc822=userapp-Thunderbird-0W5HX3.desktop;
-x-scheme-handler/net.thunderbird=userapp-Thunderbird-RC4FX3.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-6TSCX3.desktop;userapp-Thunderbird-0W5HX3.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-6TSCX3.desktop;userapp-Thunderbird-0W5HX3.desktop;
+message/rfc822=userapp-Thunderbird-0W5HX3.desktop;userapp-Thunderbird-6TSCX3.desktop;
+x-scheme-handler/net.thunderbird=userapp-Thunderbird-OLQBX3.desktop;userapp-Thunderbird-RC4FX3.desktop;

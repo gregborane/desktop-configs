@@ -13,6 +13,8 @@ configs=(
     fontconfig
     gtk-3.0
     gtk-4.0
+    qt5ct
+    qt6ct
     nvim
     starship.toml
     mimeapps.list
