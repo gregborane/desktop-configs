@@ -90,8 +90,7 @@ let
             type = "url";
             url = "archlinux.org"
         }
-
-      ]
+      ];
     }
   ];
 
