@@ -78,17 +78,17 @@ let
         {
             name = "Web of Science";
             type = "url";
-            url = ""
+            url = "https://www.webofscience.com/wos/woscc/smart-search"
         }
         {
             name = "Sci Finder";
             type = "url";
-            url = ""
+            url = "archlinux.org"
         }
         {
             name = "Sci Hub";
             type = "url";
-            url = ""
+            url = "archlinux.org"
         }
 
       ]
