@@ -25,8 +25,9 @@
         expand_on_hover = true;
       };
     };
-     # Managed bookmarks
-      ManagedBookmarks = [
+    
+    # Managed bookmarks
+    ManagedBookmarks = [
         {
           toplevel_name = "Bookmarks";
         }
@@ -90,8 +91,8 @@
             }
           ];
         }
-      ];
-    };
+    ];
+    
     extensions = [
       # Dark Reader
       "eimadpbcbfnmbkopoojfekhnkhdbieeh;https://clients2.google.com/service/update2/crx"
