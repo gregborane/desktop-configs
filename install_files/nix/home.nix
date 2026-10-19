@@ -57,7 +57,7 @@
 
     # --- Unstable Packages ---
     (with pkgs-unstable; [
-        
+        ungoogled-chromium        
     ])
 
     ++
@@ -67,7 +67,6 @@
 
     ];
 
-  imports = [ ./zen.nix ];
 
   programs.noctalia = {
     enable = true;
@@ -131,6 +130,36 @@
       ];
     };
   }; 
+    
+  programs.ungoogle-chromium = {
+  enable = true;
+
+  homepageLocation = "http://127.0.0.1:8087/";
+
+  # Default search engine
+  defaultSearchProviderEnabled = true;
+  defaultSearchProviderName = "Local Search";
+  defaultSearchProviderSearchURL =
+    "http://127.0.0.1:8087/search?q={searchTerms}";
+
+  extensions = [
+    # Existing extensions
+    "eimadpbcbfnmbkopoojfekhnkhdbieeh;https://clients2.google.com/service/update2/crx" # Dark Reader
+    "aapbdbdomjkkjkaonfhkkikfgjllcleb;https://clients2.google.com/service/update2/crx" # Google Translate
+
+    # uBlock Origin
+    "cjpalhdlnbpafiamejdnhcphjbkeiagm;https://clients2.google.com/service/update2/crx"
+
+    # SponsorBlock
+    "mnjggcdmjocbbbhaepdhchncahnbgone;https://clients2.google.com/service/update2/crx"
+
+    # YouTube Shorts blocker
+    # Add the chosen extension ID here.
+
+    # Vertical tabs / lateral tab bar
+    # Add the chosen extension ID here.
+  ];
+};
 
   programs.neovim = {
     enable = true;

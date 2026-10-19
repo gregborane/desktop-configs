@@ -17,7 +17,7 @@
 
 local ipc = "noctalia msg"
 local terminal = "xdg-terminal-exec"
-local filemanager = "xdg-filemanger-exec"
+local filemanager = "xdg-filemanager-exec"
 local menu = ipc .. " panel-toggle launcher"
 local browser = "xdg-browser-exec"
 local mainMod = "SUPER"
