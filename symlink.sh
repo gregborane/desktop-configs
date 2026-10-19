@@ -19,6 +19,7 @@ configs=(
     nvim
     starship.toml
     mimeapps.list
+    wofi
 )
 
 local_dirs=(

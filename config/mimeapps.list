@@ -1,10 +1,10 @@
 [Default Applications]
-inode/directory=Thunar.desktop
+inode/directory=thunar.desktop
 application/pdf=pdfcraft.desktop
-text/html=zen-beta.desktop
-application/xhtml+xml=zen-beta.desktop
-x-scheme-handler/http=zen-beta.desktop
-x-scheme-handler/https=zen-beta.desktop
+text/html=chroimum-browser.desktop
+application/xhtml+xml=chromium-browser.desktop
+x-scheme-handler/http=chromium-browser.desktop
+x-scheme-handler/https=chromium-browser.desktop
 text/plain=nvim.desktop
 text/markdown=nvim.desktop
 text/x-python=nvim.desktop
