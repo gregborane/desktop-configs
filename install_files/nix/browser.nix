@@ -71,6 +71,28 @@ let
         }
       ];
     }
+    {
+      name = "Journals";
+      type = "folder";
+      children = [
+        {
+            name = "Web of Science";
+            type = "url";
+            url = ""
+        }
+        {
+            name = "Sci Finder";
+            type = "url";
+            url = ""
+        }
+        {
+            name = "Sci Hub";
+            type = "url";
+            url = ""
+        }
+
+      ]
+    }
   ];
 
   renderBookmark = item:
@@ -129,29 +151,6 @@ in
       # when creating a new Chromium profile.
       bookmarks.first_run_bookmarks.children = bookmarks;
     };
-
-    extensions = [
-      # Dark Reader
-      "eimadpbcbfnmbkopoojfekhnkhdbieeh;https://clients2.google.com/service/update2/crx"
-
-      # Sci hub
-      "jaoemodfhemfnifaibnffjjlbbacogea;https://clients2.google.com/service/update2/crx"
-
-      # Proxy Stuffs
-      "knnbfpkdmonjjcbkgpdkmnecadkngopf;https://client2.google.com/service/update2/crx"
-
-      # Google Translate
-      "aapbdbdomjkkjkaonfhkkikfgjllcleb;https://clients2.google.com/service/update2/crx"
-
-      # uBlock Origin
-      "cjpalhdlnbpafiamejdnhcphjbkeiagm;https://clients2.google.com/service/update2/crx"
-
-      # SponsorBlock
-      "mnjggcdmjocbbbhaepdhchncahnbgone;https://clients2.google.com/service/update2/crx"
-
-      # YouTube Shorts Block
-      "jiaopdjbehhjgokpphdfgmapkobbnmjp;https://clients2.google.com/service/update2/crx"
-    ];
   };
 }
 
