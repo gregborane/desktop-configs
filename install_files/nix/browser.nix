@@ -1,3 +1,4 @@
+
 { pkgs, ... }:
 
 {
@@ -14,20 +15,19 @@
     defaultSearchProviderSearchURL =
       "http://127.0.0.1:8087/search?q={searchTerms}";
 
-    extraOpts = {
-      DefaultSearchProviderName = "Local Search";
-      ShowHomeButton = true;
-    };
-
     initialPrefs = {
       vertical_tabs = {
         enabled = true;
         expand_on_hover = true;
       };
     };
-    
-    # Managed bookmarks
-    ManagedBookmarks = [
+
+    extraOpts = {
+      DefaultSearchProviderName = "Local Search";
+      ShowHomeButton = true;
+      BookmarkBarEnabled = true;
+
+      ManagedBookmarks = [
         {
           toplevel_name = "Bookmarks";
         }
@@ -73,7 +73,6 @@
           ];
         }
 
-        # Folder 3: School
         {
           name = "school";
           children = [
@@ -91,8 +90,9 @@
             }
           ];
         }
-    ];
-    
+      ];
+    };
+
     extensions = [
       # Dark Reader
       "eimadpbcbfnmbkopoojfekhnkhdbieeh;https://clients2.google.com/service/update2/crx"
@@ -111,3 +111,4 @@
     ];
   };
 }
+
