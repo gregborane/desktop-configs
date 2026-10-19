@@ -134,6 +134,12 @@ in
       # Dark Reader
       "eimadpbcbfnmbkopoojfekhnkhdbieeh;https://clients2.google.com/service/update2/crx"
 
+      # Sci hub
+      "jaoemodfhemfnifaibnffjjlbbacogea;https://clients2.google.com/service/update2/crx"
+
+      # Proxy Stuffs
+      "knnbfpkdmonjjcbkgpdkmnecadkngopf;https://client2.google.com/service/update2/crx"
+
       # Google Translate
       "aapbdbdomjkkjkaonfhkkikfgjllcleb;https://clients2.google.com/service/update2/crx"
 

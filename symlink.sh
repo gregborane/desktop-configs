@@ -6,6 +6,7 @@ shopt -s nullglob dotglob
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 configs=(
+    btop
     hypr
     noctalia
     fastfetch
