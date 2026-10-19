@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ./storage-configuration.nix
+    ./browser.nix
   ];
 
 

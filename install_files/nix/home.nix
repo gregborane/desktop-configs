@@ -57,16 +57,13 @@
 
     # --- Unstable Packages ---
     (with pkgs-unstable; [
-        ungoogled-chromium        
     ])
 
     ++
 
     [
         (import ./zotero.nix { inherit pkgs; })
-
     ];
-
 
   programs.noctalia = {
     enable = true;
@@ -129,50 +126,7 @@
         "com.mitchellh.ghostty.desktop"
       ];
     };
-  }; 
-    
- programs.chromium = {
-    enable = true;
-
-    homepageLocation = "http://127.0.0.1:8087/";
-
-    # Default search engine
-    defaultSearchProviderEnabled = true;
-    defaultSearchProviderSearchURL =
-      "http://127.0.0.1:8087/search?q={searchTerms}";
-
-    initialPrefs = {
-      vertical_tabs = {
-        enabled = true;
-        expand_on_hover = true;
-      };
-    };
-
-    extraOpts = {
-      DefaultSearchProviderName = "Local Search";
-      ShowHomeButton = true;
-    };
-
-    extensions = [
-      # Dark Reader
-      "eimadpbcbfnmbkopoojfekhnkhdbieeh;https://clients2.google.com/service/update2/crx"
-
-      # Google Translate
-      "aapbdbdomjkkjkaonfhkkikfgjllcleb;https://clients2.google.com/service/update2/crx"
-
-      # uBlock Origin
-      "cjpalhdlnbpafiamejdnhcphjbkeiagm;https://clients2.google.com/service/update2/crx"
-
-      # SponsorBlock
-      "mnjggcdmjocbbbhaepdhchncahnbgone;https://clients2.google.com/service/update2/crx"
-
-      # YouTube Shorts blocker
-      # Add extension ID
-
-      # Vertical tabs
-      # Add extension ID
-    ];
-  };
+  };     
 
   programs.neovim = {
     enable = true;
