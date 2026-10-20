@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec appimage-run "/home/greg/.local/share/pinokio/pinokio.appimage" "$@"
