@@ -164,7 +164,7 @@ in
         expand_on_hover = true;
       };
       ntp = {
-        shortcust_visible = false;
+        shortcut_visible = false;
       };
 
       # Place items directly on the bookmarks bar
