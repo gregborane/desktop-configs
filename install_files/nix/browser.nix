@@ -72,7 +72,7 @@ let
       ];
     }
     {
-      name = "Journals";
+      name = "journals";
       type = "folder";
       children = [
         {
