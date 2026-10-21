@@ -108,7 +108,9 @@ let
 in
 {
   environment.systemPackages = [
-    pkgs.ungoogled-chromium
+  (pkgs.ungoogled-chromium.override {
+    enableWideVine = true;
+  })
   ];
 
   # Importable bookmarks for existing profiles
