@@ -81,16 +81,32 @@ let
             url = "https://www.webofscience.com/wos/woscc/smart-search";
         }
         {
-            name = "Sci Finder";
+            name = "Elservier";
             type = "url";
-            url = "archlinux.org";
+            url = "https://www.elsevier.com/products/journals";
         }
         {
-            name = "Sci Hub";
+            name = "IEEE";
             type = "url";
-            url = "archlinux.org";
+            url = "https://ieeexplore.ieee.org/Xplore/home.jsp";
         }
-      ];
+        {
+            name = "Springer Link";
+            type = "url";
+            url = "https://link.springer.com/";
+        }
+        {
+            name = "Wiley Online Library";
+            type = "url";
+            url= "https://onlinelibrary.wiley.com/";
+        }
+        {
+            name = "Engineering Village";
+            type = "url";
+            url = "https://www.engineeringvillage.com/app/search/quick/";
+        }
+              
+    ];
     }
   ];
 
@@ -146,6 +162,9 @@ in
       vertical_tabs = {
         enabled = true;
         expand_on_hover = true;
+      };
+      ntp = {
+        shortcust_visible = false;
       };
 
       # Place items directly on the bookmarks bar
