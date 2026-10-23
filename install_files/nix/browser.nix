@@ -69,6 +69,11 @@ let
           type = "url";
           url = "https://dossieretudiant.polymtl.ca";
         }
+        {
+          name = "SharePoint PolyMTL";
+          type = "url";
+          url = "https://polymtlca-my.sharepoint.com";
+        }
       ];
     }
     {
@@ -164,7 +169,7 @@ in
         expand_on_hover = true;
       };
       ntp = {
-        shortcut_visible = false;
+        shortcust_visible = false;
       };
 
       # Place items directly on the bookmarks bar
