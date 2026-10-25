@@ -99,7 +99,6 @@
   # ---------------------------------------------------------------------------
 
   services.power-profiles-daemon.enable = false; 
-
   services.tlp = {
     enable = true;
 
@@ -178,6 +177,8 @@
   services = {
     gnome.gnome-keyring.enable = true;
 
+    udisks2.enable = true;
+    
     tailscale.enable = true;
 
     upower.enable = true;
