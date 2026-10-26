@@ -27,7 +27,7 @@
       })
 
       # Development & Compilers
-      cmake gcc hdf5 jdk julia lua nodejs ruby perl luarocks mariadb ninja (lib.lowPrio ncurses) tree-sitter zig go php phpPackages.composer
+      cmake gcc hdf5 jdk julia lua nodejs ruby perl luarocks mariadb ninja (lib.lowPrio ncurses) tree-sitter zig go php phpPackages.composer 
       elmPackages.nodejs sqlite ghostscript
 
       # Language Specific & Editor Tools
