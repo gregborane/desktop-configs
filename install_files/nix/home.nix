@@ -9,7 +9,7 @@
     # --- Stable Packages ---
     (with pkgs; [
       # Terminal & CLI Utilities
-      btop eza fastfetch fd fzf lazygit less ripgrep sshs starship tmux zoxide blink dooit dex
+      btop eza fastfetch fd fzf lazygit less ripgrep sshs starship tmux zoxide blink dooit dex ncdu
       
       # Desktop & GUI Apps
       qbittorrent localsend ghostty gimp loupe thunar obs-studio thunderbird vlc zathura legcord zapzap
