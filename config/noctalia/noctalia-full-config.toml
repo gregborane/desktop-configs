@@ -426,9 +426,9 @@ label = "process"
 onclick_cmd = "noctalia msg panel-close control-center & xdg-terminal-exec --app-id=com.Util -e btop"
 
 [plugin_settings."yocraft/custom-shortcut5"]
-icon = "checklist"
-label = "todo"
-onclick_cmd = "noctalia msg panel-close control-center & xdg-terminal-exec --app-id=com.Util -e dooit"
+icon = "usb"
+label = "disks"
+onclick_cmd = "noctalia msg panel-close control-center & xdg-terminal-exec --app-id=com.Util -e ncdu"
 
 [plugins]
 auto_update = "all"

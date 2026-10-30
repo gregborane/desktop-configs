@@ -4,8 +4,8 @@ foreground = #ffffff
 cursor-color = #ffffff
 cursor-text = #000000
 
-selection-background = #000000
-selection-foreground = #ffffff
+selection-background = #ffffff
+selection-foreground = #000000
 
 # normal colors
 palette = 0=#333333
