@@ -214,7 +214,7 @@ hl.bind("ALT + Tab", hl.dsp.window.cycle_next())
 --------------------------------------------------
 
 -- Change worskpace
-for i = 1, 6 do
+for i = 1, 7 do
 	local key = keyboard_keys[i]
 	hl.bind(mainMod .. " + " .. i, hl.dsp.focus({ workspace = i }))
 	hl.bind(mainMod .. " + SHIFT + " .. i, hl.dsp.window.move({ workspace = i }))
@@ -272,19 +272,7 @@ hl.bind("SUPER + S", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
 -- WORKSPACE RULES
 --------------------------------------------------
 
-for i = 1, 6 do
-	if 1 <= i and i <= 3 then
-		hl.workspace_rule({
-			workspace = tostring(i),
-			monitor = "HDMI-A-1",
-		})
-	else
-		hl.workspace_rule({
-			workspace = tostring(i),
-			monitor = "eDP-1",
-		})
-	end
-
+for i = 1, 7 do
 	hl.workspace_rule({
 		workspace = tostring(i),
 		persistent = true,

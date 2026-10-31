@@ -1,6 +1,5 @@
 vim.pack.add({
-    {src = "https://github.com/Vigemus/iron.nvim",
-  version = "dev-image"},
+  { src = "https://github.com/gregborane/iron.nvim" },
 })
 
 vim.opt.termguicolors = true
