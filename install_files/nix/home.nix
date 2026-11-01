@@ -133,5 +133,5 @@
     package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
     sideloadInitLua = true;
   };
-  wayland.windowManager.hyprland.systemd.enable = false;
+  wayland.windowManager.sway.systemd.enable = false;
 }
