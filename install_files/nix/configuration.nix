@@ -264,7 +264,7 @@
   programs = {
     sway = {
       enable = true;
-      xwayland.eable = true;
+      xwayland.enable = true;
       wrapperFeatures.gtk = true;
     };
     
