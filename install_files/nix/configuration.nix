@@ -346,6 +346,7 @@
     rocmPackages.rocm-runtime
     rocmPackages.clr
     rocmPackages.rocm-smi
+    btop-rocm
 
     # Audio
     pipewire
