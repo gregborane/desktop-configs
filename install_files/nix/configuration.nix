@@ -345,7 +345,7 @@
     # AMD ROCm
     rocmPackages.rocm-runtime
     rocmPackages.clr
-    rocm-smi
+    rocmPackages.rocm-smi
 
     # Audio
     pipewire
