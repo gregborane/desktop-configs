@@ -255,19 +255,28 @@
 
   xdg.portal = {
     enable = true;
-
+    wlr.enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
   };
 
   programs = {
-    hyprland = {
+    sway = {
       enable = true;
-      xwayland.enable = true;
-      withUWSM = true;
+      xwayland.eable = true;
+      wrapperFeatures.gtk = true;
     };
-
+    
+    uwsm = {
+      enable = true;
+      waylandCompositors.sway = {
+        prettyName = "Sway";
+        comment = "Sway compositor managed by UWSM";
+        binPath = "/run/current-system/sw/bin/sway";
+      };
+    };
+    
     gamescope.enable = true;
 
     bash.completion.enable = true;
