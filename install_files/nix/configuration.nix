@@ -181,14 +181,15 @@
     Type = "simple";
     ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
     Restart = "on-failure";
+    };
   };
-};
+  
   # ---------------------------------------------------------------------------
   # Services
   # ---------------------------------------------------------------------------
     
-    services.openssh = {
-        enable = true;
+  services.openssh = {
+        enable = false;
         openFirewall = true;
         settings = {
         PasswordAuthentication = true;
@@ -198,7 +199,7 @@
         MaxAuthTries = 3;
         PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
         };
-    };
+  };
   
   services = {
     gnome.gnome-keyring.enable = true;
@@ -344,6 +345,7 @@
     # AMD ROCm
     rocmPackages.rocm-runtime
     rocmPackages.clr
+    rocm-smi
 
     # Audio
     pipewire
