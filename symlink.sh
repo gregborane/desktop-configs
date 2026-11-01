@@ -7,7 +7,7 @@ REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 configs=(
     btop
-    hypr
+    sway
     noctalia
     fastfetch
     ghostty
@@ -20,6 +20,7 @@ configs=(
     starship.toml
     mimeapps.list
     wofi
+    xdg-desktop-portal
 )
 
 local_dirs=(

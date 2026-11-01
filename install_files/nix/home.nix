@@ -109,7 +109,7 @@
       export PATH
 
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-        exec uwsm start sway.desktop
+        exec sway.desktop
       fi
     '';
 
