@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 let
   swaymonad = inputs.swaymonad.packages.${pkgs.stdenv.hostPlatform.system}.swaymonad;
