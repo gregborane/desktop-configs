@@ -59,6 +59,7 @@ x-scheme-handler/mid=userapp-Thunderbird-6TSCX3.desktop
 message/rfc822=userapp-Thunderbird-6TSCX3.desktop
 x-scheme-handler/net.thunderbird=userapp-Thunderbird-OLQBX3.desktop
 x-scheme-handler/discord=legcord.desktop
+x-scheme-handler/discord-455712169795780630=discord-455712169795780630.desktop
 
 [Added Associations]
 x-scheme-handler/mailto=userapp-Thunderbird-6TSCX3.desktop;userapp-Thunderbird-0W5HX3.desktop;

@@ -12,7 +12,7 @@
       btop-rocm eza fastfetch fd fzf lazygit less ripgrep sshs starship tmux zoxide blink dooit dex ncdu
       
       # Desktop & GUI Apps
-      qbittorrent localsend ghostty gimp loupe thunar obs-studio thunderbird vlc zathura legcord zapzap
+      qbittorrent localsend foot ghostty gimp loupe thunar obs-studio thunderbird vlc zathura legcord zapzap
       onlyoffice-desktopeditors gnome-disk-utility adw-gtk3 nwg-look gsettings-desktop-schemas
 
       # Wayland / TUI Tools
