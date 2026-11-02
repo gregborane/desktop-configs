@@ -198,15 +198,15 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1772718394,
-        "narHash": "sha256-v0prBaP9JWns5V4WI8YT0HSFkEOs8JaP2GXieRVpxAs=",
-        "owner": "nicolasavru",
+        "lastModified": 1793579502,
+        "narHash": "sha256-i/dUBcWPZWxB0NShyalv5nvKnff3bR/SlKFhcCghfJI=",
+        "owner": "gregborane",
         "repo": "swaymonad",
-        "rev": "cfc27733648a4db6ace9ce8823f54ec81e531643",
+        "rev": "88b7433aa45e1f96faeddd16e8a28c7df610a6eb",
         "type": "github"
       },
       "original": {
-        "owner": "nicolasavru",
+        "owner": "gregborane",
         "repo": "swaymonad",
         "type": "github"
       }

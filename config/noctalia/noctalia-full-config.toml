@@ -214,15 +214,15 @@ pre_action_fade_seconds = 2.0
     [idle.behavior.lock]
     action = "lock"
     command = ""
-    enabled = false
+    enabled = true
     locked_timeout = 0.0
     resume_command = ""
-    timeout = 600.0
+    timeout = 120.0
 
     [idle.behavior.lock-and-suspend]
     action = "lock_and_suspend"
     command = ""
-    enabled = false
+    enabled = true
     locked_timeout = 0.0
     resume_command = ""
     timeout = 900.0
@@ -230,10 +230,10 @@ pre_action_fade_seconds = 2.0
     [idle.behavior.screen-off]
     action = "screen_off"
     command = ""
-    enabled = false
+    enabled = true
     locked_timeout = 0.0
     resume_command = ""
-    timeout = 660.0
+    timeout = 300.0
 
 [keybinds]
 cancel = [ "Escape" ]
@@ -260,15 +260,15 @@ allow_empty_password = false
 blur_intensity = 0.5
 blurred_desktop = false
 edge_smoothness = 0.30000001192092896
-enabled = false
+enabled = true
 fingerprint = true
 grace_period_seconds = 0
 lock_before_suspend = true
 monitors = []
 tint_intensity = 0.30000001192092896
-transition = [ "fade", "wipe", "disc", "stripes", "zoom", "honeycomb" ]
+transition = []
 transition_duration = 1500.0
-wallpaper = ""
+wallpaper = "/home/greg/.config/background/lock.png"
 
 [lockscreen_widgets]
 enabled = false
@@ -312,10 +312,10 @@ widget_order = [ "lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1" ]
     box_height = 196.0
     box_width = 810.0
     cx = 960.0
-    cy = 898.0
+    cy = 997.77777099609375
     enabled = true
     output = "eDP-1"
-    placement_height = 1080.0
+    placement_height = 1200.0
     placement_width = 1920.0
     rotation = 0.0
     type = "login_box"
@@ -426,7 +426,7 @@ label = "process"
 onclick_cmd = "noctalia msg panel-close control-center & xdg-terminal-exec --app-id=com.Util -e btop"
 
 [plugin_settings."yocraft/custom-shortcut5"]
-icon = "usb"
+icon = "checklist"
 label = "disks"
 onclick_cmd = "noctalia msg panel-close control-center & xdg-terminal-exec --app-id=com.Util -e ncdu"
 
@@ -586,11 +586,11 @@ umbriel_overview_type_to_launch_enabled = false
     copy_to_clipboard = true
     directory = ""
     filename_pattern = ""
-    freeze_screen = false
+    freeze_screen = true
     pipe_command = ""
     pipe_to_command = false
     remember_last_region = false
-    save_to_file = true
+    save_to_file = false
     show_cursor = false
     skip_annotate_on_copy_save = false
 
@@ -625,7 +625,7 @@ umbriel_overview_type_to_launch_enabled = false
         action = "lock_and_suspend"
         command = ""
         countdown_seconds = 0.0
-        enabled = false
+        enabled = true
         glyph = ""
         label = ""
         shortcut = "3"
@@ -650,6 +650,16 @@ umbriel_overview_type_to_launch_enabled = false
         label = ""
         shortcut = "5"
         variant = "destructive"
+
+        [[shell.session.actions]]
+        action = "command"
+        command = "notify-send 'Noctalia' 'Custom session entry'"
+        countdown_seconds = 0.0
+        enabled = false
+        glyph = ""
+        label = ""
+        shortcut = ""
+        variant = "default"
 
     [shell.shadow]
     alpha = 0.0
@@ -711,24 +721,24 @@ community_palette = "Monochrome"
 custom_palette = "Monochrome"
 mode = "dark"
 pure_black_dark = true
-shell_mode = "follow"
+shell_mode = "dark"
 source = "custom"
 wallpaper_scheme = "m3-monochrome"
 
     [theme.templates]
-    builtin_ids = [ "qt" ]
+    builtin_ids = [ "btop", "qt" ]
     community_ids = []
     enable_builtin_templates = true
     enable_community_templates = true
 
 [wallpaper]
-directory = "/home/greg/.config/hypr"
-directory_dark = "/home/greg/.config/hypr"
-directory_light = "/home/greg/.config/hypr"
+directory = "/home/greg/.config/background"
+directory_dark = "/home/greg/.config/background"
+directory_light = "/home/greg/.config/background"
 edge_smoothness = 0.30000001192092896
 enabled = true
 fill_color = ""
-fill_mode = "fit"
+fill_mode = "crop"
 per_monitor_directories = false
 transition = []
 transition_duration = 1500.0

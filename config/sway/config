@@ -49,15 +49,8 @@ for_window [app_id="^.*"] inhibit_idle fullscreen
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # Noctalia owns bar, wallpaper, notification daemon, launcher, and lock screen.
-# Do not start Waybar, Mako, SwayNC, swaybg, or hyprlock in this profile.
 exec noctalia
 exec swaymonad --default-layout tall
-
-exec swayidle -w \
-    timeout 60 'noctalia msg session lock' \
-    timeout 300 'swaymsg "output * power off"' \
-    resume 'swaymsg "output * power on"' \
-    before-sleep 'noctalia msg session lock'
 
 # Applications 
 bindsym $mod+Return exec $terminal

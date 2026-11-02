@@ -10,6 +10,7 @@ configs=(
     sway
     noctalia
     fastfetch
+    background
     ghostty
     fontconfig
     gtk-3.0
