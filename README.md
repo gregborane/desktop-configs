@@ -18,7 +18,7 @@ Config:
 
 - config files for rice
 
-No X11 based graphical, only wayland or xwayland.
+This is config works for Wayland compositors : Sway and Hyprland based on noctalia shell.
 
-- Most of the rice is coming from Omarchy set up, bash set up as well. [Omarchy](https://omarchy.org/)
+- Bash set up is from the [Omarchy](https://omarchy.org/) project.
 - Grub theme applier is from christitus tech repo : [Grub themes](https://christitus.com/bootloader-themes/)
