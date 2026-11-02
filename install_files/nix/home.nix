@@ -109,7 +109,7 @@
       export PATH
 
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-        exec sway.desktop
+        exec sway
       fi
     '';
 
@@ -133,5 +133,4 @@
     package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
     sideloadInitLua = true;
   };
-  wayland.windowManager.sway.systemd.enable = false;
 }

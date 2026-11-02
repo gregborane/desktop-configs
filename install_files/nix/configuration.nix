@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  swaymonad = inputs.swaymonad.packages.${pkgs.stdenv.hostPlatform.system}.swaymonad;
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -266,6 +269,7 @@
       enable = true;
       xwayland.enable = true;
       wrapperFeatures.gtk = true;
+      extraPackages = [ swaymonad ];
     };
 
     gamescope.enable = true;

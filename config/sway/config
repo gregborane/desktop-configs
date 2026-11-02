@@ -10,7 +10,7 @@ set $browser xdg-browser-exec
 font pango:monospace 10
 default_border pixel 1
 default_floating_border pixel 1
-gaps inner 1
+gaps inner 0
 gaps outer 2
 client.focused          #ffffff #181818 #ffffff #ffffff #ffffff
 client.focused_inactive #000000 #181818 #888888 #000000 #000000
@@ -43,6 +43,7 @@ focus_follows_mouse yes
 seat * hide_cursor when-typing enable
 seat * xcursor_theme Bibata-Modern-Ice 24
 floating_modifier $alt normal
+for_window [app_id="^.*"] inhibit_idle fullscreen
 
 # Ensure PipeWire/portals launched via D-Bus see the Sway session.
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
@@ -50,17 +51,15 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 # Noctalia owns bar, wallpaper, notification daemon, launcher, and lock screen.
 # Do not start Waybar, Mako, SwayNC, swaybg, or hyprlock in this profile.
 exec noctalia
+exec swaymonad --default-layout tall
 
-# Port of hypridle.conf: lock at 150s, power monitors off at 330s.
-# Noctalia v5 also has native idle behaviors. If enabled in Noctalia,
-# remove this swayidle process to prevent duplicate idle handling.
 exec swayidle -w \
-    timeout 150 'noctalia msg session lock' \
-    timeout 330 'swaymsg "output * power off"' \
+    timeout 60 'noctalia msg session lock' \
+    timeout 300 'swaymsg "output * power off"' \
     resume 'swaymsg "output * power on"' \
     before-sleep 'noctalia msg session lock'
 
-# Applications — preserve the original shortcuts.
+# Applications 
 bindsym $mod+Return exec $terminal
 bindsym $mod+b exec $filemanager
 bindsym $mod+y exec $browser
@@ -85,7 +84,6 @@ bindsym $mod+k move up
 bindsym $mod+l move down
 bindsym $alt+Tab focus next
 
-# Six workspaces; keep the Hyprland 1..6 key mapping.
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
 bindsym $mod+3 workspace number 3
@@ -120,8 +118,8 @@ bindsym --locked XF86MonBrightnessDown exec brightnessctl s 5%-
 # Native Noctalia notifications and Wayland screenshot tools.
 bindsym $mod+comma exec $ipc notification-clear-active
 bindsym $mod+Shift+comma exec $ipc notification-dnd-toggle
-bindsym Print exec sh -c 'grim -g "$(slurp)" - | wl-copy --type image/png'
-bindsym $mod+s exec sh -c 'grim -g "$(slurp)" - | wl-copy --type image/png'
+bindsym Print exec $ipc screenshot-region
+bindsym $mod+s exec $ipc screenshot-region
 
 # Original Steam rules (Xwayland typically exposes class=steam).
 for_window [class="^steam$"] floating enable
