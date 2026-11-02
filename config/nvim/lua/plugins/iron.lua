@@ -22,7 +22,11 @@ iron.setup({
       python = {
         command = { "jupyter-console" }, -- or { "ipython", "--no-autoindent" }
         format = common.bracketed_paste,
-        image = true,
+        image = {
+          protocol = "sixel",
+          cell_width = 8,
+          cell_height = 16,
+        },
         block_dividers = { "# %%", "#%%" },
         env = { PYTHON_BASIC_REPL = "1" }, --this is needed for python3.13 and up.
       },

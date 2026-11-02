@@ -8,6 +8,7 @@ REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 configs=(
     btop
     sway
+    foot
     noctalia
     fastfetch
     background
