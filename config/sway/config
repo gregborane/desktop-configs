@@ -7,10 +7,10 @@ set $filemanager xdg-filemanager-exec
 set $browser xdg-browser-exec
 
 # Minimal decoration, matching the original Hyprland gaps and borders.
-font pango:monospace 10
+font iosevkanerfont:monospace 10
 default_border pixel 1
 default_floating_border pixel 1
-gaps inner 0
+gaps inner 1
 gaps outer 2
 client.focused          #ffffff #181818 #ffffff #ffffff #ffffff
 client.focused_inactive #000000 #181818 #888888 #000000 #000000
