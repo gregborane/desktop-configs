@@ -28,7 +28,7 @@ cmp.setup({
       auto_show = true,
       auto_show_delay_ms = 200,
     },
-    ghost_text = { enabled = true },
+    ghost_text = { enabled = false },
   },
 
   cmdline = {
@@ -36,9 +36,10 @@ cmp.setup({
       preset = "cmdline",
       ["<Right>"] = false,
       ["<Left>"] = false,
-      -- Avoid the cmdline preset's insertion-on-Tab behavior.
-      ["<Tab>"] = { "show", "select_next", "fallback" },
-      ["<S-Tab>"] = { "show", "select_prev", "fallback" },
+      ["<Up>"] = false,
+      ["<Down>"] = false,
+      ["<Tab>"] = false,
+      ["<S-Tab>"] = false,
     },
     completion = {
       list = {
