@@ -142,8 +142,7 @@ local enable = {}
 
 for name, settings in pairs(opts.servers) do
   if settings ~= false then
-    local config = type(settings) == "table"
-      and vim.deepcopy(settings) or {}
+    local config = type(settings) == "table" and vim.deepcopy(settings) or {}
 
     local enabled = config.enabled ~= false
     local use_mason = config.mason ~= false

@@ -10,7 +10,24 @@ cmp.build():pwait()
 
 cmp.setup({
   keymap = {
-    preset = "default",
+    preset = "none",
+
+    -- Keep Ctrl-based navigation
+    ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+    ["<C-e>"] = { "hide", "fallback" },
+    ["<C-y>"] = { "select_and_accept", "fallback" },
+    ["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+    ["<C-n>"] = { "select_next", "fallback_to_mappings" },
+
+    -- Documentation
+    ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+    ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+
+    -- Snippets
+    ["<Tab>"] = { "snippet_forward", "fallback" },
+    ["<S-Tab>"] = { "snippet_backward", "fallback" },
+
+    ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
   },
 
   completion = {
@@ -28,19 +45,17 @@ cmp.setup({
       auto_show = true,
       auto_show_delay_ms = 200,
     },
-    ghost_text = { enabled = false },
+    ghost_text = { enabled = true },
   },
 
   cmdline = {
     keymap = {
-      preset = "cmdline",
-      ["<Right>"] = false,
-      ["<Left>"] = false,
-      ["<Up>"] = false,
-      ["<Down>"] = false,
-      ["<Tab>"] = false,
-      ["<S-Tab>"] = false,
+      preset = "none",
+
+      ["<Tab>"] = { "show", "select_next", "fallback" },
+      ["<S-Tab>"] = { "show", "select_prev", "fallback" },
     },
+
     completion = {
       list = {
         selection = { preselect = false, auto_insert = false },

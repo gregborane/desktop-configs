@@ -1,20 +1,22 @@
 #!/bin/sh
 set -eu
 
-# Set your terminal:
 terminal="xdg-terminal-exec"
 
-# Pick repo
-configs="$(ls -1d "$HOME"/Work/*/ 2>/dev/null | xargs -n1 basename)"
+# Pick project
+configs="$(
+    for dir in "$HOME"/Work/*/; do
+        [ -d "$dir" ] || continue
+        basename "$dir"
+    done
+)"
+
 [ -n "$configs" ] || exit 0
-chosen="$(printf '%s\n' $configs | wofi -dmenu -p 'Projects:')"
+
+chosen="$(printf '%s\n' "$configs" | wofi --dmenu -p 'Projects:')" || exit 0
 [ -n "$chosen" ] || exit 0
+
 dir="$HOME/Work/$chosen"
 
-# Nuke any existing st (since you only use one terminal)
-pkill -x $terminal 2>/dev/null || true
-sleep 0.1
-
-# Launch a clean terminal: attach if exists, else create
-# exec st -e tmux new-session -As "$chosen" -c "$dir" "nvim ."
-exec $terminal -e tmux new-session -As "$chosen" -c "$dir"
+# Launch terminal in project directory with Neovim
+exec "$terminal" --dir="$dir" nvim .
