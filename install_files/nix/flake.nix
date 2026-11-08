@@ -28,7 +28,7 @@
             inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     
-    fastzap = {
+    zapfast = {
             url = "github:crmne/zapfast";
             inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
