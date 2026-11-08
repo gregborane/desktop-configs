@@ -23,6 +23,11 @@
       flake = false;
     };
 
+    serein = {
+            url = "github:ViceVerse-cz/Serein";
+            inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     omnisearch = {
       url = "git+https://codeberg.org/gabrielf/omnisearch";
       flake = false;
