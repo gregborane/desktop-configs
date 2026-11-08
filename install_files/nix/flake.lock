@@ -16,6 +16,27 @@
         "url": "https://codeberg.org/gabrielf/beaker"
       }
     },
+    "fastzap": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ],
+        "rust-overlay": "rust-overlay"
+      },
+      "locked": {
+        "lastModified": 1794124696,
+        "narHash": "sha256-uFubdltDm94o0Tg8N4w9pLP8QSZB8GTLza+09UoVAhU=",
+        "owner": "crmne",
+        "repo": "zapfast",
+        "rev": "421d194fb45530ad0811e2b5d81be8f805c47748",
+        "type": "github"
+      },
+      "original": {
+        "owner": "crmne",
+        "repo": "zapfast",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -202,6 +223,7 @@
     "root": {
       "inputs": {
         "beaker-src": "beaker-src",
+        "fastzap": "fastzap",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs_2",
@@ -210,6 +232,27 @@
         "omnisearch": "omnisearch",
         "serein": "serein",
         "swaymonad": "swaymonad"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "nixpkgs": [
+          "fastzap",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1789977098,
+        "narHash": "sha256-fKY4BedarKx4aR0+UOHk65hhDW8pxFytFkaUi0VYDYk=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "2776e42828203ec89511699c8dcdedec69ab98e1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "serein": {
