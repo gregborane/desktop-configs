@@ -1,6 +1,8 @@
 { config, pkgs, pkgs-unstable, inputs, ... }:
 
 {
+
+  import = [ inputs.zapfast.homeManagerModules.default ];
   home.username = "greg";
   home.homeDirectory = "/home/greg";
   home.stateVersion = "26.05";
@@ -12,7 +14,7 @@
       btop-rocm eza fastfetch fd fzf lazygit less ripgrep sshs starship tmux zoxide blink dooit dex ncdu chafa
       
       # Desktop & GUI Apps
-      qbittorrent localsend foot gimp loupe thunar obs-studio thunderbird vlc zathura zapzap
+      qbittorrent localsend foot gimp loupe thunar obs-studio thunderbird vlc zathura zapfast
       onlyoffice-desktopeditors gnome-disk-utility adw-gtk3 nwg-look gsettings-desktop-schemas
 
       # Wayland / TUI Tools
@@ -64,9 +66,8 @@
     [
         (import ./zotero.nix { inherit pkgs; })
         inputs.serein.packages.${pkgs.stdenv.hostPlatform.system}.default
-        inputs.zapfast.homeManagerModules.default
     ];
-
+    
   programs.noctalia = {
     enable = true;
   };
