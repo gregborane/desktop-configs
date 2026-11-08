@@ -27,6 +27,11 @@
             url = "github:ViceVerse-cz/Serein";
             inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    
+    fastzap = {
+            url = "github:crmne/zapfast";
+            inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     omnisearch = {
       url = "git+https://codeberg.org/gabrielf/omnisearch";

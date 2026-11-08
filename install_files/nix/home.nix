@@ -64,6 +64,7 @@
     [
         (import ./zotero.nix { inherit pkgs; })
         inputs.serein.packages.${pkgs.stdenv.hostPlatform.system}.default
+        inputs.zapfast.packages.${pkgs.system}.default
     ];
 
   programs.noctalia = {
