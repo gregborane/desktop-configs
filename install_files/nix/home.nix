@@ -108,7 +108,7 @@
 
       export PATH
       export QT_QPA_PLATFORMTHEME=qt6ct
-      export QT_QPA_PLATFORM=wayland;xcb
+      export QT_QPA_PLATFORM=wayland
       
       export GDK_BACKEND=wayland,x11,*
       

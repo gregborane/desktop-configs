@@ -32,8 +32,6 @@ end
 
 -- Create a custom user command :WQP
 vim.api.nvim_create_user_command("Wqp", write_and_close_all, {})
-
--- Abbreviate lowercase entries so typing :wqp triggers the function
 vim.cmd("cabbrev wqp Wqp")
 
 -- Raccourcis d'accents forcés pour les fichiers LaTeX (.tex)
