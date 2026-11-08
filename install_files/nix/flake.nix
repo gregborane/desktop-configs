@@ -25,7 +25,7 @@
 
     serein = {
             url = "github:ViceVerse-cz/Serein";
-            inputs.nixpkgs.follows = "nixpkgs";
+            inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     omnisearch = {
