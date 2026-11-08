@@ -2,7 +2,7 @@
 
 {
 
-  import = [ inputs.zapfast.homeManagerModules.default ];
+  imports = [ inputs.zapfast.homeManagerModules.default ];
   home.username = "greg";
   home.homeDirectory = "/home/greg";
   home.stateVersion = "26.05";
