@@ -221,7 +221,7 @@ in
   };
   
   services = {
-    gnome.gnome-keyring.enable = false;
+    gnome.gnome-keyring.enable = true;
 
     udisks2.enable = true;
     
@@ -290,10 +290,10 @@ in
       enable = true;
       package = assert pkgs.dwl.version == "0.8";
         (pkgs.dwl.override {
-          configH = ./dwl-config.h;
+          configH = ../../config/dwl/dwl-config.h;
           enableXWayland = true;
         }).overrideAttrs (old: {
-          patches = (old.patches or [ ]) ++ [ ./dwl-0.8-xii.patch ];
+          patches = (old.patches or [ ]) ++ [ ../../config../dwl/dwl-0.8-xii.patch ];
         });
     };
 
@@ -310,7 +310,7 @@ in
 
   fonts.packages = with pkgs; [
 	  noto-fonts
-		  noto-fonts-color-emoji
+	  noto-fonts-color-emoji
   ];
 
   # ---------------------------------------------------------------------------
@@ -353,6 +353,7 @@ in
   environment.systemPackages = with pkgs; [
     session
     xdg-utils
+
     # Hardware / power
     acpi
     acpid

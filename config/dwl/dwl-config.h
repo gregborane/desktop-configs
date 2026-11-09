@@ -4,15 +4,15 @@
                         ((hex >> 8) & 0xFF) / 255.0f, \
                         (hex & 0xFF) / 255.0f }
 /* appearance */
-static const int sloppyfocus               = 1;  /* focus follows mouse */
-static const int bypass_surface_visibility = 0;  /* 1 means idle inhibitors will disable idle tracking even if it's surface isn't visible  */
-static const unsigned int borderpx         = 1;  /* border pixel of windows */
-static const float rootcolor[]             = COLOR(0x222222ff);
-static const float bordercolor[]           = COLOR(0x000000ff);
-static const float focuscolor[]            = COLOR(0xffffffff);
-static const float urgentcolor[]           = COLOR(0xff5555ff);
+static const int          sloppyfocus               = 1;  /* focus follows mouse */
+static const int          bypass_surface_visibility = 0;  /* 1 means idle inhibitors will disable idle tracking even if it's surface isn't visible  */
+static const unsigned int borderpx                  = 1;  /* border pixel of windows */
+static const float        rootcolor[]               = COLOR(0x222222ff);
+static const float        bordercolor[]             = COLOR(0x000000ff);
+static const float        focuscolor[]              = COLOR(0xffffffff);
+static const float        urgentcolor[]             = COLOR(0xff5555ff);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old behavior */
-static const float fullscreen_bg[]         = {0.0f, 0.0f, 0.0f, 1.0f}; /* You can also use glsl colors */
+static const float        fullscreen_bg[]           = {0.0f, 0.0f, 0.0f, 1.0f}; /* You can also use glsl colors */
 
 /* tagging - TAGCOUNT must be no greater than 31 */
 #define TAGCOUNT (6)
@@ -268,7 +268,7 @@ resizestack(Client *selected, int delta)
 	int siblingmin = (int)(2 * sibling->bw + 1);
 	delta = MAX(minheight - selected->geom.height, MIN(delta, sibling->geom.height - siblingmin));
 	if (!delta)
-		return;
+	return;
 	/* Current pixel heights sum to the column's usable height. Updating the pair
 	 * keeps other rows the same size and retains the ratio when outputs resize. */
 	count = 0;
@@ -308,63 +308,66 @@ resizekey(const Arg *arg)
 
 #define SUPER WLR_MODIFIER_LOGO
 #define SHIFT WLR_MODIFIER_SHIFT
-#define ALT WLR_MODIFIER_ALT
-#define CTRL WLR_MODIFIER_CTRL
+#define ALT   WLR_MODIFIER_ALT
+#define CTRL  WLR_MODIFIER_CTRL
 #define SHELL(cmd) {.v = (const char *[]) {"/bin/sh", "-c", cmd, NULL}}
 #define PREFKEY(n, shifted, index) \
-	{SUPER, XKB_KEY_##n, viewpreferred, {.ui = 1U << index}}, \
+	{SUPER,       XKB_KEY_##n,       viewpreferred, {.ui = 1U << index}}, \
 	{SUPER|SHIFT, XKB_KEY_##shifted, sendpreferred, {.ui = 1U << index}}
+
 static const Key keys[] = {
-	{SUPER, XKB_KEY_Return, spawn, SHELL("xdg-terminal-exec")},
-	{SUPER, XKB_KEY_b, spawn, SHELL("xdg-filemanager-exec")},
-	{SUPER, XKB_KEY_y, spawn, SHELL("xdg-browser-exec")},
-	{SUPER, XKB_KEY_space, spawn, SHELL("noctalia msg panel-toggle launcher")},
-	{SUPER, XKB_KEY_r, spawn, SHELL("wofi-repos")},
-	{SUPER|SHIFT, XKB_KEY_l, spawn, SHELL("noctalia msg session lock")},
-	{SUPER, XKB_KEY_c, spawn, SHELL("wl-copy < \"$HOME/Documents/PhD/papers/prompt.md\"")},
-	{SUPER|ALT, XKB_KEY_m, spawn, SHELL("noctalia msg session logout")},
-	{SUPER, XKB_KEY_comma, spawn, SHELL("noctalia msg notification-clear-active")},
-	{SUPER|SHIFT, XKB_KEY_less, spawn, SHELL("noctalia msg notification-dnd-toggle")},
-	{0, XKB_KEY_Print, spawn, SHELL("noctalia msg screenshot-region")},
-	{SUPER, XKB_KEY_s, spawn, SHELL("noctalia msg screenshot-region")},
-	{0, XKB_KEY_XF86AudioRaiseVolume, spawn, SHELL("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")},
-	{0, XKB_KEY_XF86AudioLowerVolume, spawn, SHELL("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")},
-	{0, XKB_KEY_XF86AudioMute, spawn, SHELL("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")},
-	{0, XKB_KEY_XF86AudioMicMute, spawn, SHELL("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")},
-	{0, XKB_KEY_XF86MonBrightnessUp, spawn, SHELL("brightnessctl s +5%")},
-	{0, XKB_KEY_XF86MonBrightnessDown, spawn, SHELL("brightnessctl s 5%-")},
-	{SUPER, XKB_KEY_q, killclient, {0}},
-	{SUPER, XKB_KEY_t, togglefloating, {0}},
-	{SUPER, XKB_KEY_f, togglefullscreen, {0}},
-	{SUPER|SHIFT, XKB_KEY_j, setlayout, {0}},
-	{ALT, XKB_KEY_Tab, focusstack, {.i = 1}},
-	{SUPER|CTRL, XKB_KEY_Return, zoom, {0}},
-	{SUPER|CTRL|SHIFT, XKB_KEY_q, quit, {0}},
-	{CTRL|ALT, XKB_KEY_Left, cyclelocal, {.i = -1}},
-	{CTRL|ALT, XKB_KEY_Right, cyclelocal, {.i = 1}},
-	{SUPER, XKB_KEY_Left, focusdir, {.i = Left}},
-	{SUPER, XKB_KEY_h, movedir, {.i = Left}},
-	{SUPER|SHIFT, XKB_KEY_Left, resizekey, {.i = Left}},
-	{SUPER, XKB_KEY_Right, focusdir, {.i = Right}},
-	{SUPER, XKB_KEY_j, movedir, {.i = Right}},
-	{SUPER|SHIFT, XKB_KEY_Right, resizekey, {.i = Right}},
-	{SUPER, XKB_KEY_Up, focusdir, {.i = Up}},
-	{SUPER, XKB_KEY_k, movedir, {.i = Up}},
-	{SUPER|SHIFT, XKB_KEY_Up, resizekey, {.i = Up}},
-	{SUPER, XKB_KEY_Down, focusdir, {.i = Down}},
-	{SUPER, XKB_KEY_l, movedir, {.i = Down}},
-	{SUPER|SHIFT, XKB_KEY_Down, resizekey, {.i = Down}},
+	{SUPER,            XKB_KEY_Return,                spawn,            SHELL("xdg-terminal-exec")},
+	{SUPER,            XKB_KEY_b,                     spawn,            SHELL("xdg-filemanager-exec")},
+	{SUPER,            XKB_KEY_y,                     spawn,            SHELL("xdg-browser-exec")},
+	{SUPER,            XKB_KEY_space,                 spawn,            SHELL("noctalia msg panel-toggle launcher")},
+	{SUPER,            XKB_KEY_r,                     spawn,            SHELL("wofi-repos")},
+	{SUPER|SHIFT,      XKB_KEY_l,                     spawn,            SHELL("noctalia msg session lock")},
+	{SUPER,            XKB_KEY_c,                     spawn,            SHELL("wl-copy < \"$HOME/Documents/PhD/papers/prompt.md\"")},
+	{SUPER|ALT,        XKB_KEY_m,                     spawn,            SHELL("noctalia msg session logout")},
+	{SUPER,            XKB_KEY_comma,                 spawn,            SHELL("noctalia msg notification-clear-active")},
+	{SUPER|SHIFT,      XKB_KEY_less,                  spawn,            SHELL("noctalia msg notification-dnd-toggle")},
+	{0,                XKB_KEY_Print,                 spawn,            SHELL("noctalia msg screenshot-region")},
+	{SUPER,            XKB_KEY_s,                     spawn,            SHELL("noctalia msg screenshot-region")},
+	{0,                XKB_KEY_XF86AudioRaiseVolume,  spawn,            SHELL("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+")},
+	{0,                XKB_KEY_XF86AudioLowerVolume,  spawn,            SHELL("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-")},
+	{0,                XKB_KEY_XF86AudioMute,         spawn,            SHELL("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")},
+	{0,                XKB_KEY_XF86AudioMicMute,      spawn,            SHELL("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")},
+	{0,                XKB_KEY_XF86MonBrightnessUp,   spawn,            SHELL("brightnessctl s +5%")},
+	{0,                XKB_KEY_XF86MonBrightnessDown, spawn,            SHELL("brightnessctl s 5%-")},
+	{SUPER,            XKB_KEY_q,                     killclient,       {0}},
+	{SUPER,            XKB_KEY_t,                     togglefloating,   {0}},
+	{SUPER,            XKB_KEY_f,                     togglefullscreen, {0}},
+	{SUPER|SHIFT,      XKB_KEY_j,                     setlayout,        {0}},
+	{ALT,              XKB_KEY_Tab,                   focusstack,       {.i = 1}},
+	{SUPER|CTRL,       XKB_KEY_Return,                zoom,             {0}},
+	{SUPER|CTRL|SHIFT, XKB_KEY_q,                     quit,             {0}},
+	{CTRL|ALT,         XKB_KEY_Left,                  cyclelocal,       {.i = -1}},
+	{CTRL|ALT,         XKB_KEY_Right,                 cyclelocal,       {.i = 1}},
+	{SUPER,            XKB_KEY_Left,                  focusdir,         {.i = Left}},
+	{SUPER,            XKB_KEY_h,                     movedir,          {.i = Left}},
+	{SUPER|SHIFT,      XKB_KEY_Left,                  resizekey,        {.i = Left}},
+	{SUPER,            XKB_KEY_Right,                 focusdir,         {.i = Right}},
+	{SUPER,            XKB_KEY_j,                     movedir,          {.i = Right}},
+	{SUPER|SHIFT,      XKB_KEY_Right,                 resizekey,        {.i = Right}},
+	{SUPER,            XKB_KEY_Up,                    focusdir,         {.i = Up}},
+	{SUPER,            XKB_KEY_k,                     movedir,          {.i = Up}},
+	{SUPER|SHIFT,      XKB_KEY_Up,                    resizekey,        {.i = Up}},
+	{SUPER,            XKB_KEY_Down,                  focusdir,         {.i = Down}},
+	{SUPER,            XKB_KEY_l,                     movedir,          {.i = Down}},
+	{SUPER|SHIFT,      XKB_KEY_Down,                 resizekey,         {.i = Down}},
+
 	PREFKEY(1, exclam, 0),
 	PREFKEY(2, at, 1),
 	PREFKEY(3, numbersign, 2),
 	PREFKEY(4, dollar, 3),
 	PREFKEY(5, percent, 4),
 	PREFKEY(6, asciicircum, 5),
+
 #define CHVT(n) {CTRL|ALT, XKB_KEY_XF86Switch_VT_##n, chvt, {.ui = n}}
 	CHVT(1), CHVT(2), CHVT(3), CHVT(4), CHVT(5), CHVT(6),
 	CHVT(7), CHVT(8), CHVT(9), CHVT(10), CHVT(11), CHVT(12),
 };
 static const Button buttons[] = {
-	{ALT, BTN_LEFT, moveresize, {.ui = CurMove}},
+	{ALT, BTN_LEFT,  moveresize, {.ui = CurMove}},
 	{ALT, BTN_RIGHT, moveresize, {.ui = CurResize}},
 };
