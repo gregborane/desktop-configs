@@ -1,3 +1,31 @@
+# xii floating dialogs for dwl 0.8
+# Apply this file as the only local patch to dwl, using the existing dwl-config.h.
+# The optional Noctalia launcher changes below target the desktop-configs checkout.
+# From install_files/nix, apply those changes to the checkout once:
+#   sed -n 's/^# noctalia: //p' dwl-0.8-xii.patch | git -C ../.. apply --check -
+#   sed -n 's/^# noctalia: //p' dwl-0.8-xii.patch | git -C ../.. apply -
+#
+# noctalia: --- a/config/noctalia/noctalia-full-config.toml
+# noctalia: +++ b/config/noctalia/noctalia-full-config.toml
+# noctalia: @@ -461,7 +461,7 @@
+# noctalia:  [plugin_settings."yocraft/custom-shortcut"]
+# noctalia:  icon = "access-point"
+# noctalia:  label = "network"
+# noctalia: -onclick_cmd = "noctalia msg panel-close control-center & xdg-terminal-exec --app-id=com.Util -e nmtui"
+# noctalia: +onclick_cmd = "noctalia msg panel-close control-center & foot --app-id=com.Util --window-size-chars=84x26 -o colors-dark.alpha=1.0 -o colors-light.alpha=1.0 nmtui"
+# noctalia:  
+# noctalia:  [plugin_settings."yocraft/custom-shortcut1"]
+# noctalia:  icon = "disc"
+# noctalia: @@ -476,7 +476,7 @@
+# noctalia:  [plugin_settings."yocraft/custom-shortcut3"]
+# noctalia:  icon = "file-info-filled"
+# noctalia:  label = "systeminfo"
+# noctalia: -onclick_cmd = "noctalia msg panel-close control-center & xdg-terminal-exec --app-id=com.Util bash -c 'fastfetch; while true; do read -n 1 -r key; [[ \"$key\" =~ ^[qQ]$ ]] && break; done'"
+# noctalia: +onclick_cmd = "noctalia msg panel-close control-center & foot --app-id=com.Util --window-size-chars=110x36 -o colors-dark.alpha=1.0 -o colors-light.alpha=1.0 bash -c 'fastfetch; while true; do read -n 1 -r key; [[ \"$key\" =~ ^[qQ]$ ]] && break; done'"
+# noctalia:  
+# noctalia:  [plugin_settings."yocraft/custom-shortcut4"]
+# noctalia:  icon = "device-heart-monitor-filled"
+
 diff --git a/Makefile b/Makefile
 index 578194f..510e164 100644
 --- a/Makefile
@@ -35,7 +63,7 @@ index 578194f..510e164 100644
  dist: clean
  	mkdir -p dwl-$(VERSION)
 diff --git a/dwl.c b/dwl.c
-index 44f3ad9..735236f 100644
+index 44f3ad9..bab3017 100644
 --- a/dwl.c
 +++ b/dwl.c
 @@ -68,6 +68,7 @@
@@ -46,24 +74,23 @@ index 44f3ad9..735236f 100644
  #include "util.h"
  
  /* macros */
-@@ -138,9 +139,16 @@ typedef struct {
+@@ -138,8 +139,15 @@
  	unsigned int bw;
  	uint32_t tags;
  	int isfloating, isurgent, isfullscreen;
 +	double stackweight; /* zero uses the equal-height default */
  	uint32_t resize; /* configure serial of a pending resize */
  } Client;
- 
++
 +typedef struct {
 +	struct wl_list link;
 +	struct wl_resource *resource;
 +	Monitor *mon;
 +} DwlIpcOutput;
-+
+ 
  typedef struct {
  	uint32_t mod;
- 	xkb_keysym_t keysym;
-@@ -185,6 +193,7 @@ typedef struct {
+@@ -185,6 +193,7 @@
  
  struct Monitor {
  	struct wl_list link;
@@ -71,7 +98,7 @@ index 44f3ad9..735236f 100644
  	struct wlr_output *wlr_output;
  	struct wlr_scene_output *scene_output;
  	struct wlr_scene_rect *fullscreen_bg; /* See createmon() for info */
-@@ -282,6 +291,17 @@ static void destroypointerconstraint(struct wl_listener *listener, void *data);
+@@ -282,6 +291,17 @@
  static void destroysessionlock(struct wl_listener *listener, void *data);
  static void destroykeyboardgroup(struct wl_listener *listener, void *data);
  static Monitor *dirtomon(enum wlr_direction dir);
@@ -89,7 +116,7 @@ index 44f3ad9..735236f 100644
  static void focusclient(Client *c, int lift);
  static void focusmon(const Arg *arg);
  static void focusstack(const Arg *arg);
-@@ -334,6 +354,7 @@ static void startdrag(struct wl_listener *listener, void *data);
+@@ -334,6 +354,7 @@
  static void tag(const Arg *arg);
  static void tagmon(const Arg *arg);
  static void tile(Monitor *m);
@@ -97,7 +124,7 @@ index 44f3ad9..735236f 100644
  static void togglefloating(const Arg *arg);
  static void togglefullscreen(const Arg *arg);
  static void toggletag(const Arg *arg);
-@@ -436,6 +457,9 @@ static struct wl_listener request_start_drag = {.notify = requeststartdrag};
+@@ -436,6 +457,9 @@
  static struct wl_listener start_drag = {.notify = startdrag};
  static struct wl_listener new_session_lock = {.notify = locksession};
  
@@ -107,7 +134,7 @@ index 44f3ad9..735236f 100644
  #ifdef XWAYLAND
  static void activatex11(struct wl_listener *listener, void *data);
  static void associatex11(struct wl_listener *listener, void *data);
-@@ -487,8 +511,9 @@ applyrules(Client *c)
+@@ -487,8 +511,9 @@
  	title = client_get_title(c);
  
  	for (r = rules; r < END(rules); r++) {
@@ -119,7 +146,7 @@ index 44f3ad9..735236f 100644
  			c->isfloating = r->isfloating;
  			newtags |= r->tags;
  			i = 0;
-@@ -693,6 +718,14 @@ checkidleinhibitor(struct wlr_surface *exclude)
+@@ -693,6 +718,14 @@
  		}
  	}
  
@@ -134,45 +161,43 @@ index 44f3ad9..735236f 100644
  	wlr_idle_notifier_v1_set_inhibited(idle_notifier, inhibited);
  }
  
-@@ -730,6 +763,13 @@ cleanupmon(struct wl_listener *listener, void *data)
+@@ -729,6 +762,13 @@
+ 	Monitor *m = wl_container_of(listener, m, destroy);
  	LayerSurface *l, *tmp;
  	size_t i;
- 
++
 +	DwlIpcOutput *ipc_output, *ipc_output_tmp;
 +	wl_list_for_each_safe(ipc_output, ipc_output_tmp, &m->dwl_ipc_outputs, link) {
 +		wl_resource_set_implementation(ipc_output->resource, &dwl_output_implementation, NULL, NULL);
 +		wl_list_remove(&ipc_output->link);
 +		free(ipc_output);
 +	}
-+
+ 
  	/* m->layers[i] are intentionally not unlinked */
  	for (i = 0; i < LENGTH(m->layers); i++) {
- 		wl_list_for_each_safe(l, tmp, &m->layers[i], link)
-@@ -852,12 +892,36 @@ commitlayersurfacenotify(struct wl_listener *listener, void *data)
+@@ -852,12 +892,34 @@
  	arrangelayers(l->mon);
  }
  
-+/* Use the same monitor traversal as the numbered Rule.monitor entries, skipping
-+ * outputs that cannot currently display a window. */
++/* Sample the pointer when the window opens; monitor order changes on hotplug. */
++static int
++popupoutputready(Monitor *m)
++{
++	return m && m->wlr_output->enabled && m->w.width > 0 && m->w.height > 0;
++}
++
 +static Monitor *
 +popupmonitor(void)
 +{
-+	Monitor *m;
++	Monitor *m = xytomon(cursor->x, cursor->y);
++	if (popupoutputready(m))
++		return m;
++	if (popupoutputready(selmon))
++		return selmon;
 +	wl_list_for_each(m, &mons, link)
-+		if (m->wlr_output->enabled && m->w.width > 0 && m->w.height > 0)
++		if (popupoutputready(m))
 +			return m;
 +	return NULL;
-+}
-+
-+static struct wlr_box
-+utilitybox(Monitor *m, int bw)
-+{
-+	/* Foot reports logical pixels. Leave a margin on smaller displays. */
-+	struct wlr_box box = m->w;
-+	int margin = MIN(16, MIN(box.width, box.height) / 8);
-+	box.width = MIN(950 + 2 * bw, box.width - 2 * margin);
-+	box.height = MIN(800 + 2 * bw, box.height - 2 * margin);
-+	return box;
 +}
 +
  void
@@ -181,46 +206,35 @@ index 44f3ad9..735236f 100644
  	Client *c = wl_container_of(listener, c, commit);
  
  	if (c->surface.xdg->initial_commit) {
-+		int width = 0, height = 0;
++		Monitor *m;
  		/*
  		 * Get the monitor this client will be rendered on
  		 * Note that if the user set a rule in which the client is placed on
-@@ -865,8 +929,14 @@ commitnotify(struct wl_listener *listener, void *data)
+@@ -865,8 +927,12 @@
  		 * a wrong monitor.
  		 */
  		applyrules(c);
 -		if (c->mon) {
 -			client_set_scale(client_surface(c), c->mon->wlr_output->scale);
-+		Monitor *m = c->isfloating ? popupmonitor() : c->mon;
++		m = c->isfloating ? popupmonitor() : c->mon;
 +		if (m) {
 +			client_set_scale(client_surface(c), m->wlr_output->scale);
-+			if (!strcmp(client_get_appid(c), "com.Util")) {
-+				struct wlr_box box = utilitybox(m, c->bw);
-+				width = MAX(1, box.width - 2 * (int)c->bw);
-+				height = MAX(1, box.height - 2 * (int)c->bw);
-+			}
++			if (c->isfloating)
++				client_set_bounds(c, MAX(1, m->w.width - 2 * (int)c->bw),
++						MAX(1, m->w.height - 2 * (int)c->bw));
  		}
  		setmon(c, NULL, 0); /* Make sure to reapply rules in mapnotify() */
  
-@@ -874,7 +944,7 @@ commitnotify(struct wl_listener *listener, void *data)
- 				WLR_XDG_TOPLEVEL_WM_CAPABILITIES_FULLSCREEN);
- 		if (c->decoration)
- 			requestdecorationmode(&c->set_decoration_mode, c->decoration);
--		wlr_xdg_toplevel_set_size(c->surface.xdg->toplevel, 0, 0);
-+		wlr_xdg_toplevel_set_size(c->surface.xdg->toplevel, width, height);
- 		return;
- 	}
+@@ -1051,6 +1117,8 @@
  
-@@ -1052,6 +1122,8 @@ createmon(struct wl_listener *listener, void *data)
  	m = wlr_output->data = ecalloc(1, sizeof(*m));
  	m->wlr_output = wlr_output;
- 
-+	wl_list_init(&m->dwl_ipc_outputs);
 +
++	wl_list_init(&m->dwl_ipc_outputs);
+ 
  	for (i = 0; i < LENGTH(m->layers); i++)
  		wl_list_init(&m->layers[i]);
- 
-@@ -1077,7 +1149,17 @@ createmon(struct wl_listener *listener, void *data)
+@@ -1077,7 +1145,17 @@
  	 * monitor supports only a specific set of modes. We just pick the
  	 * monitor's preferred mode; a more sophisticated compositor would let
  	 * the user configure it. */
@@ -239,7 +253,7 @@ index 44f3ad9..735236f 100644
  
  	/* Set up event listeners */
  	LISTEN(&wlr_output->events.frame, &m->frame, rendermon);
-@@ -1114,6 +1196,7 @@ createmon(struct wl_listener *listener, void *data)
+@@ -1114,6 +1192,7 @@
  		wlr_output_layout_add_auto(output_layout, wlr_output);
  	else
  		wlr_output_layout_add(output_layout, wlr_output, m->m.x, m->m.y);
@@ -247,7 +261,7 @@ index 44f3ad9..735236f 100644
  }
  
  void
-@@ -1151,7 +1234,7 @@ createpointer(struct wlr_pointer *pointer)
+@@ -1151,7 +1230,7 @@
  			libinput_device_config_tap_set_button_map(device, button_map);
  		}
  
@@ -256,11 +270,10 @@ index 44f3ad9..735236f 100644
  			libinput_device_config_scroll_set_natural_scroll_enabled(device, natural_scrolling);
  
  		if (libinput_device_config_dwt_is_available(device))
-@@ -1399,6 +1482,201 @@ dirtomon(enum wlr_direction dir)
- 	return selmon;
+@@ -1400,6 +1479,201 @@
  }
  
-+void
+ void
 +dwl_ipc_manager_bind(struct wl_client *client, void *data, uint32_t version, uint32_t id)
 +{
 +	struct wl_resource *manager_resource = wl_resource_create(client, &zdwl_ipc_manager_v2_interface, version, id);
@@ -455,10 +468,11 @@ index 44f3ad9..735236f 100644
 +	wl_resource_destroy(resource);
 +}
 +
- void
++void
  focusclient(Client *c, int lift)
  {
-@@ -1605,6 +1883,24 @@ inputdevice(struct wl_listener *listener, void *data)
+ 	struct wlr_surface *old = seat->keyboard_state.focused_surface;
+@@ -1605,6 +1879,24 @@
  	wlr_seat_set_capabilities(seat, caps);
  }
  
@@ -483,7 +497,7 @@ index 44f3ad9..735236f 100644
  int
  keybinding(uint32_t mods, xkb_keysym_t sym)
  {
-@@ -1614,6 +1910,8 @@ keybinding(uint32_t mods, xkb_keysym_t sym)
+@@ -1614,6 +1906,8 @@
  	 * processing.
  	 */
  	const Key *k;
@@ -492,7 +506,7 @@ index 44f3ad9..735236f 100644
  	for (k = keys; k < END(keys); k++) {
  		if (CLEANMASK(mods) == CLEANMASK(k->mod)
  				&& xkb_keysym_to_lower(sym) == xkb_keysym_to_lower(k->keysym)
-@@ -1647,7 +1945,7 @@ keypress(struct wl_listener *listener, void *data)
+@@ -1647,7 +1941,7 @@
  
  	/* On _press_ if there is no active screen locker,
  	 * attempt to process a compositor keybinding. */
@@ -501,10 +515,11 @@ index 44f3ad9..735236f 100644
  		for (i = 0; i < nsyms; i++)
  			handled = keybinding(mods, syms[i]) || handled;
  	}
-@@ -1792,6 +2090,34 @@ mapnotify(struct wl_listener *listener, void *data)
+@@ -1791,6 +2085,33 @@
+ 		setmon(c, p->mon, p->tags);
  	} else {
  		applyrules(c);
- 	}
++	}
 +	if (c->isfloating && !c->isfullscreen && (m = popupmonitor())) {
 +		const char *id = client_get_appid(c), *title = client_get_title(c);
 +		struct wlr_box area = m->w, box = c->geom;
@@ -514,9 +529,8 @@ index 44f3ad9..735236f 100644
 +		else if (!VISIBLEON(c, m))
 +			c->tags = m->tagset[m->seltags];
 +
-+		if (!client_is_x11(c) && !strcmp(id, "com.Util")) {
-+			box = utilitybox(m, c->bw);
-+		} else if (client_is_x11(c) && !strcmp(id, "steam")) {
++		/* box starts at the mapped client geometry, including the borders. */
++		if (client_is_x11(c) && !strcmp(id, "steam")) {
 +			if (!strcmp(title, "Steam")) {
 +				box.width = 1100 + 2 * (int)c->bw;
 +				box.height = 700 + 2 * (int)c->bw;
@@ -532,11 +546,10 @@ index 44f3ad9..735236f 100644
 +		resize(c, box, 0);
 +		arrange(m);
 +		focusclient(c, 1);
-+	}
+ 	}
  	printstatus();
  
- unset_fullscreen:
-@@ -2088,39 +2414,9 @@ pointerfocus(Client *c, struct wlr_surface *surface, double sx, double sy,
+@@ -2088,39 +2409,9 @@
  void
  printstatus(void)
  {
@@ -579,7 +592,7 @@ index 44f3ad9..735236f 100644
  }
  
  void
-@@ -2516,6 +2812,7 @@ setup(void)
+@@ -2516,6 +2807,7 @@
  	wlr_subcompositor_create(dpy);
  	wlr_data_device_manager_create(dpy);
  	wlr_export_dmabuf_manager_v1_create(dpy);
@@ -587,7 +600,7 @@ index 44f3ad9..735236f 100644
  	wlr_screencopy_manager_v1_create(dpy);
  	wlr_data_control_manager_v1_create(dpy);
  	wlr_primary_selection_v1_device_manager_create(dpy);
-@@ -2596,7 +2893,7 @@ setup(void)
+@@ -2596,7 +2888,7 @@
  	 * Xcursor themes to source cursor images from and makes sure that cursor
  	 * images are available at all scale factors on the screen (necessary for
  	 * HiDPI support). Scaled cursors will be loaded with each output. */
@@ -596,7 +609,7 @@ index 44f3ad9..735236f 100644
  	setenv("XCURSOR_SIZE", "24", 1);
  
  	/*
-@@ -2713,36 +3010,59 @@ void
+@@ -2713,34 +3005,57 @@
  tile(Monitor *m)
  {
  	unsigned int mw, my, ty;
@@ -654,18 +667,16 @@ index 44f3ad9..735236f 100644
  		}
  		i++;
  	}
- }
- 
++}
++
 +void
 +togglebar(const Arg *arg) {
 +	DwlIpcOutput *ipc_output;
 +	wl_list_for_each(ipc_output, &selmon->dwl_ipc_outputs, link)
 +		zdwl_ipc_output_v2_send_toggle_visibility(ipc_output->resource);
-+}
-+
+ }
+ 
  void
- togglefloating(const Arg *arg)
- {
 diff --git a/protocols/dwl-ipc-unstable-v2.xml b/protocols/dwl-ipc-unstable-v2.xml
 new file mode 100644
 index 0000000..0a6e7e5
