@@ -169,9 +169,8 @@ index 44f3ad9..735236f 100644
 +{
 +	/* Foot reports logical pixels. Leave a margin on smaller displays. */
 +	struct wlr_box box = m->w;
-+	int margin = MIN(16, MIN(box.width, box.height) / 8);
-+	box.width = MIN(820 + 2 * bw, box.width - 2 * margin);
-+	box.height = MIN(500 + 2 * bw, box.height - 2 * margin);
++	box.width = 950;
++	box.height = 800;
 +	return box;
 +}
 +
