@@ -33,7 +33,7 @@ Thanks to lightweight apps, the desktop uses around 1 GiB when idle and 2 GiB wi
 
 Foot is my terminal of choice with a custom foot.desktop file to allow passing specific app-id.
 
-[DWL](https://codeberg.org/dwl/dwl) with custom patches for some app-id : 
+[DWL](https://codeberg.org/dwl/dwl) with custom patches for some app-id : \
     - app-id = com.Utils  : 950 * 800, centered \
     - app-id = steam.friends.list : 1100 * 800, floating \
     - app-id = steam : floating \
