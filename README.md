@@ -42,36 +42,36 @@ Foot is my terminal of choice with a custom foot.desktop file to allow passing s
     - auto tiling with master layout
 
 Desktop shell is only based on [noctalia shell v5](https://docs.noctalia.dev/noctalia/):
-    - notification center 
-    - lock screen
-    - idle screen
-    - background
-    - bar
-    - polkit
-    - launcher
-    - bluetooth
-    - battery
-    - wifi
-    - system monitor
-    - tailscale plugins 
-    - calendar 
-    - weather
-    - sound
+    - notification center  \
+    - lock screen \
+    - idle screen \
+    - background \
+    - bar \
+    - polkit \
+    - launcher \
+    - bluetooth \
+    - battery \
+    - wifi \
+    - system monitor \
+    - tailscale plugins \ 
+    - calendar \
+    - weather \
+    - sound \
 
 TUI :
-    - [bluetui](https://github.com/pythops/bluetui)
-    - [wiremix](https://github.com/tsowell/wiremix)
-    - [ncdu](https://github.com/rofl0r/ncdu)
-    - obligatory [neofetch](https://github.com/fastfetch-cli/fastfetch)
-    - [wlctl](https://github.com/aashish-thapa/wlctl)
-    - [btop](https://github.com/aristocratos/btop)
+    [bluetui](https://github.com/pythops/bluetui) |
+    [wiremix](https://github.com/tsowell/wiremix) |
+    [ncdu](https://github.com/rofl0r/ncdu) |
+    obligatory [neofetch](https://github.com/fastfetch-cli/fastfetch) |
+    [wlctl](https://github.com/aashish-thapa/wlctl) |
+    [btop](https://github.com/aristocratos/btop) |
 
 GTK / QT THEMES : 
     - [ADW](https://github.com/lassekongo83/adw-gtk3) with noctalia themes
 
 FONTS : 
     - [IOSEVKA](https://github.com/be5invis/Iosevka) Nerd Font
-    - [NOTO](https://fonts.google.com/noto)
+    - [NOTO](https://fonts.google.com/noto) Font
 
 ICONS : 
     - [YAMIS](https://github.com/googIyEYES/YAMIS)
