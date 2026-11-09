@@ -28,7 +28,7 @@ I like to use [neovim](https://neovim.io/) with a sixel/ kitty graphic protocol 
 ---
 
 Present configuration : \
-I use a hybrid desktop focused with a keyboard usage. \ 
+I use a hybrid desktop focused with a keyboard usage. \
 Thanks to lightweight apps, the desktop uses around 1 GiB when idle and 2 GiB with two apps and chromium opened.
 
 Foot is my terminal of choice with a custom foot.desktop file to allow passing specific app-id.
