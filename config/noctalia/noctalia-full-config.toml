@@ -461,7 +461,7 @@ refresh_interval = 120
 [plugin_settings."yocraft/custom-shortcut"]
 icon = "access-point"
 label = "network"
-onclick_cmd = "noctalia msg panel-close control-center & xdg-terminal-exec --app-id=com.Util -e nmtui"
+onclick_cmd = "noctalia msg panel-close control-center & xdg-terminal-exec --app-id=com.Util -e wlctl"
 
 [plugin_settings."yocraft/custom-shortcut1"]
 icon = "disc"
