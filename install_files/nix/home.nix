@@ -11,7 +11,7 @@
     # --- Stable Packages ---
     (with pkgs; [
       # Terminal & CLI Utilities
-      btop-rocm eza fastfetch fd fzf lazygit less ripgrep sshs starship tmux zoxide blink dooit dex ncdu chafa
+      btop-rocm eza fastfetch fd fzf lazygit less ripgrep sshs starship tmux zoxide blink dex ncdu chafa
       
       # Desktop & GUI Apps
       qbittorrent localsend foot gimp loupe thunar obs-studio thunderbird vlc zathura
@@ -128,8 +128,6 @@
       
       export ELECTRON_OZONE_PLATFORM_HINT=wayland
       export OZONE_PLATFORM=wayland
-      
-
 
       # export LIBVA_DRIVER_NAME=nvidia
       # export __GLX_VENDOR_LIBRARY_NAME=nvidia
