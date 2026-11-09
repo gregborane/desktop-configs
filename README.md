@@ -39,7 +39,7 @@ Foot is my terminal of choice with a custom foot.desktop file to allow passing s
     - app-id = steam : floating \
     - app-id = pop-windows : centered \
     - keyboard mapping \
-    - auto tiling with master layout \
+    - auto tiling with master layout 
 
 Desktop shell is only based on [noctalia shell v5](https://docs.noctalia.dev/noctalia/):
     - notification center  \
@@ -53,10 +53,10 @@ Desktop shell is only based on [noctalia shell v5](https://docs.noctalia.dev/noc
     - battery \
     - wifi \
     - system monitor \
-    - tailscale plugins \ 
+    - tailscale plugins \
     - calendar \
     - weather \
-    - sound \
+    - sound
 
 TUI :
     [bluetui](https://github.com/pythops/bluetui) |
