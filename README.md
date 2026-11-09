@@ -28,6 +28,9 @@ I like to use [neovim](https://neovim.io/) with a sixel/ kitty graphic protocol 
 ---
 
 Present configuration : \
+
+[NIXOS](https://nixos.org/) is my os of choice.
+
 I use a hybrid desktop focused with a keyboard usage. \
 Thanks to lightweight apps, the desktop uses around 1 GiB when idle and 2 GiB with two apps and chromium opened.
 
