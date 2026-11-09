@@ -1,7 +1,35 @@
-{ pkgs, inputs, ... }:
+{ pkgs, config, ... }:
 
 let
-  swaymonad = inputs.swaymonad.packages.${pkgs.stdenv.hostPlatform.system}.swaymonad;
+  # dwl runs -s after creating the Wayland socket and setting DISPLAY for XWayland.
+  ready = pkgs.writeShellScript "xii-dwl-ready" ''
+    set -eu
+    vars=(WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE XCURSOR_THEME XCURSOR_SIZE PATH)
+    for name in DISPLAY XDG_SESSION_ID XDG_SEAT XDG_VTNR QT_QPA_PLATFORMTHEME QT_QPA_PLATFORM GDK_BACKEND SDL_VIDEODRIVER MOZ_ENABLE_WAYLAND ELECTRON_OZONE_PLATFORM_HINT OZONE_PLATFORM; do
+      if [[ -v $name ]]; then vars+=("$name"); fi
+    done
+    ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd "''${vars[@]}"
+    ${pkgs.systemd}/bin/systemctl --user start dwl-session.target
+    ${pkgs.systemd}/bin/systemctl --user try-restart xdg-desktop-portal-wlr.service xdg-desktop-portal-gtk.service xdg-desktop-portal.service
+    # dwl sends SIGTERM to this process group during normal teardown.
+    exec ${pkgs.coreutils}/bin/cat >/dev/null
+  '';
+
+  session = pkgs.writeShellScriptBin "xii-dwl" ''
+    set -eu
+    export XDG_CURRENT_DESKTOP=dwl XDG_SESSION_DESKTOP=dwl XDG_SESSION_TYPE=wayland
+    export XCURSOR_THEME=Bibata-Modern-Ice XCURSOR_SIZE=24
+    export WLR_XWAYLAND=${pkgs.xwayland}/bin/Xwayland
+    ctl=${pkgs.systemd}/bin/systemctl
+    cleanup() {
+      "$ctl" --user stop dwl-session.target || :
+      "$ctl" --user unset-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE XDG_SESSION_DESKTOP XDG_SESSION_ID || :
+    }
+    trap cleanup EXIT
+    # End any units left over from an abruptly terminated tty1 login.
+    "$ctl" --user stop dwl-session.target
+    "${config.programs.dwl.package}/bin/dwl" -s "exec ${ready}"
+  '';
 in
 {
   imports = [
@@ -193,7 +221,7 @@ in
   };
   
   services = {
-    gnome.gnome-keyring.enable = true;
+    gnome.gnome-keyring.enable = false;
 
     udisks2.enable = true;
     
@@ -247,17 +275,26 @@ in
   xdg.portal = {
     enable = true;
     wlr.enable = true;
+    config.dwl = {
+      default = [ "gtk" ];
+      "org.freedesktop.impl.portal.ScreenCast" = [ "wlr" ];
+      "org.freedesktop.impl.portal.Screenshot" = [ "wlr" ];
+    };
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
   };
 
   programs = {
-    sway = {
+    dwl = {
       enable = true;
-      xwayland.enable = true;
-      wrapperFeatures.gtk = true;
-      extraPackages = [ swaymonad ];
+      package = assert pkgs.dwl.version == "0.8";
+        (pkgs.dwl.override {
+          configH = ./dwl-config.h;
+          enableXWayland = true;
+        }).overrideAttrs (old: {
+          patches = (old.patches or [ ]) ++ [ ./dwl-0.8-xii.patch ];
+        });
     };
 
     gamescope.enable = true;
@@ -314,6 +351,8 @@ in
   # ---------------------------------------------------------------------------
 
   environment.systemPackages = with pkgs; [
+    session
+    xdg-utils
     # Hardware / power
     acpi
     acpid
@@ -344,10 +383,7 @@ in
     pipewire.jack
     alsa-plugins
 
-    # Wayland / Hyprland
-    hypridle
-    hyprlock
-    hyprshot
+    # Wayland clipboard
     wl-clipboard
 
     # Desktop / integration

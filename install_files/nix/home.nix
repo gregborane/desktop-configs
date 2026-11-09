@@ -18,7 +18,7 @@
       onlyoffice-desktopeditors gnome-disk-utility adw-gtk3 nwg-look gsettings-desktop-schemas
 
       # Wayland / TUI Tools
-      bluetui nwg-look quickshell wofi wiremix
+      bluetui wofi wiremix
 
       # Utilities
       lutris wineWow64Packages.stable winetricks qjackctl (wineasio.overrideAttrs {
@@ -51,7 +51,7 @@
           fzf
           nix-search-tv
         ];
-        text = builtins.readFile "${pkgs.nix-search-tv.src}/nixpkgs.sh";
+        text = ''exec ${pkgs.bash}/bin/bash ${pkgs.nix-search-tv.src}/nixpkgs.sh "$@"'';
       })
     ])
 
@@ -69,8 +69,11 @@
     ];
    
   programs.zapfast.enable = true;
+  wayland.systemd.target = "dwl-session.target";
   programs.noctalia = {
     enable = true;
+    systemd.enable = true;
+    settings = ../../config/noctalia/noctalia-full-config.toml;
   };
 
   programs.git = {
@@ -123,13 +126,13 @@
       export ELECTRON_OZONE_PLATFORM_HINT=wayland
       export OZONE_PLATFORM=wayland
       
-      export XDG_SESSION_TYPE=wayland
+
 
       # export LIBVA_DRIVER_NAME=nvidia
       # export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
-      if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-        exec sway
+      if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && [ ! -e "$HOME/.local/state/skip-dwl" ]; then
+        xii-dwl || echo "dwl exited with status $?; remaining on tty1" >&2
       fi
     '';
 
