@@ -18,7 +18,7 @@ Config:
 
 - config files for rice
 
-This is config works for Wayland compositors : Sway and Hyprland based on noctalia shell.
+This is config works for Wayland compositors : Sway, Hyprland, DWL based on noctalia shell.
 
 - Bash set up is from the [Omarchy](https://omarchy.org/) project.
 - Grub theme applier is from christitus tech repo : [Grub themes](https://christitus.com/bootloader-themes/)
