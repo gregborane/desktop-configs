@@ -41,7 +41,7 @@ Foot is my terminal of choice with a custom foot.desktop file to allow passing s
     - keyboard mapping \
     - auto tiling with master layout 
 
-Desktop shell is only based on [noctalia shell v5](https://docs.noctalia.dev/noctalia/):
+Desktop shell is only based on [noctalia shell v5](https://docs.noctalia.dev/noctalia/): \
     - notification center  \
     - lock screen \
     - idle screen \
