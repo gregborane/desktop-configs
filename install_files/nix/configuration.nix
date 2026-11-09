@@ -293,7 +293,7 @@ in
           configH = ../../config/dwl/dwl-config.h;
           enableXWayland = true;
         }).overrideAttrs (old: {
-          patches = (old.patches or [ ]) ++ [ ../../config../dwl/dwl-0.8-xii.patch ];
+          patches = (old.patches or [ ]) ++ [ ../../config/dwl/dwl-0.8-xii.patch ];
         });
     };
 
