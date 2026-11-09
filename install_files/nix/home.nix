@@ -158,5 +158,6 @@
     enable = true;
     package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
     sideloadInitLua = true;
+    withPython3 = true;
   };
 }
