@@ -66,11 +66,13 @@
     [
         (import ./zotero.nix { inherit pkgs; })
         inputs.serein.packages.${pkgs.stdenv.hostPlatform.system}.default
-        # inputs.wlctl.packages.${pkgs.stdenv.hostPlatform.system}.default
+        inputs.wlctl.packages.${pkgs.stdenv.hostPlatform.system}.default
     ];
    
   programs.zapfast.enable = true;
+
   wayland.systemd.target = "dwl-session.target";
+  
   programs.noctalia = {
     enable = true;
     systemd.enable = true;
