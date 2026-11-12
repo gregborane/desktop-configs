@@ -60,7 +60,7 @@ order = [ "default" ]
     show_on_workspace_switch = true
     show_tooltip = true
     smart_auto_hide = false
-    start = [ "cpu", "temp", "ram", "battery" ]
+    start = [ "cpu", "temp", "ram", "battery", "taskbar" ]
     thickness = 35
     widget_spacing = 10
 
@@ -461,7 +461,7 @@ refresh_interval = 120
 [plugin_settings."yocraft/custom-shortcut"]
 icon = "access-point"
 label = "network"
-onclick_cmd = "noctalia msg panel-close control-center & xdg-terminal-exec --app-id=com.Util -e wlctl"
+onclick_cmd = "noctalia msg panel-close control-center & xdg-terminal-exec --app-id=com.Util -e nmtui-go"
 
 [plugin_settings."yocraft/custom-shortcut1"]
 icon = "disc"

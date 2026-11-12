@@ -14,7 +14,7 @@
       btop-rocm eza fastfetch fd fzf lazygit less ripgrep sshs starship tmux zoxide blink dex ncdu chafa
       
       # Desktop & GUI Apps
-      qbittorrent localsend foot gimp loupe thunar obs-studio thunderbird vlc zathura
+      qbittorrent localsend ghostty gimp loupe thunar obs-studio thunderbird vlc zathura
       onlyoffice-desktopeditors gnome-disk-utility adw-gtk3 nwg-look gsettings-desktop-schemas
 
       # Wayland / TUI Tools
@@ -146,7 +146,7 @@
     enable = true;
     settings = {
       default = [
-        "foot.desktop"
+        "com.michelly.ghostty"
       ];
     };
   };     
