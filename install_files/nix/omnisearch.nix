@@ -29,6 +29,31 @@ let
     # OmniSearch's Makefile uses /usr/include/libxml2, which is absent on NixOS.
     NIX_CFLAGS_COMPILE = "-I${pkgs.libxml2.dev}/include/libxml2";
 
+    # DuckDuckGo Lite GET requests are receiving HTTP 202.
+    # Use the tested form POST method for the DuckDuckGo engine only.
+    postPatch = ''
+      substituteInPlace src/Scraping/Scraping.c \
+        --replace-fail \
+        '  configure_curl_handle(job->handle, full_url, &job->response, headers);' \
+        '  configure_curl_handle(job->handle, full_url, &job->response, headers);
+
+  if (strcmp(job->engine->name, "DuckDuckGo Lite") == 0) {
+    char *escaped = curl_easy_escape(job->handle, job->query, 0);
+    if (escaped) {
+      size_t len = strlen(escaped) + 3;
+      char *form = malloc(len);
+      if (form) {
+        snprintf(form, len, "q=%s", escaped);
+        curl_easy_setopt(job->handle, CURLOPT_URL,
+                         "https://lite.duckduckgo.com/lite/");
+        curl_easy_setopt(job->handle, CURLOPT_COPYPOSTFIELDS, form);
+        free(form);
+      }
+      curl_free(escaped);
+    }
+  }'
+    '';
+
     installPhase = ''
       runHook preInstall
       install -Dm755 bin/omnisearch "$out/bin/omnisearch"
