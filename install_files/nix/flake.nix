@@ -63,7 +63,7 @@
 
       modules = [
         ./configuration.nix
-        # ./omnisearch.nix
+        ./omnisearch.nix
         home-manager.nixosModules.home-manager
 
         {
