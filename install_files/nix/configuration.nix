@@ -311,7 +311,6 @@
   # ---------------------------------------------------------------------------
 
   environment.systemPackages = with pkgs; [
-    session
     xdg-utils
 
     # Hardware / power
