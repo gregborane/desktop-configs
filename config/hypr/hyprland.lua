@@ -54,8 +54,7 @@ hl.monitor({
 --------------------------------------------------
 
 hl.on("hyprland.start", function()
-	hl.exec_cmd("uwsm app -- noctalia")
-	hl.exec_cmd("uwsm app -- hypridle")
+	hl.exec_cmd("noctalia")
 end)
 
 --------------------------------------------------
@@ -131,7 +130,7 @@ hl.config({
 
 hl.curve("easeOut", { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1.0 } } })
 
-hl.animation({ leaf = "windows", enabled = true, speed = 5, bezier = "easeOut", windows = "gnomed" })
+hl.animation({ leaf = "windows", enabled = false, speed = 5, bezier = "easeOut", windows = "gnomed" })
 hl.animation({ leaf = "layers", enabled = false, speed = 5, bezier = "easeOut" })
 hl.animation({ leaf = "border", enabled = false, speed = 5, bezier = "default" })
 hl.animation({ leaf = "fade", enabled = false, speed = 4, bezier = "default" })
@@ -173,14 +172,14 @@ hl.config({
 
 -- Quick launch app
 -- Wrap desktop applications launched via keybinds
-hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("uwsm app -- " .. terminal))
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("uwsm app -- " .. filemanager))
-hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("uwsm app -- " .. browser))
-hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd("uwsm app -- " .. menu))
+hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(filemanager))
+hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd(browser))
+hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
 
 -- Spawn command for maximum efficiency
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("wofi-repos"))
-hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd(ipc ..." session lock"))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("cat ~/Documents/PhD/papers/prompt.md | wl-copy"))
 
 -- Hyprctl stuffs
@@ -265,8 +264,8 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl s 5%-"), { locke
 hl.bind("SUPER + comma", hl.dsp.exec_cmd(ipc .. " notification-clear-active"))
 hl.bind("SUPER + SHIFT + comma", hl.dsp.exec_cmd(ipc .. " notification-dnd-toggle"))
 
-hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
-hl.bind("SUPER + S", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
+hl.bind("PRINT", hl.dsp.exec_cmd(ipc .. " screenshot-region"))
+hl.bind("SUPER + S", hl.dsp.exec_cmd(ipc .. " screenshot-region"))
 
 --------------------------------------------------
 -- WORKSPACE RULES

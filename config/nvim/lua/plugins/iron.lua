@@ -19,7 +19,7 @@ iron.setup({
         command = { "jupyter-console" },
         format = common.bracketed_paste,
         image = {
-          protocol = "sixel",
+          protocol = "kitty",
           cell_width = 8,
           cell_height = 16,
         },

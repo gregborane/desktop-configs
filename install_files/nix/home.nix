@@ -131,8 +131,8 @@
       # export LIBVA_DRIVER_NAME=nvidia
       # export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
-      if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && [ ! -e "$HOME/.local/state/skip-dwl" ]; then
-        xii-dwl || echo "dwl exited with status $?; remaining on tty1" >&2
+      if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+        start-hyprland &> /dev/null
       fi
     '';
 
