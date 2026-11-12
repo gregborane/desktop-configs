@@ -151,11 +151,11 @@ in
   programs.chromium = {
     enable = true;
 
-    homepageLocation = "https://start.duckduckgo.com/";
+    homepageLocation = "http://127.0.0.1:8087/";
 
     defaultSearchProviderEnabled = true;
     defaultSearchProviderSearchURL =
-      "https://start.duckduckgo.com/search?q={searchTerms}";
+      "http://127.0.0.1:8087/search?q={searchTerms}";
 
     extraOpts = {
       DefaultSearchProviderName = "Local Search";
