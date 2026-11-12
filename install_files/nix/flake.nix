@@ -63,12 +63,12 @@
 
       modules = [
         ./configuration.nix
-        ./omnisearch.nix
+        # ./omnisearch.nix
         home-manager.nixosModules.home-manager
 
         {
           services.omnisearch = {
-            enable = true;
+            enable = false;
             settings.server = {
               host = "127.0.0.1";
               port = 8087;
