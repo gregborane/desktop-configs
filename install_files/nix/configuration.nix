@@ -1,5 +1,8 @@
-{ pkgs, config, ... }:
+{ pkgs, inputs, ... }:
 
+let
+  swaymonad = inputs.swaymonad.packages.${pkgs.stdenv.hostPlatform.system}.swaymonad;
+in
 {
   imports = [
     ./hardware-configuration.nix
@@ -170,7 +173,19 @@
   # Security
   # ---------------------------------------------------------------------------
 
-  security.polkit.enable = true; 
+  security.polkit.enable = true;
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+  description = "Polkit authentication agent";
+  wantedBy = [ "graphical-session.target" ];
+  wants = [ "graphical-session.target" ];
+  after = [ "graphical-session.target" ];
+
+  serviceConfig = {
+    Type = "simple";
+    ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+    Restart = "on-failure";
+    };
+  };
   
   # ---------------------------------------------------------------------------
   # Services
@@ -240,22 +255,22 @@
   # ---------------------------------------------------------------------------
   # Desktop
   # ---------------------------------------------------------------------------
-  
+
   xdg.portal = {
     enable = true;
-
+    wlr.enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
   };
 
   programs = {
-
-    hyprland = {
+    sway = {
       enable = true;
       xwayland.enable = true;
-      withUWSM = false;
-    }; 
+      wrapperFeatures.gtk = true;
+      extraPackages = [ swaymonad ];
+    };
 
     gamescope.enable = true;
 
@@ -270,7 +285,7 @@
 
   fonts.packages = with pkgs; [
 	  noto-fonts
-	  noto-fonts-color-emoji
+		  noto-fonts-color-emoji
   ];
 
   # ---------------------------------------------------------------------------
@@ -311,8 +326,6 @@
   # ---------------------------------------------------------------------------
 
   environment.systemPackages = with pkgs; [
-    xdg-utils
-
     # Hardware / power
     acpi
     acpid
@@ -343,7 +356,10 @@
     pipewire.jack
     alsa-plugins
 
-    # Wayland clipboard
+    # Wayland / Hyprland
+    hypridle
+    hyprlock
+    hyprshot
     wl-clipboard
 
     # Desktop / integration

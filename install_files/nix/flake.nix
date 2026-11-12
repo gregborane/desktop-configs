@@ -11,7 +11,7 @@
     };
 
     swaymonad = {
-      url = "github:gregborane/swaymonad";
+      url = "github:nicolasavru/swaymonad";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

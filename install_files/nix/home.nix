@@ -132,7 +132,7 @@
       # export __GLX_VENDOR_LIBRARY_NAME=nvidia
 
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-        start-hyprland &> /dev/null
+        exec sway
       fi
     '';
 

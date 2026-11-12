@@ -179,7 +179,7 @@ hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(menu))
 
 -- Spawn command for maximum efficiency
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("wofi-repos"))
-hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd(ipc ..." session lock"))
+hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd(ipc .. " session lock"))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("cat ~/Documents/PhD/papers/prompt.md | wl-copy"))
 
 -- Hyprctl stuffs
