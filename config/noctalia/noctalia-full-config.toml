@@ -1,6 +1,6 @@
 [accessibility]
 high_contrast = false
-ui_scale = 1.0
+ui_scale = 1.2000000476837158
 
 [audio]
 enable_notification_sounds = true
@@ -18,50 +18,145 @@ enabled = false
 tint_intensity = 0.30000001192092896
 
 [bar]
-order = [ "default" ]
+order = [ "default", "Utilities", "Workspace" ]
 
-    [bar.default]
-    auto_hide = false
-    background_opacity = 1.0
+    [bar.Utilities]
+    auto_hide = true
+    background_opacity = 0.0
     border = "outline"
     border_width = 0.0
-    capsule = false
-    capsule_border_width = 1.0
-    capsule_fill = "surface_variant"
+    capsule = true
+    capsule_border = "primary"
+    capsule_border_width = 1.5
+    capsule_fill = "on_primary"
     capsule_group = []
     capsule_opacity = 1.0
     capsule_padding = 6.0
-    capsule_thickness = 0.75999999046325684
-    center = [ "workspaces" ]
+    capsule_thickness = 0.84999996423721313
+    center = []
     compositor_blur = true
-    concave_edge_corners = false
+    concave_edge_corners = true
     contact_shadow = false
     enabled = true
-    end = [ "tray", "status", "bluetooth", "network", "date" ]
-    font_family = "Iosevka NFM"
+    end = [ "tray", "status_2", "network", "bluetooth", "battery" ]
     font_scale = 1.1000000238418579
     font_weight = 500
-    hover_highlight = true
+    hover_highlight = false
     layer = "top"
-    margin_edge = 0
+    margin_edge = 5
     margin_ends = 0
     margin_opposite_edge = 0
-    padding = 10
-    panel_overlap = 1
-    position = "top"
+    padding = 12
+    panel_overlap = 0
+    position = "left"
     radius = 0
     radius_bottom_left = 0
     radius_bottom_right = 0
     radius_top_left = 0
     radius_top_right = 0
-    reserve_space = true
-    scale = 1.0
+    reserve_space = false
+    scale = 1.1499999761581421
+    shadow = false
+    show_on_workspace_switch = false
+    show_tooltip = true
+    smart_auto_hide = false
+    start = [ "ram" ]
+    thickness = 35
+    widget_spacing = 6
+
+        [bar.Utilities.dead_zone.actions]
+        right = "none"
+
+    [bar.Workspace]
+    auto_hide = true
+    background_opacity = 0.0
+    border = "outline"
+    border_width = 0.0
+    capsule = true
+    capsule_border = "primary"
+    capsule_border_width = 1.5
+    capsule_fill = "on_primary"
+    capsule_group = []
+    capsule_opacity = 1.0
+    capsule_padding = 6.0
+    capsule_thickness = 0.84999996423721313
+    center = [ "workspaces" ]
+    compositor_blur = true
+    concave_edge_corners = false
+    contact_shadow = false
+    enabled = true
+    end = []
+    font_scale = 1.0
+    font_weight = 500
+    hover_highlight = true
+    layer = "overlay"
+    margin_edge = 5
+    margin_ends = 487
+    margin_opposite_edge = 0
+    padding = 12
+    panel_overlap = 0
+    position = "left"
+    radius = 0
+    radius_bottom_left = 0
+    radius_bottom_right = 0
+    radius_top_left = 0
+    radius_top_right = 0
+    reserve_space = false
+    scale = 1.2999999523162842
     shadow = false
     show_on_workspace_switch = true
     show_tooltip = true
     smart_auto_hide = false
-    start = [ "cpu", "temp", "ram", "battery", "taskbar" ]
-    thickness = 35
+    start = []
+    thickness = 34
+    widget_spacing = 6
+
+        [bar.Workspace.dead_zone.actions]
+        right = "none"
+
+    [bar.default]
+    auto_hide = false
+    background_opacity = 1.0
+    border = "primary"
+    border_width = 2.5
+    capsule = false
+    capsule_border = "primary"
+    capsule_border_width = 2.0
+    capsule_fill = "on_primary"
+    capsule_group = []
+    capsule_opacity = 1.0
+    capsule_padding = 6.0
+    capsule_thickness = 0.80000001192092896
+    center = [ "clock" ]
+    compositor_blur = true
+    concave_edge_corners = true
+    contact_shadow = false
+    enabled = true
+    end = []
+    font_family = "Iosevka NFM"
+    font_scale = 1.1999999284744263
+    font_weight = 500
+    hover_highlight = false
+    layer = "overlay"
+    margin_edge = 5
+    margin_ends = 912
+    margin_opposite_edge = 0
+    padding = 0
+    panel_overlap = 0
+    position = "top"
+    radius = 80
+    radius_bottom_left = 80
+    radius_bottom_right = 80
+    radius_top_left = 80
+    radius_top_right = 80
+    reserve_space = false
+    scale = 1.25
+    shadow = false
+    show_on_workspace_switch = true
+    show_tooltip = false
+    smart_auto_hide = true
+    start = []
+    thickness = 31
     widget_spacing = 10
 
         [bar.default.dead_zone]
@@ -95,7 +190,7 @@ show_session_button = true
 show_shortcut_labels = true
 sidebar = "compact"
 sidebar_section = "compact"
-width = 700
+width = 800
 
     [control_center.calendar]
     show_events_card = true
@@ -131,35 +226,35 @@ schema_version = 2
 [dock]
 active_monitor_only = false
 active_opacity = 1.0
-active_scale = 1.0
+active_scale = 0.69999998807907104
 auto_hide = false
-background_opacity = 0.87999999523162842
-border = "outline"
+background_opacity = 1.0
+border = "on_surface"
 border_width = 0.0
 concave_edge_corners = true
 cross_axis_padding = 8
 enabled = false
-icon_size = 48
+icon_size = 40
 inactive_opacity = 0.85000002384185791
-inactive_scale = 0.85000002384185791
+inactive_scale = 0.55000001192092896
 item_spacing = 6
 launcher_custom_image = ""
 launcher_custom_image_colorize = false
 launcher_icon = "grid-dots"
-launcher_position = "none"
+launcher_position = "end"
 layer = "top"
 magnification = true
 magnification_scale = 1.4500000476837158
-main_axis_padding = 16
+main_axis_padding = 0
 margin_edge = 0
 margin_ends = 0
-pinned = []
+pinned = [ "foot", "chromium-browser", "zapfast", "onlyoffice-desktopeditors" ]
 position = "bottom"
-radius = 16
-radius_bottom_left = 16
-radius_bottom_right = 16
-radius_top_left = 16
-radius_top_right = 16
+radius = 80
+radius_bottom_left = 80
+radius_bottom_right = 80
+radius_top_left = 80
+radius_top_right = 80
 reserve_space = true
 shadow = true
 show_dots = false
@@ -189,7 +284,7 @@ wifi_enabled = []
 
 [hot_corners]
 delay_ms = 0
-enabled = false
+enabled = true
 
     [hot_corners.bottom_left]
     action = "none"
@@ -455,7 +550,7 @@ scale = 1.0
     wifi = true
 
 [plugin_settings."davemhammer/tailscale"]
-manager_placement = "attached"
+manager_placement = "floating"
 refresh_interval = 120
 
 [plugin_settings."yocraft/custom-shortcut"]
@@ -539,7 +634,7 @@ corner_radius_scale = 1.0
 date_format = "%A, %x"
 disable_mipmaps = false
 external_ip_enabled = false
-font_family = "Iosevka NFM"
+font_family = "SF Compact Display"
 input_borders = true
 launch_apps_as_systemd_services = false
 launch_apps_custom_command = ""
@@ -584,7 +679,7 @@ umbriel_overview_type_to_launch_enabled = false
     search_position = "bottom"
     show_app_actions = false
     show_app_origin_indicator = false
-    show_icons = true
+    show_icons = false
     show_session_button = false
     show_settings_button = false
     sort_by_usage = true
@@ -605,15 +700,15 @@ umbriel_overview_type_to_launch_enabled = false
     borders = true
     clipboard_placement = "floating"
     clipboard_position = "center"
-    control_center_placement = "attached"
-    control_center_position = "auto"
+    control_center_placement = "floating"
+    control_center_position = "center"
     floating_layer = "overlay"
     floating_offset = 8
     launcher_placement = "floating"
     launcher_position = "center"
     list_item_background = false
     open_near_click_clipboard = false
-    open_near_click_control_center = true
+    open_near_click_control_center = false
     open_near_click_launcher = false
     open_near_click_session = false
     open_near_click_wallpaper = false
@@ -623,8 +718,8 @@ umbriel_overview_type_to_launch_enabled = false
     session_position = "auto"
     shadow = false
     transparency_mode = "solid"
-    wallpaper_placement = "attached"
-    wallpaper_position = "auto"
+    wallpaper_placement = "floating"
+    wallpaper_position = "center"
     wallpaper_show_names = true
 
     [shell.privacy]
@@ -776,15 +871,15 @@ swap_pct_critical_threshold = 80.0
 [theme]
 builtin = "Nord"
 community_palette = "Monochrome"
-custom_palette = "Monochrome"
+custom_palette = "wallhaven-5wp577-dys"
 mode = "dark"
 pure_black_dark = true
 shell_mode = "dark"
 source = "custom"
-wallpaper_scheme = "m3-monochrome"
+wallpaper_scheme = "dysfunctional"
 
     [theme.templates]
-    builtin_ids = [ "btop", "gtk3", "gtk4", "qt" ]
+    builtin_ids = [ "btop", "gtk3", "gtk4", "ghostty", "kcolorscheme", "qt" ]
     community_ids = []
     enable_builtin_templates = true
     enable_community_templates = true
@@ -793,7 +888,7 @@ wallpaper_scheme = "m3-monochrome"
 directory = "/home/greg/.config/background"
 directory_dark = "/home/greg/.config/background"
 directory_light = "/home/greg/.config/background"
-edge_smoothness = 0.30000001192092896
+edge_smoothness = 0.0
 enabled = true
 fill_color = ""
 fill_mode = "crop"
@@ -821,13 +916,36 @@ min_length = 80.0
 title_scroll = "none"
 type = "active_window"
 
+[widget.battery]
+type = "battery"
+
+    [widget.battery.actions]
+    middle = "none"
+    right = "panel-toggle control-center home"
+
+[widget.bluetooth]
+type = "bluetooth"
+
+    [widget.bluetooth.actions]
+    middle = "bluetooth-toggle"
+    right = "panel-toggle control-center home"
+
 [widget.clock]
-format = ""
+format = "{:%H:%M}"
+show_tooltip = false
 type = "clock"
+
+    [widget.clock.actions]
+    left = "panel-toggle control-center home"
+    right = "panel-toggle control-center calendar"
 
 [widget.cpu]
 stat = "cpu_usage"
 type = "sysmon"
+
+    [widget.cpu.actions]
+    middle = "none"
+    right = "panel-toggle control-center home"
 
 [widget.date]
 format = "{:%H:%M} - {:%a %d %b}"
@@ -860,6 +978,10 @@ type = "media"
 show_label = false
 type = "network"
 
+    [widget.network.actions]
+    middle = "network-toggle"
+    right = "panel-toggle control-center home"
+
 [widget.network_rx]
 stat = "net_rx"
 type = "sysmon"
@@ -873,8 +995,15 @@ device = "output"
 type = "volume"
 
 [widget.ram]
+capsule_padding = 10
+show_value = false
 stat = "ram_used"
 type = "sysmon"
+visualization = "none"
+
+    [widget.ram.actions]
+    middle = "none"
+    right = "panel-toggle control-center home"
 
 [widget.spacer]
 interactive = false
@@ -887,6 +1016,15 @@ color = "primary"
 icon_color = "primary"
 type = "davemhammer/tailscale:status"
 
+[widget.status_2]
+capsule_radius = "auto"
+show_counts = false
+type = "davemhammer/tailscale:status"
+
+    [widget.status_2.actions]
+    middle = "none"
+    right = "panel-toggle control-center home"
+
 [widget.sysmon]
 type = "sysmon"
 visualization = "none"
@@ -897,16 +1035,25 @@ type = "sysmon"
 visualization = "none"
 
 [widget.tray]
+detached_panel = true
 drawer = true
 type = "tray"
 
 [widget.workspaces]
 active_pill_size = 2.0
+focused_output_only = true
+interactive = true
+max_label_chars = 10
 occupied_color = "primary"
 pill_scale = 0.84999999999999998
-scale = 0.80000000000000004
-show_labels = false
+scale = 1.2
+show_labels = true
+show_tooltip = false
+style = "focus_hint"
 type = "workspaces"
 
     [widget.workspaces.actions]
+    middle = "none"
     right = "panel-toggle control-center home"
+    scroll_down = "none"
+    scroll_up = "none"

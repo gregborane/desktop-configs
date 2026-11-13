@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-exec appimage-run "/home/greg/.local/share/pdfcraft/pdfcraft.appimage" "$@"
+exec appimage-run "/home/greg/.local/share/deckcraft/pdfcraft.appimage" "$@"

@@ -7,11 +7,11 @@ set $filemanager xdg-filemanager-exec
 set $browser xdg-browser-exec
 
 # Minimal decoration, matching the original Hyprland gaps and borders.
-font Iosekva Nerd Font Mono 12
+font SF Mono 12
 default_border pixel 1
 default_floating_border pixel 1
 gaps inner 1
-gaps outer 2
+gaps outer 1
 client.focused          #ffffff #181818 #ffffff #ffffff #ffffff
 client.focused_inactive #000000 #181818 #888888 #000000 #000000
 client.unfocused        #000000 #181818 #888888 #000000 #000000
@@ -60,6 +60,8 @@ bindsym $mod+space exec $ipc panel-toggle launcher
 bindsym $mod+r exec wofi-repos
 bindsym $mod+Shift+l exec $ipc session lock
 bindsym $mod+c exec sh -c 'cat "$HOME/Documents/PhD/papers/prompt.md" | wl-copy'
+bindsym --no-repeat $mod+a exec $ipc bar-show 
+bindsym --release $mod+a exec $ipc bar-hide 
 
 # Window management.
 bindsym $mod+q kill

@@ -1,0 +1,17 @@
+[INFO] 2026-11-12 20:57:47 - ==================================================
+[INFO] 2026-11-12 20:57:47 - Apple Font Extraction Script
+[INFO] 2026-11-12 20:57:47 - ==================================================
+[INFO] 2026-11-12 20:57:47 - Script directory: /home/greg/.local/bin
+[INFO] 2026-11-12 20:57:47 - Log file: /home/greg/.local/bin/appleFontExtraction.20261112_205747.log
+[INFO] 2026-11-12 20:57:47 - Output directory: /home/greg/.local/bin/extracted_fonts
+
+[WARNING] 2026-11-12 20:57:47 - Not running as root - this may cause issues with some operations
+
+[INFO] 2026-11-12 20:57:47 - Checking required dependencies...
+[SUCCESS] 2026-11-12 20:57:47 - All required dependencies are installed
+
+[INFO] 2026-11-12 20:57:47 - Creating output directory...
+[SUCCESS] 2026-11-12 20:57:47 - Output directory ready: /home/greg/.local/bin/extracted_fonts
+
+[INFO] 2026-11-12 20:57:47 - Searching for .dmg files...
+[ERROR] 2026-11-12 20:57:47 - No .dmg files found in /home/greg/.local/bin
