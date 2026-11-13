@@ -18,7 +18,7 @@ Config:
 
 - config files for rice
 
-This is config works for Wayland compositors : Sway, Hyprland, DWL based on noctalia shell.
+This is config works for Wayland compositors : Sway, Hyprland based on noctalia shell.
 
 - Bash set up is from the [Omarchy](https://omarchy.org/) project.
 - Grub theme applier is from christitus tech repo : [Grub themes](https://christitus.com/bootloader-themes/)
@@ -32,11 +32,11 @@ Present configuration : \
 [NIXOS](https://nixos.org/) is my os of choice.
 
 I use a hybrid desktop focused with a keyboard usage. \
-Thanks to lightweight apps, the desktop uses around 1 GiB when idle and 2 GiB with two apps and chromium opened.
+Thanks to lightweight apps, the desktop uses around 1.2 GiB when idle and 2 GiB with two apps and chromium opened.
 
-[Foot](https://codeberg.org/dnkl/foot) is my terminal of choice with a custom foot.desktop file to allow passing specific app-id.
+[Ghostty](https://ghostty.org/) is my terminal of choice.
 
-[DWL](https://codeberg.org/dwl/dwl) with custom patches for some app-id : \
+[SWAY](https://swaywm.org/) with custom patches for some app-id : \
     - app-id = com.Utils  : 950 * 800, centered \
     - app-id = steam.friends.list : 1100 * 800, floating \
     - app-id = steam : floating \
@@ -73,8 +73,9 @@ GTK / QT THEMES :
     [ADW](https://github.com/lassekongo83/adw-gtk3) with noctalia themes
 
 FONTS : 
-    [IOSEVKA](https://github.com/be5invis/Iosevka) Nerd Font |
+    [SF](https://developer.apple.com/fonts/) Font |
     [NOTO](https://fonts.google.com/noto) Font
+    
 
 ICONS : 
     [YAMIS](https://github.com/googIyEYES/YAMIS) |

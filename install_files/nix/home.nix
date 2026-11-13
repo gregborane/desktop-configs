@@ -15,7 +15,7 @@
       
       # Desktop & GUI Apps
       qbittorrent localsend ghostty gimp loupe thunar obs-studio thunderbird vlc zathura
-      onlyoffice-desktopeditors gnome-disk-utility adw-gtk3 nwg-look gsettings-desktop-schemas
+      gnome-disk-utility adw-gtk3 nwg-look gsettings-desktop-schemas
 
       # Wayland / TUI Tools
       bluetui wofi wiremix
