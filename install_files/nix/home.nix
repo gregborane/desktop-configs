@@ -14,7 +14,7 @@
       btop-rocm eza fastfetch fd fzf lazygit less ripgrep sshs starship tmux zoxide blink dex ncdu chafa
       
       # Desktop & GUI Apps
-      qbittorrent localsend ghostty gimp loupe obs-studio thunderbird vlc zathura
+      qbittorrent localsend ghostty thunar gimp loupe obs-studio thunderbird vlc zathura
       gnome-disk-utility adw-gtk3 nwg-look gsettings-desktop-schemas
 
       # Wayland / TUI Tools
@@ -156,8 +156,7 @@
     withPython3 = true;
   };
 
-  programs.Thunar = { 
-    enable = true;
+  programs.thunar = { 
     plugins = with pkgs.xfce; [
     thunar-archive-plugin
     thunar-volman
