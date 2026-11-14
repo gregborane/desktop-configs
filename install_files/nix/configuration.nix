@@ -219,8 +219,8 @@ in
 
     fstrim.enable = true;
 
-    services.gvfs.enable = true;
-    services.tumbler.enable = true;
+    gvfs.enable = true;
+    tumbler.enable = true;
 
     printing.enable = true;
 
