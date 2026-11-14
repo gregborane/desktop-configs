@@ -3,17 +3,17 @@
     "beaker-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1786917319,
-        "narHash": "sha256-4+UWuicypc7wEuLGwY1N372X1JF162DPSbjssZlfhhY=",
+        "lastModified": 1793900580,
+        "narHash": "sha256-TWJAVS60lHQO+4Gmt86qlT7RN25HrqCSl3n7EE+OP1o=",
         "ref": "refs/heads/master",
-        "rev": "acdd9e754a536d542099951e4c9a6acc8cdf1c51",
-        "revCount": 45,
+        "rev": "aedf6c0c93acb2a8f57ef3f94498332b3ab6db89",
+        "revCount": 48,
         "type": "git",
-        "url": "https://codeberg.org/gabrielf/beaker"
+        "url": "https://git.bwaaa.space/beaker"
       },
       "original": {
         "type": "git",
-        "url": "https://codeberg.org/gabrielf/beaker"
+        "url": "https://git.bwaaa.space/beaker"
       }
     },
     "flake-parts": {
@@ -186,17 +186,17 @@
     "omnisearch": {
       "flake": false,
       "locked": {
-        "lastModified": 1787423031,
-        "narHash": "sha256-3l6j1mDX2UtNX9cIL9pvEnpmSDgxtr6r4dZZSRbAY0I=",
+        "lastModified": 1794242581,
+        "narHash": "sha256-B5SPqLMmdJA+kc+Et1D/0eIxxsNv/gahJVNCAUmifl0=",
         "ref": "refs/heads/master",
-        "rev": "aace4b8f91487d8cb6b7c6fcd38efaa0a83cf1cc",
-        "revCount": 151,
+        "rev": "e72fadc791163ac7fd0eabb2aceec50942482ddd",
+        "revCount": 167,
         "type": "git",
-        "url": "https://codeberg.org/gabrielf/omnisearch"
+        "url": "https://git.bwaaa.space/omnisearch"
       },
       "original": {
         "type": "git",
-        "url": "https://codeberg.org/gabrielf/omnisearch"
+        "url": "https://git.bwaaa.space/omnisearch"
       }
     },
     "root": {
