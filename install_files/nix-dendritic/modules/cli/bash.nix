@@ -9,13 +9,13 @@
       shellAliases = {
         vim = "nvim";
         nano = "nvim";
-        rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix/dentritic#xii";
+        rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix-dendritic#xii";
 
         apply = ''
           cd ~/nixos-dotfiles/desktop-configs/install_files/nix/dentritic
           git add ../../.. &&
           git commit -m "tracking changed" &&
-          sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix/dentritic#xii
+          sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix-dendritic#xii
         '';
 
         clean = ''
