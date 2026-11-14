@@ -14,8 +14,13 @@
       btop-rocm eza fastfetch fd fzf lazygit less ripgrep sshs starship tmux zoxide blink dex ncdu chafa
       
       # Desktop & GUI Apps
-      qbittorrent localsend ghostty thunar gimp loupe obs-studio thunderbird vlc zathura
-      gnome-disk-utility adw-gtk3 nwg-look gsettings-desktop-schemas
+      qbittorrent localsend ghostty gimp loupe obs-studio thunderbird vlc zathura
+      gnome-disk-utility adw-gtk3 nwg-look gsettings-desktop-schemas (pkgs.thunar.override { 
+      thunarPlugins = with pkgs; [
+        thunar-archive-plugin
+        thunar-volman
+        ];
+      })
 
       # Wayland / TUI Tools
       bluetui wofi wiremix
@@ -157,6 +162,7 @@
   };
 
   programs.thunar = { 
+    enable = true:
     plugins = with pkgs.xfce; [
     thunar-archive-plugin
     thunar-volman

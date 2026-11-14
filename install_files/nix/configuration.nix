@@ -220,6 +220,7 @@ in
     fstrim.enable = true;
 
     gvfs.enable = true;
+    
     tumbler.enable = true;
 
     printing.enable = true;
@@ -364,6 +365,7 @@ in
 
     # Desktop / integration
     polkit_gnome
+    xfconf
     libnotify
     kitty
     xdotool
