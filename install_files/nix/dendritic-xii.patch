@@ -1,0 +1,3048 @@
+From e4478bbabfd5495919123fc6a551a266a8463765 Mon Sep 17 00:00:00 2001
+From: greg <kma.4001@gmail.com>
+Date: Sat, 14 Nov 2026 17:24:56 -0500
+Subject: [PATCH] Compose xii and Greg from locked Dendritic features
+
+---
+ install_files/nix/browser.nix                 | 181 --------
+ install_files/nix/configuration.nix           | 408 ------------------
+ install_files/nix/dentritic/README.md         | 146 +++++++
+ install_files/nix/dentritic/ci-example.yml    |  20 +
+ install_files/nix/{ => dentritic}/flake.lock  |  39 +-
+ install_files/nix/dentritic/flake.nix         |  62 ++-
+ .../hosts/xii}/hardware-configuration.nix     |   0
+ .../hosts/xii}/storage-configuration.nix      |   0
+ .../nix/dentritic/modules/cli/bash.nix        |  43 ++
+ .../nix/dentritic/modules/cli/git.nix         |  15 +
+ .../nix/dentritic/modules/cli/ns.nix          |  14 +
+ .../nix/dentritic/modules/cli/pkgs.nix        |  49 +++
+ .../nix/dentritic/modules/core/archives.nix   |   0
+ .../nix/dentritic/modules/core/checks.nix     |  82 ++++
+ .../nix/dentritic/modules/core/dev.nix        |   0
+ .../nix/dentritic/modules/core/nix.nix        |  11 +
+ .../nix/dentritic/modules/core/user.nix       |   0
+ .../nix/dentritic/modules/desktop/fonts.nix   |   8 +
+ .../dentritic/modules/desktop/hyprland.nix    |   9 +
+ .../dentritic/modules/desktop/integration.nix |  19 +
+ .../dentritic/modules/desktop/noctalia.nix    |  10 +
+ .../nix/dentritic/modules/desktop/pkgs.nix    |  21 +
+ .../nix/dentritic/modules/desktop/sway.nix    |  40 ++
+ .../dentritic/modules/development/pkgs.nix    |  53 +++
+ .../nix/dentritic/modules/gui/chromium.nix    | 184 ++++++++
+ .../nix/dentritic/modules/gui/ghostty.nix     |  15 +
+ .../nix/dentritic/modules/gui/pkgs.nix        |  17 +
+ .../nix/dentritic/modules/gui/serein.nix      |  13 +
+ .../nix/dentritic/modules/gui/thunar.nix      |  12 +
+ .../nix/dentritic/modules/gui/wine.nix        |  19 +
+ .../nix/dentritic/modules/gui/zapfast.nix     |   6 +
+ .../nix/dentritic/modules/gui/zotero.nix      |  13 +
+ .../nix/dentritic/modules/hardware/amd.nix    |  16 +
+ .../nix/dentritic/modules/hardware/audio.nix  |  32 ++
+ .../dentritic/modules/hardware/bluetooth.nix  |   5 +
+ .../modules/hardware/bluetooth/bluetooth.nix  |   7 -
+ .../nix/dentritic/modules/hardware/cpu.nix    |   0
+ .../nix/dentritic/modules/hardware/gpu.nix    |   0
+ .../dentritic/modules/hardware/monitors.nix   |   0
+ .../modules/hardware/network/network.nix      |  31 --
+ .../nix/dentritic/modules/hardware/power.nix  |  27 ++
+ .../dentritic/modules/hardware/storage.nix    |   0
+ .../dentritic/modules/hardware/xii-boot.nix   |  80 ++++
+ .../nix/dentritic/modules/hosts/xii.nix       |  78 ++++
+ install_files/nix/dentritic/modules/part.nix  |  10 -
+ .../dentritic/modules/services/omnisearch.nix | 245 +++++------
+ .../nix/dentritic/modules/services/polkit.nix |  20 +
+ .../dentritic/modules/services/services.nix   |   0
+ .../nix/dentritic/modules/services/ssh.nix    |  16 +
+ .../dentritic/modules/services/tailscale.nix  |   5 +
+ .../nix/dentritic/modules/tui/neovim.nix      |  13 +
+ .../nix/dentritic/modules/tui/nvim.nix        |   0
+ .../nix/dentritic/modules/tui/pkgs.nix        |  15 +
+ .../nix/dentritic/modules/users/greg.nix      |  50 +++
+ install_files/nix/flake.nix                   |  96 -----
+ install_files/nix/home.nix                    | 164 -------
+ install_files/nix/omnisearch.nix              | 136 ------
+ install_files/nix/zotero.nix                  |  11 -
+ 58 files changed, 1359 insertions(+), 1207 deletions(-)
+ delete mode 100644 install_files/nix/browser.nix
+ delete mode 100644 install_files/nix/configuration.nix
+ create mode 100644 install_files/nix/dentritic/README.md
+ create mode 100644 install_files/nix/dentritic/ci-example.yml
+ rename install_files/nix/{ => dentritic}/flake.lock (89%)
+ rename install_files/nix/{ => dentritic/hosts/xii}/hardware-configuration.nix (100%)
+ rename install_files/nix/{ => dentritic/hosts/xii}/storage-configuration.nix (100%)
+ create mode 100644 install_files/nix/dentritic/modules/cli/ns.nix
+ delete mode 100644 install_files/nix/dentritic/modules/core/archives.nix
+ create mode 100644 install_files/nix/dentritic/modules/core/checks.nix
+ delete mode 100644 install_files/nix/dentritic/modules/core/dev.nix
+ create mode 100644 install_files/nix/dentritic/modules/core/nix.nix
+ delete mode 100644 install_files/nix/dentritic/modules/core/user.nix
+ create mode 100644 install_files/nix/dentritic/modules/desktop/fonts.nix
+ create mode 100644 install_files/nix/dentritic/modules/desktop/hyprland.nix
+ create mode 100644 install_files/nix/dentritic/modules/desktop/integration.nix
+ create mode 100644 install_files/nix/dentritic/modules/desktop/pkgs.nix
+ create mode 100644 install_files/nix/dentritic/modules/development/pkgs.nix
+ create mode 100644 install_files/nix/dentritic/modules/gui/chromium.nix
+ create mode 100644 install_files/nix/dentritic/modules/gui/ghostty.nix
+ create mode 100644 install_files/nix/dentritic/modules/gui/thunar.nix
+ create mode 100644 install_files/nix/dentritic/modules/gui/wine.nix
+ create mode 100644 install_files/nix/dentritic/modules/hardware/amd.nix
+ create mode 100644 install_files/nix/dentritic/modules/hardware/bluetooth.nix
+ delete mode 100644 install_files/nix/dentritic/modules/hardware/bluetooth/bluetooth.nix
+ delete mode 100644 install_files/nix/dentritic/modules/hardware/cpu.nix
+ delete mode 100644 install_files/nix/dentritic/modules/hardware/gpu.nix
+ delete mode 100644 install_files/nix/dentritic/modules/hardware/monitors.nix
+ delete mode 100644 install_files/nix/dentritic/modules/hardware/network/network.nix
+ delete mode 100644 install_files/nix/dentritic/modules/hardware/storage.nix
+ create mode 100644 install_files/nix/dentritic/modules/hardware/xii-boot.nix
+ create mode 100644 install_files/nix/dentritic/modules/hosts/xii.nix
+ delete mode 100644 install_files/nix/dentritic/modules/part.nix
+ delete mode 100644 install_files/nix/dentritic/modules/services/services.nix
+ create mode 100644 install_files/nix/dentritic/modules/tui/neovim.nix
+ delete mode 100644 install_files/nix/dentritic/modules/tui/nvim.nix
+ create mode 100644 install_files/nix/dentritic/modules/users/greg.nix
+ delete mode 100644 install_files/nix/flake.nix
+ delete mode 100644 install_files/nix/home.nix
+ delete mode 100644 install_files/nix/omnisearch.nix
+ delete mode 100644 install_files/nix/zotero.nix
+
+diff --git a/install_files/nix/browser.nix b/install_files/nix/browser.nix
+deleted file mode 100644
+index 5e465b8f..00000000
+--- a/install_files/nix/browser.nix
++++ /dev/null
+@@ -1,181 +0,0 @@
+-
+-{ pkgs, lib, ... }:
+-
+-let
+-  bookmarks = [
+-    {
+-      name = "YouTube";
+-      type = "url";
+-      url = "https://www.youtube.com";
+-    }
+-    {
+-      name = "llm";
+-      type = "folder";
+-      children = [
+-        {
+-          name = "ChatGPT";
+-          type = "url";
+-          url = "https://chatgpt.com";
+-        }
+-        {
+-          name = "NotebookLM";
+-          type = "url";
+-          url = "https://notebooklm.google.com";
+-        }
+-        {
+-          name = "ResearchRabbit";
+-          type = "url";
+-          url = "https://app.researchrabbit.ai";
+-        }
+-      ];
+-    }
+-    {
+-      name = "local";
+-      type = "folder";
+-      children = [
+-        {
+-          name = "Downloads";
+-          type = "url";
+-          url = "file:///home/greg/Downloads/";
+-        }
+-        {
+-          name = "Documents";
+-          type = "url";
+-          url = "file:///home/greg/Documents/";
+-        }
+-        {
+-          name = "PhD";
+-          type = "url";
+-          url = "file:///home/greg/Documents/PhD/";
+-        }
+-      ];
+-    }
+-    {
+-      name = "school";
+-      type = "folder";
+-      children = [
+-        {
+-          name = "Moodle PolyMTL";
+-          type = "url";
+-          url = "https://moodle.polymtl.ca";
+-        }
+-        {
+-          name = "CADET-Core";
+-          type = "url";
+-          url = "https://cadet.github.io";
+-        }
+-        {
+-          name = "Dossier étudiant PolyMTL";
+-          type = "url";
+-          url = "https://dossieretudiant.polymtl.ca";
+-        }
+-        {
+-          name = "SharePoint PolyMTL";
+-          type = "url";
+-          url = "https://polymtlca-my.sharepoint.com";
+-        }
+-      ];
+-    }
+-    {
+-      name = "journals";
+-      type = "folder";
+-      children = [
+-        {
+-            name = "Web of Science";
+-            type = "url";
+-            url = "https://www.webofscience.com/wos/woscc/smart-search";
+-        }
+-        {
+-            name = "Elservier";
+-            type = "url";
+-            url = "https://www.elsevier.com/products/journals";
+-        }
+-        {
+-            name = "IEEE";
+-            type = "url";
+-            url = "https://ieeexplore.ieee.org/Xplore/home.jsp";
+-        }
+-        {
+-            name = "Springer Link";
+-            type = "url";
+-            url = "https://link.springer.com/";
+-        }
+-        {
+-            name = "Wiley Online Library";
+-            type = "url";
+-            url= "https://onlinelibrary.wiley.com/";
+-        }
+-        {
+-            name = "Engineering Village";
+-            type = "url";
+-            url = "https://www.engineeringvillage.com/app/search/quick/";
+-        }
+-              
+-    ];
+-    }
+-  ];
+-
+-  renderBookmark = item:
+-    if item.type == "folder" then ''
+-      <DT><H3>${item.name}</H3>
+-      <DL><p>
+-      ${lib.concatMapStringsSep "\n" renderBookmark item.children}
+-      </DL><p>
+-    ''
+-    else ''
+-      <DT><A HREF="${item.url}">${item.name}</A>
+-    '';
+-
+-in
+-{
+-  environment.systemPackages = [
+-  (pkgs.ungoogled-chromium.override {
+-    enableWideVine = true;
+-  })
+-  ];
+-
+-  # Importable bookmarks for existing profiles
+-  environment.etc."chromium/bookmarks-import.html".text = ''
+-    <!DOCTYPE NETSCAPE-Bookmark-file-1>
+-    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+-    <TITLE>Bookmarks</TITLE>
+-    <H1>Bookmarks</H1>
+-    <DL><p>
+-      <DT><H3 PERSONAL_TOOLBAR_FOLDER="true">Bookmarks bar</H3>
+-      <DL><p>
+-      ${lib.concatMapStringsSep "\n" renderBookmark bookmarks}
+-      </DL><p>
+-    </DL><p>
+-  '';
+-
+-  programs.chromium = {
+-    enable = true;
+-
+-    homepageLocation = "https://lite.duckduckgo.com/lite/";
+-
+-    defaultSearchProviderEnabled = true;
+-    defaultSearchProviderSearchURL =
+-      "https://lite.duckduckgo.com/lite/search?q={searchTerms}";
+-
+-    extraOpts = {
+-      DefaultSearchProviderName = "Local Search";
+-      ShowHomeButton = true;
+-      BookmarkBarEnabled = true;
+-    };
+-
+-    initialPrefs = {
+-      vertical_tabs = {
+-        enabled = true;
+-        expand_on_hover = true;
+-      };
+-      ntp = {
+-        shortcust_visible = false;
+-      };
+-
+-      # Place items directly on the bookmarks bar
+-      # when creating a new Chromium profile.
+-      bookmarks.first_run_bookmarks.children = bookmarks;
+-    };
+-  };
+-}
+-
+diff --git a/install_files/nix/configuration.nix b/install_files/nix/configuration.nix
+deleted file mode 100644
+index 1eda9c2a..00000000
+--- a/install_files/nix/configuration.nix
++++ /dev/null
+@@ -1,408 +0,0 @@
+-{ pkgs, inputs, ... }:
+-
+-let
+-  swaymonad = inputs.swaymonad.packages.${pkgs.stdenv.hostPlatform.system}.swaymonad;
+-in
+-{
+-  imports = [
+-    ./hardware-configuration.nix
+-    ./storage-configuration.nix
+-    ./browser.nix
+-  ];
+-
+-
+-# ---------------------------------------------------------------------------
+-# Boot / kernel
+-# ---------------------------------------------------------------------------
+-
+-  boot = {
+-    kernelPackages = pkgs.linuxPackages_latest;
+-
+-    kernelParams = [
+-     "quiet"
+-     "rd.udev.log_level=3"
+-     "rd.systemd.show_status=auto"
+-     "preempt=lazy"
+-    ];
+-
+-    kernel.sysfs = {
+-     kernel.mm.transparent_hugepage = {
+-      enabled = "madvise";
+-      defrag = "defer";
+-      shmem_enabled = "within_size";
+-     };
+-    };
+-
+-   zswap.enable = false;
+-
+-  # -------------------------------------------------------------------------
+-  # Bootloader
+-  # -------------------------------------------------------------------------
+-
+-  loader = {
+-    efi.canTouchEfiVariables = true;
+-    timeout = 5;
+-
+-    systemd-boot = {
+-      enable = true;
+-      configurationLimit = 8;
+-      editor = false;
+-    };
+-  };
+-
+-
+-
+-  # -------------------------------------------------------------------------
+-  # Initrd
+-  # -------------------------------------------------------------------------
+-
+-  initrd = {
+-    systemd.enable = true;
+-    verbose = false;
+-
+-    # LUKS devices and LVM are configured separately
+-    # in storage-configuration.nix.
+-  };
+-
+-  # -------------------------------------------------------------------------
+-  # Plymouth
+-  # -------------------------------------------------------------------------
+-
+-  plymouth = {
+-    enable = true;
+-    theme = "watch-dogs";
+-
+-    themePackages = [
+-      (pkgs.runCommand "watch-dogs-plymouth-theme" { } ''
+-        themeDir="$out/share/plymouth/themes/watch-dogs"
+-
+-        mkdir -p "$themeDir"
+-        cp -r ${../../config/watch-dogs}/. "$themeDir/"
+-
+-        substituteInPlace "$themeDir/watch-dogs.plymouth" \
+-          --replace-fail \
+-          "/usr/share/plymouth/themes/watch-dogs" \
+-          "$themeDir"
+-      '')
+-     ];
+-    };
+-  };
+-
+-  # ---------------------------------------------------------------------------
+-  # Memory / zram
+-  # ---------------------------------------------------------------------------
+-
+-  zramSwap = {
+-    enable = true;
+-    algorithm = "lz4";
+-    memoryPercent = 50;
+-    priority = 100;
+-  };
+-
+-  # ---------------------------------------------------------------------------
+-  # CPU / power
+-  # ---------------------------------------------------------------------------
+-
+-  services.power-profiles-daemon.enable = false; 
+-  services.tlp = {
+-    enable = true;
+-
+-    settings = {
+-        TLP_DISABLE_DEFAULTS = 1;
+-        
+-        CPU_DRIVER_OPMODE_ON_AC = "active";
+-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+-        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+-        CPU_BOOST_ON_AC = 1;
+-
+-        CPU_DRIVER_OPMODE_ON_BAT = "active";
+-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+-        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
+-        CPU_BOOST_ON_BAT = 1;
+-        };
+-    };
+-
+-  # ---------------------------------------------------------------------------
+-  # Hardware
+-  # ---------------------------------------------------------------------------
+-
+-  hardware = {
+-    bluetooth.enable = true;
+-
+-    enableAllFirmware = true;
+-
+-    graphics = {
+-      enable = true;
+-    };
+-
+-    amdgpu.opencl.enable = true;
+-  };
+-
+-  # ---------------------------------------------------------------------------
+-  # Networking
+-  # ---------------------------------------------------------------------------
+-
+-  networking = {
+-    hostName = "xii";
+-
+-    networkmanager = {
+-      enable = true;
+-      wifi.scanRandMacAddress = false;
+-    };
+-
+-    firewall.enable = true;
+-
+-    enableIPv6 = false;
+-
+-    hosts = {
+-      "100.86.86.51" = [
+-        "greg-desktop"
+-      ];
+-
+-      "100.110.31.78" = [
+-        "greg-phone"
+-      ];
+-
+-      "100.118.211.88" = [
+-        "greg-initrd"
+-      ];
+-    };
+-  };
+-
+-  # ---------------------------------------------------------------------------
+-  # Security
+-  # ---------------------------------------------------------------------------
+-
+-  security.polkit.enable = true;
+-  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+-  description = "Polkit authentication agent";
+-  wantedBy = [ "graphical-session.target" ];
+-  wants = [ "graphical-session.target" ];
+-  after = [ "graphical-session.target" ];
+-
+-  serviceConfig = {
+-    Type = "simple";
+-    ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+-    Restart = "on-failure";
+-    };
+-  };
+-  
+-  # ---------------------------------------------------------------------------
+-  # Services
+-  # ---------------------------------------------------------------------------
+-    
+-  services.openssh = {
+-        enable = false;
+-        openFirewall = true;
+-        settings = {
+-        PasswordAuthentication = true;
+-        KbdInteractiveAuthentication = false;
+-        PermitRootLogin = "no";
+-        AllowUsers = [ "greg" ];
+-        MaxAuthTries = 3;
+-        PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
+-        };
+-  };
+-  
+-  services = {
+-    gnome.gnome-keyring.enable = true;
+-
+-    udisks2.enable = true;
+-    
+-    tailscale.enable = true;
+-
+-    upower.enable = true;
+-
+-    fprintd.enable = false;
+-
+-    getty.autologinUser = "greg";
+-
+-    fstrim.enable = true;
+-
+-    gvfs.enable = true;
+-    
+-    tumbler.enable = true;
+-
+-    printing.enable = true;
+-
+-    pipewire = {
+-      enable = true;
+-
+-      pulse.enable = true;
+-      wireplumber.enable = true;
+-      jack.enable = true;
+-
+-      alsa = {
+-        enable = true;
+-        support32Bit = true;
+-      };
+-
+-      extraConfig.pipewire."92-low-latency" = {
+-        "context.properties" = {
+-          "default.clock.rate" = 48000;
+-
+-          # Low-latency audio.
+-          "default.clock.quantum" = 128;
+-          "default.clock.min-quantum" = 32;
+-          "default.clock.max-quantum" = 256;
+-        };
+-      };
+-    };
+-  };
+-
+-  # ---------------------------------------------------------------------------
+-  # Locale / time
+-  # ---------------------------------------------------------------------------
+-
+-  time.timeZone = "Canada/Eastern";
+-
+-  # ---------------------------------------------------------------------------
+-  # Desktop
+-  # ---------------------------------------------------------------------------
+-
+-  xdg.portal = {
+-    enable = true;
+-    wlr.enable = true;
+-    extraPortals = [
+-      pkgs.xdg-desktop-portal-gtk
+-    ];
+-  };
+-
+-  programs = {
+-    sway = {
+-      enable = true;
+-      xwayland.enable = true;
+-      wrapperFeatures.gtk = true;
+-      extraPackages = [ swaymonad ];
+-    };
+-
+-    gamescope.enable = true;
+-
+-    bash.completion.enable = true;
+-
+-    nix-ld.enable = true;
+-  };
+-
+-  # ---------------------------------------------------------------------------
+-  # Fonts
+-  # ---------------------------------------------------------------------------
+-
+-  fonts.packages = with pkgs; [
+-	  noto-fonts
+-		  noto-fonts-color-emoji
+-  ];
+-
+-  # ---------------------------------------------------------------------------
+-  # Users
+-  # ---------------------------------------------------------------------------
+-
+-  users.users.greg = {
+-    isNormalUser = true;
+-
+-    extraGroups = [
+-      "networkmanager"
+-      "wheel"
+-      "rfkill"
+-      "audio"
+-      "pipewire"
+-      "video"
+-      "render"
+-    ];
+-
+-    packages = with pkgs; [
+-      tree
+-    ];
+-  };
+-
+-  # ---------------------------------------------------------------------------
+-  # Nixpkgs
+-  # ---------------------------------------------------------------------------
+-
+-  nixpkgs.config.allowUnfree = true;
+-
+-  nix.settings.experimental-features = [
+-    "nix-command"
+-    "flakes"
+-  ];
+-
+-  # ---------------------------------------------------------------------------
+-  # System packages
+-  # ---------------------------------------------------------------------------
+-
+-  environment.systemPackages = with pkgs; [
+-    # Hardware / power
+-    acpi
+-    acpid
+-    brightnessctl
+-
+-    # Development
+-    cargo
+-    cmake
+-    stdenv
+-    gnumake
+-    gcc
+-    pkg-config
+-
+-    # Scientific / numerical computing
+-    sundials
+-    superlu
+-    eigen
+-    mkl
+-    hdf5
+-
+-    # AMD ROCm
+-    rocmPackages.rocm-runtime
+-    rocmPackages.clr
+-    rocmPackages.rocm-smi
+-
+-    # Audio
+-    pipewire
+-    pipewire.jack
+-    alsa-plugins
+-
+-    # Wayland / Hyprland
+-    wl-clipboard
+-
+-    # Desktop / integration
+-    polkit_gnome
+-    xfconf
+-    libnotify
+-    kitty
+-    xdotool
+-
+-    # Filesystems
+-    fuse3
+-    sshfs
+-
+-    # Networking
+-    wget
+-    curl
+-    git
+-    wol
+-    openssl
+-
+-    # Monitoring / filesystem utilities
+-    inotify-tools
+-
+-    # Archives
+-    unrar
+-    rar
+-    p7zip
+-    unzip
+-    zip
+-    innoextract
+-
+-    # Misc
+-    killall
+-    haskellPackages.gio
+-    nix-index
+-    appimage-run
+-  ];
+-
+-  # ---------------------------------------------------------------------------
+-  # NixOS compatibility
+-  # ---------------------------------------------------------------------------
+-
+-  # Do not change this merely when upgrading NixOS.
+-  system.stateVersion = "26.05";
+-}
+diff --git a/install_files/nix/dentritic/README.md b/install_files/nix/dentritic/README.md
+new file mode 100644
+index 00000000..3a06506f
+--- /dev/null
++++ b/install_files/nix/dentritic/README.md
+@@ -0,0 +1,146 @@
++# The xii desktop
++
++The canonical Git-backed flake is `install_files/nix/dentritic#xii`. Its only physical host is xii (AMD64). The two Linux systems each expose a formatter, OmniSearch and checks. The ARM64 outputs do not describe a machine or its disks.
++
++## Composition
++
++`flake.nix` imports the flake-parts modules extension and applies import-tree to `modules/`. Files there publish named, typed NixOS and Home Manager modules. `modules/hosts/xii.nix` selects the system features, imports the two hardware/storage files explicitly and connects Home Manager to Greg's profile using the host's package set. `modules/users/greg.nix` selects the user features. Both state versions are 26.05.
++
++To add a configured application, publish `flake.modules.nixos.<name>`, `flake.modules.homeManager.<name>`, or both from a file under the relevant category. Select the published module in the host or user imports. For installation alone, add the package to the corresponding category's system or home list. For another physical machine, add its own generated files under `hosts/<name>/` and a composition under `modules/hosts/`. Select hardware features there. The optional Hyprland module enables XWayland and sets `withUWSM = false` when imported. xii selects the Sway system and home features, including its tty1 launch.
++
++## Migration and package inventory
++
++Paths in the left column refer to baseline commit `783bb44a462c4c61b280ea39bf8692bc4839e563` under `install_files/nix/`. Destinations starting with a category refer to `dentritic/modules/`.
++
++| Baseline owner and items | New owner and scope |
++|---|---|
++| flake.nix inputs, outputs and lock | dentritic/flake.nix and flake.lock; hosts/xii composes NixOS with integrated Home Manager, shared packages, user packages and the backup suffix. |
++| hardware-configuration.nix; storage-configuration.nix | dentritic/hosts/xii/ contains byte-identical files for kernel modules, microcode, both LUKS UUIDs, LVM, root/home/EFI mounts and swap. |
++| configuration.nix boot and memory | hardware/xii-boot owns the latest kernel, boot flags, THP, EFI/systemd-boot, initrd, Plymouth theme substitution, zswap and zram. |
++| configuration.nix hardware and TLP | hardware/amd owns firmware, graphics, OpenCL and the three system ROCm packages. hardware/power owns both power profiles, TLP settings and acpi/acpid/brightnessctl. hardware/bluetooth enables Bluetooth. |
++| configuration.nix PipeWire | hardware/audio owns the system PipeWire/JACK and ALSA packages, WirePlumber, Pulse, 32-bit ALSA and clock/quantum settings. |
++| configuration.nix network, time, login, compatibility | hosts/xii owns NetworkManager and scan policy, firewall, IPv6, all static mappings, timezone, SSH allowlist, tty autologin and system.stateVersion. |
++| configuration.nix services, fonts and permissions | services/{polkit,ssh,tailscale} own the graphical agent, disabled SSH server and settings, and Tailscale. desktop/integration owns keyring, udisks2, upower, fprintd, fstrim, GVfs, tumbler and printing. desktop/fonts owns both Noto packages. users/greg owns account, groups and user-scoped tree. |
++| configuration.nix Nix and development packages | core/nix owns flakes, nix-command, nix-ld and unfree policy. development/pkgs owns system toolchain, scientific libraries and MKL. |
++| configuration.nix networking tools, filesystems, archive and miscellaneous packages | cli/pkgs owns the system utilities including gio, nix-index and appimage-run. cli/git also keeps Git on the system PATH. |
++| configuration.nix Sway, portals, gamescope and desktop tools; home.nix Wayland login | desktop/sway owns Swaymonad, XWayland, GTK wrapper, wlr/GTK portals, environment exports and conditional tty1 exec. desktop/pkgs owns gamescope and system desktop tools, plus Greg's desktop utilities. |
++| browser.nix | gui/chromium owns system ungoogled Chromium with Widevine, policies, initial preferences, bookmark tree and HTML export. Existing preference keys and bookmarks are preserved verbatim. |
++| home.nix home identity and Git | users/greg owns home path, state version and Git identity. cli/git owns Home Manager Git and LFS. |
++| home.nix Bash and scripts | cli/bash owns system completions, user aliases, PATH, rc and Conda hook. cli/ns owns the fzf/nix-search-tv wrapper. |
++| home.nix Noctalia, Neovim, Serein and Zapfast | desktop/noctalia owns settings and its systemd integration. tui/neovim owns nightly, Python, pynvim and init.lua sideload. gui/serein and gui/zapfast retain their respective flake integrations. |
++| home.nix configured GUI packages | gui/thunar owns the two plugins. gui/wine owns Wine, Winetricks and the WineASIO JACK override. gui/ghostty owns the terminal and original terminal-exec preference. |
++| home.nix other stable packages | cli/pkgs, tui/pkgs, gui/pkgs, desktop/pkgs and development/pkgs own Greg's command-line/media/dictionary tools, terminal tools, desktop apps, desktop integration and language/Qt/TeX tooling respectively. Names are enumerated in those lists. |
++| zotero.nix | gui/zotero owns the home package, using locked revision 131cf0f911b8fee10ae531f91e391db3e74672a6 and an exact 10.0.2 assertion. |
++| omnisearch.nix and the duplicate raw migration file | services/omnisearch owns Beaker, the OmniSearch build flags, DuckDuckGo Lite POST handling, install layout, generated INI, bind mounts, cache lifetimes, dynamic user, hardening and restart policy. hosts/xii selects 127.0.0.1:8087. |
++| partial dentritic tree | Empty placeholders removed or populated. Host networking and Bluetooth supersede the malformed drafts. core/checks supplies validation; desktop/hyprland supplies optional future activation. No separate legacy home/ or system/ module directories existed at this revision. |
++
++## Behavior and dependency decisions
++
++- The stable and unstable revisions and all existing dependency nodes come from the working legacy lock. Home Manager, Swaymonad and Noctalia follow stable. Serein and Zapfast keep their unstable relationship. Neovim nightly retains its own package set. The root reuses its already-locked flake-parts. The incomplete flake's unused wrapper framework and the empty unstable home package list had no active consumers.
++- CMake, GCC and HDF5 were directly installed in both profiles. They now come from the system profile for xii. Greg keeps access via the system PATH; the three direct links in Greg's package profile disappear. Git retains both the system command and Home Manager program integration.
++- MKL, the ROCm btop variant, Wine and the dual-architecture WineASIO override are selected on AMD64. RAR and Conda consult pinned package metadata. AMD hardware modules are explicitly selected by xii. The pinned Serein input has no ARM64 Linux package, so its feature contributes a package only on systems published by upstream. The ARM64 checks evaluate Greg's Home Manager package list against platform metadata and exercise the optional Hyprland settings. They create no additional physical host.
++- OmniSearch's legacy `substituteInPlace --replace-fail` targeted a call containing `full_url` that occurs zero times in the locked source. Building that derivation from source would stop at the patch step. Revision `e72fadc791163ac7fd0eabb2aceec50942482ddd` already routes the DDG engine through `configure_ddg_request`, strips the query string and sends the encoded form using `CURLOPT_COPYPOSTFIELDS`. The refactor removes that stale substitution. It preserves the locked C source, libxml2 include flag, Beaker build, runtime dependencies and service configuration.
++- The rebuild/apply aliases now target the nested flake. The apply alias retains the original repository-wide staging scope. The existing clean alias prunes generations, so avoid it while retaining a rollback generation.
++- The repository's symlink.sh remains responsible for the live config and local directories, including Sway, Ghostty, Neovim and Bash. The Nix sources for Plymouth and Noctalia resolve through the parent Git snapshot. Use the full Git checkout when evaluating this subdirectory. An isolated copy of dentritic lacks those assets.
++
++## Review, build and manually activate
++
++Run the following from the repository root on a machine with flakes enabled. Keep the previous boot generation available.
++
++```bash
++git status --short
++cd install_files/nix/dentritic
++nix flake metadata --no-update-lock-file
++nix flake show --all-systems --no-update-lock-file
++nix flake check --all-systems --no-build --no-update-lock-file
++nix eval --raw .#nixosConfigurations.xii.config.system.build.toplevel.drvPath
++nix build --no-link .#nixosConfigurations.xii.config.system.build.toplevel
++nix flake check --no-update-lock-file
++```
++
++Run native checks on each architecture, or use configured remote builders for `nix flake check --all-systems`. The x86 check includes the full host closure (including TeX, scientific libraries and the desktop). Allow adequate build storage. To check formatting, run `nix fmt -- --check flake.nix modules`. Machine-generated hardware and its companion storage file are deliberately preserved byte-for-byte.
++
++For manual activation **on xii only**, after a successful build and review, record `readlink -f /run/current-system`. Use `sudo nixos-rebuild boot --flake .#xii` to queue the generation for the next boot, or `sudo nixos-rebuild switch --flake .#xii` to activate immediately. Test disk unlock, mounts, tty1 Sway startup, audio, portals and the local search service on the actual machine.
++
++For runtime rollback, choose the previous NixOS generation in systemd-boot. From a running installation where the immediately preceding generation is the desired one, use `sudo nixos-rebuild switch --rollback`. To inspect or build the original Git configuration independently, from the repository root use `git worktree add --detach ../desktop-configs-baseline 783bb44a462c4c61b280ea39bf8692bc4839e563` and build `../desktop-configs-baseline/install_files/nix#nixosConfigurations.xii.config.system.build.toplevel` with `nix build --no-link`.
++
++## CI
++
++The example in ci-example.yml runs each native architecture independently. To activate it separately, place a copy at the repository root under .github/workflows/. CI availability depends on runner architecture, storage and caches.
++
++## Validation record
++
++The starting checkout and remote HEAD both resolved to `783bb44a462c4c61b280ea39bf8692bc4839e563`. Validation used Nix 2.28.5 and nixfmt 1.5.0. Every versioned change is under `install_files/nix/`.
++
++| Command or comparison | Observed result |
++|---|---|
++| `nix-instantiate --parse` on each of the 37 Nix files; `nixfmt --check` on the flake and discovered modules | Passed. The two copied host files also matched their baseline Git blobs byte-for-byte. |
++| `nix flake show --all-systems --no-update-lock-file` | Passed. Both Linux systems expose OmniSearch, formatter and checks. xii is the only NixOS host. |
++| `nix flake check --all-systems --no-build --no-update-lock-file` | Passed, including the xii system derivation, integrated Home Manager, both Linux outputs, optional Hyprland with XWayland/UWSM settings, Zotero pin/version, tracked external assets and ARM home package platform checks. Nix 2.28 reports the custom `modules` flake output as unknown; the explicit module imports and assertions evaluated. |
++| `nix eval --raw .#nixosConfigurations.xii.config.system.build.toplevel.drvPath` | Passed. Produced a NixOS 26.05 xii derivation. Its hash is store-prefix dependent in this environment. |
++| Baseline and migrated NixOS/Home Manager evaluation, compared as JSON | All 208 system package entries matched by name and version, including multiplicity. The 95 original home entries became 92; only the three system duplicates documented above were removed. Bookmarks, Chromium preferences, disk mappings and mounts, kernel flags, host mappings, IPv6, TLP, PipeWire latency, SSH settings, Git settings, groups, state versions, Sway and the OmniSearch server settings matched. |
++| Direct service and login comparison | Plymouth derivations, polkit user service configuration and Bash rc matched. Login profile text gained one blank line between PATH setup and the Wayland exports. OmniSearch's unit retained its directives and bind layout; the package store path changed after correcting the stale patch. |
++| Lock comparison; ARM Home Manager evaluation | All 17 pre-existing non-root lock nodes matched exactly. Zotero evaluated at 10.0.2. All 85 entries of Greg's standalone ARM Home Manager package list reported ARM64 availability. Actual ARM builds were not run. |
++| Native source build of pinned Beaker and OmniSearch | Both compiled and linked using the workspace C toolchain. A temporary loopback instance loaded 14 locales and returned HTTP 200 for the homepage. It shut down after the test. The smoke test used the locked source and host dependency libraries; Nix closure realization remains unverified. |
++| Nix build attempts | The available store used a workspace-specific prefix. Nix rejected the standard binary cache for that prefix. The initial formatter build could not create its default temporary build directory. With a writable build directory and the remote hook disabled, the x86 OmniSearch and xii build attempts reached dependency builds. The xii attempt planned over 31,000 derivations. Bounded 120-second attempts ended before realization. The full build-enabled all-systems check, physical boot, disk unlock, graphical login and hardware runtime behavior remain unverified. |
++
++An initial concurrent deep evaluation exited with status 137. The isolated all-systems evaluation subsequently completed. CI is provided as an example under this flake. No deployment or generation activation was performed.
++
++## Final tree
++
++~~~text
++dentritic
++├── README.md
++├── ci-example.yml
++├── flake.lock
++├── flake.nix
++├── hosts
++│   └── xii
++│       ├── hardware-configuration.nix
++│       └── storage-configuration.nix
++└── modules
++    ├── cli
++    │   ├── bash.nix
++    │   ├── git.nix
++    │   ├── ns.nix
++    │   └── pkgs.nix
++    ├── core
++    │   ├── checks.nix
++    │   └── nix.nix
++    ├── desktop
++    │   ├── fonts.nix
++    │   ├── hyprland.nix
++    │   ├── integration.nix
++    │   ├── noctalia.nix
++    │   ├── pkgs.nix
++    │   └── sway.nix
++    ├── development
++    │   └── pkgs.nix
++    ├── gui
++    │   ├── chromium.nix
++    │   ├── ghostty.nix
++    │   ├── pkgs.nix
++    │   ├── serein.nix
++    │   ├── thunar.nix
++    │   ├── wine.nix
++    │   ├── zapfast.nix
++    │   └── zotero.nix
++    ├── hardware
++    │   ├── amd.nix
++    │   ├── audio.nix
++    │   ├── bluetooth.nix
++    │   ├── power.nix
++    │   └── xii-boot.nix
++    ├── hosts
++    │   └── xii.nix
++    ├── services
++    │   ├── omnisearch.nix
++    │   ├── polkit.nix
++    │   ├── ssh.nix
++    │   └── tailscale.nix
++    ├── tui
++    │   ├── neovim.nix
++    │   └── pkgs.nix
++    └── users
++        └── greg.nix
++~~~
+diff --git a/install_files/nix/dentritic/ci-example.yml b/install_files/nix/dentritic/ci-example.yml
+new file mode 100644
+index 00000000..09b39de5
+--- /dev/null
++++ b/install_files/nix/dentritic/ci-example.yml
+@@ -0,0 +1,20 @@
++name: Dendritic flake
++on: [push, pull_request, workflow_dispatch]
++permissions:
++  contents: read
++jobs:
++  check:
++    strategy:
++      fail-fast: false
++      matrix:
++        runner: [ubuntu-24.04, ubuntu-24.04-arm]
++    runs-on: ${{ matrix.runner }}
++    defaults:
++      run:
++        working-directory: install_files/nix/dentritic
++    steps:
++      - uses: actions/checkout@v4
++      - uses: cachix/install-nix-action@v31
++      - run: nix flake show --all-systems --no-update-lock-file
++      - run: nix flake check --no-build --all-systems --no-update-lock-file
++      - run: nix flake check --no-update-lock-file
+diff --git a/install_files/nix/flake.lock b/install_files/nix/dentritic/flake.lock
+similarity index 89%
+rename from install_files/nix/flake.lock
+rename to install_files/nix/dentritic/flake.lock
+index 7f47a913..5205810e 100644
+--- a/install_files/nix/flake.lock
++++ b/install_files/nix/dentritic/flake.lock
+@@ -79,6 +79,21 @@
+         "type": "github"
+       }
+     },
++    "import-tree": {
++      "locked": {
++        "lastModified": 1788467110,
++        "narHash": "sha256-ljEMTXP/rH0tOvDzc9gzwww6KcHRPRnEHzd9lK48V7s=",
++        "owner": "vic",
++        "repo": "import-tree",
++        "rev": "eb1b52eaecc57f7c136d07ae8a93e724dfecac46",
++        "type": "github"
++      },
++      "original": {
++        "owner": "vic",
++        "repo": "import-tree",
++        "type": "github"
++      }
++    },
+     "neovim-nightly-overlay": {
+       "inputs": {
+         "flake-parts": "flake-parts",
+@@ -202,7 +217,12 @@
+     "root": {
+       "inputs": {
+         "beaker-src": "beaker-src",
++        "flake-parts": [
++          "neovim-nightly-overlay",
++          "flake-parts"
++        ],
+         "home-manager": "home-manager",
++        "import-tree": "import-tree",
+         "neovim-nightly-overlay": "neovim-nightly-overlay",
+         "nixpkgs": "nixpkgs_2",
+         "nixpkgs-unstable": "nixpkgs-unstable",
+@@ -210,7 +230,8 @@
+         "omnisearch": "omnisearch",
+         "serein": "serein",
+         "swaymonad": "swaymonad",
+-        "zapfast": "zapfast"
++        "zapfast": "zapfast",
++        "zotero-nixpkgs": "zotero-nixpkgs"
+       }
+     },
+     "rust-overlay": {
+@@ -329,6 +350,22 @@
+         "repo": "zapfast",
+         "type": "github"
+       }
++    },
++    "zotero-nixpkgs": {
++      "locked": {
++        "lastModified": 1789651005,
++        "narHash": "sha256-jTKJNKd3ZxB4yCYmpZPkCaXTfalpJNfAQFKMiUDNMbc=",
++        "owner": "NixOS",
++        "repo": "nixpkgs",
++        "rev": "131cf0f911b8fee10ae531f91e391db3e74672a6",
++        "type": "github"
++      },
++      "original": {
++        "owner": "NixOS",
++        "repo": "nixpkgs",
++        "rev": "131cf0f911b8fee10ae531f91e391db3e74672a6",
++        "type": "github"
++      }
+     }
+   },
+   "root": "root",
+diff --git a/install_files/nix/dentritic/flake.nix b/install_files/nix/dentritic/flake.nix
+index 5abb80eb..761d90ca 100644
+--- a/install_files/nix/dentritic/flake.nix
++++ b/install_files/nix/dentritic/flake.nix
+@@ -1,71 +1,63 @@
+ {
+-  description = "Sway + Noctalia desktop shell";
++  description = "Sway and Noctalia on xii";
+ 
+   inputs = {
+-    # Latest stable nixpkgs
+     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+-    # Unstable nixpkgs
+     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+ 
+-    # Flake parts utils
+-    flake-parts.url = "github:hercules-ci/flake-parts";
++    flake-parts.follows = "neovim-nightly-overlay/flake-parts";
+     import-tree.url = "github:vic/import-tree";
++    zotero-nixpkgs.url = "github:NixOS/nixpkgs/131cf0f911b8fee10ae531f91e391db3e74672a6";
+ 
+-    # noctalia shell v5
+     noctalia = {
+       url = "github:noctalia-dev/noctalia";
+       inputs.nixpkgs.follows = "nixpkgs";
+     };
+-    
+-    # xmonad like tiling for sway 
++
+     swaymonad = {
+       url = "github:nicolasavru/swaymonad";
+       inputs.nixpkgs.follows = "nixpkgs";
+     };
+ 
+-    # latest nvim version
+-    neovim-nightly-overlay.url =
+-      "github:nix-community/neovim-nightly-overlay";
++    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+ 
+-    # search utility for web
+     beaker-src = {
+       url = "git+https://git.bwaaa.space/beaker";
+       flake = false;
+     };
+ 
+-    # search utility for web
+-    omnisearch = {
+-      url = "git+https://git.bwaaa.space/omnisearch";
+-      flake = false;
+-    };
+-
+-    # discord in rust
+     serein = {
+-            url = "github:ViceVerse-cz/Serein";
+-            inputs.nixpkgs.follows = "nixpkgs-unstable";
++      url = "github:ViceVerse-cz/Serein";
++      inputs.nixpkgs.follows = "nixpkgs-unstable";
+     };
+-    
+-    # whatsapp in rust
++
+     zapfast = {
+-            url = "github:crmne/zapfast";
+-            inputs.nixpkgs.follows = "nixpkgs-unstable";
++      url = "github:crmne/zapfast";
++      inputs.nixpkgs.follows = "nixpkgs-unstable";
++    };
++
++    omnisearch = {
++      url = "git+https://git.bwaaa.space/omnisearch";
++      flake = false;
+     };
+ 
+-    # Nix home manager module 
+     home-manager = {
+       url = "github:nix-community/home-manager/release-26.05";
+       inputs.nixpkgs.follows = "nixpkgs";
+     };
+ 
+-    # Nix Wrapper Modules
+-    wrappers.url = "github:nix-community/nix-wrapper-modules";
+   };
+ 
+-  # Default import-tree output
+-  outputs = inputs:
+-  # Pass all inputs to outputs
+-    inputs.flake-parts.lib.mkFlake {
+-      # Call mkFlake from flake-parts module
+-      inherit inputs; # Inherit inputs (required to get correct arch for self')
+-    } (inputs.import-tree ./modules); # Pass in all modules using import-tree
++  outputs =
++    inputs:
++    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
++      imports = [
++        inputs.flake-parts.flakeModules.modules
++        (inputs.import-tree ./modules)
++      ];
++      systems = [
++        "x86_64-linux"
++        "aarch64-linux"
++      ];
++    };
+ }
+diff --git a/install_files/nix/hardware-configuration.nix b/install_files/nix/dentritic/hosts/xii/hardware-configuration.nix
+similarity index 100%
+rename from install_files/nix/hardware-configuration.nix
+rename to install_files/nix/dentritic/hosts/xii/hardware-configuration.nix
+diff --git a/install_files/nix/storage-configuration.nix b/install_files/nix/dentritic/hosts/xii/storage-configuration.nix
+similarity index 100%
+rename from install_files/nix/storage-configuration.nix
+rename to install_files/nix/dentritic/hosts/xii/storage-configuration.nix
+diff --git a/install_files/nix/dentritic/modules/cli/bash.nix b/install_files/nix/dentritic/modules/cli/bash.nix
+index e69de29b..6ff14318 100644
+--- a/install_files/nix/dentritic/modules/cli/bash.nix
++++ b/install_files/nix/dentritic/modules/cli/bash.nix
+@@ -0,0 +1,43 @@
++{
++  flake.modules.nixos.bash = {
++    programs.bash.completion.enable = true;
++  };
++
++  flake.modules.homeManager.bash = {
++    programs.bash = {
++      enable = true;
++      shellAliases = {
++        vim = "nvim";
++        nano = "nvim";
++        rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix/dentritic#xii";
++
++        apply = ''
++          cd ~/nixos-dotfiles/desktop-configs/install_files/nix/dentritic
++          git add ../../.. &&
++          git commit -m "tracking changed" &&
++          sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix/dentritic#xii
++        '';
++
++        clean = ''
++          nix-env --delete-generations old
++          sudo nix-env -p /nix/var/nix/profiles/system --delete-generations old
++          sudo nix-collect-garbage --delete-old
++          sudo nix-collect-garbage -d
++        '';
++
++      };
++
++      profileExtra = ''
++        if [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
++          PATH="$PATH:$HOME/.local/bin"
++        fi
++
++        export PATH
++      '';
++      bashrcExtra = ''
++        source ~/.local/bash/rc;
++        eval "$(/home/greg/.conda/bin/conda shell.bash hook)";
++      '';
++    };
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/cli/git.nix b/install_files/nix/dentritic/modules/cli/git.nix
+index e69de29b..cc4f43da 100644
+--- a/install_files/nix/dentritic/modules/cli/git.nix
++++ b/install_files/nix/dentritic/modules/cli/git.nix
+@@ -0,0 +1,15 @@
++{
++  flake.modules.nixos.git = { pkgs, ... }: {
++    environment.systemPackages = with pkgs; [
++      git
++    ];
++  };
++
++  flake.modules.homeManager.git = {
++    programs.git = {
++      enable = true;
++      lfs.enable = true;
++
++    };
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/cli/ns.nix b/install_files/nix/dentritic/modules/cli/ns.nix
+new file mode 100644
+index 00000000..65cede08
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/cli/ns.nix
+@@ -0,0 +1,14 @@
++{
++  flake.modules.homeManager.ns = { pkgs, ... }: {
++    home.packages = with pkgs; [
++      (pkgs.writeShellApplication {
++        name = "ns";
++        runtimeInputs = with pkgs; [
++          fzf
++          nix-search-tv
++        ];
++        text = ''exec ${pkgs.bash}/bin/bash ${pkgs.nix-search-tv.src}/nixpkgs.sh "$@"'';
++      })
++    ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/cli/pkgs.nix b/install_files/nix/dentritic/modules/cli/pkgs.nix
+index e69de29b..9da8a537 100644
+--- a/install_files/nix/dentritic/modules/cli/pkgs.nix
++++ b/install_files/nix/dentritic/modules/cli/pkgs.nix
+@@ -0,0 +1,49 @@
++{
++  flake.modules.nixos.cli-packages = { lib, pkgs, ... }: {
++    environment.systemPackages =
++      with pkgs;
++      [
++        fuse3
++        sshfs
++        wget
++        curl
++        wol
++        openssl
++        inotify-tools
++        unrar
++        p7zip
++        unzip
++        zip
++        innoextract
++        killall
++        haskellPackages.gio
++        nix-index
++        appimage-run
++      ]
++      ++ lib.optionals (lib.meta.availableOn pkgs.stdenv.hostPlatform rar) [ rar ];
++  };
++
++  flake.modules.homeManager.cli-packages = { pkgs, ... }: {
++    home.packages = with pkgs; [
++      eza
++      fastfetch
++      fd
++      fzf
++      less
++      ripgrep
++      starship
++      zoxide
++      blink
++      dex
++      chafa
++      android-tools
++      ffmpeg
++      imagemagick
++      ueberzug
++      jq
++      aspell
++      hspell
++      nuspell
++    ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/core/archives.nix b/install_files/nix/dentritic/modules/core/archives.nix
+deleted file mode 100644
+index e69de29b..00000000
+diff --git a/install_files/nix/dentritic/modules/core/checks.nix b/install_files/nix/dentritic/modules/core/checks.nix
+new file mode 100644
+index 00000000..d56cfc83
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/core/checks.nix
+@@ -0,0 +1,82 @@
++{ inputs, self, ... }:
++{
++  perSystem =
++    { pkgs, system, ... }:
++    let
++      cfg = self.nixosConfigurations.xii.config;
++      home = cfg.home-manager.users.greg;
++      zotero = inputs.zotero-nixpkgs.legacyPackages.${system}.zotero;
++      optionalDesktop = inputs.nixpkgs.lib.nixosSystem {
++        modules = [
++          self.modules.nixos.hyprland
++          {
++            nixpkgs.hostPlatform = system;
++            system.stateVersion = "26.05";
++          }
++        ];
++      };
++      linuxSystems = [
++        "aarch64-linux"
++        "x86_64-linux"
++      ];
++      root = ../../../../..;
++    in
++    {
++      formatter = pkgs.nixfmt;
++      checks = {
++        formatting = pkgs.runCommand "check-nix-format" { nativeBuildInputs = [ pkgs.nixfmt ]; } ''
++          find ${../..} -name '*.nix' ! -name hardware-configuration.nix ! -name storage-configuration.nix -exec nixfmt --check {} +
++          touch "$out"
++        '';
++        inherit (self.packages.${system}) omnisearch;
++        configuration =
++          assert builtins.attrNames self.formatter == linuxSystems;
++          assert builtins.attrNames self.packages == linuxSystems;
++          assert builtins.attrNames self.checks == linuxSystems;
++          assert optionalDesktop.config.programs.hyprland.enable;
++          assert optionalDesktop.config.programs.hyprland.xwayland.enable;
++          assert !optionalDesktop.config.programs.uwsm.enable;
++          assert zotero.version == "10.0.2";
++          assert inputs.zotero-nixpkgs.rev == "131cf0f911b8fee10ae531f91e391db3e74672a6";
++          assert builtins.all (p: builtins.pathExists (root + p)) [
++            "/config/noctalia/noctalia-full-config.toml"
++            "/config/watch-dogs/watch-dogs.plymouth"
++            "/config/sway/config"
++            "/local/bash/rc"
++          ];
++          pkgs.runCommand "check-linux-configuration" { } "touch $out";
++      }
++      // pkgs.lib.optionalAttrs (system == "aarch64-linux") {
++        home-packages =
++          let
++            profile = inputs.home-manager.lib.homeManagerConfiguration {
++              pkgs = import inputs.nixpkgs {
++                inherit system;
++                config.allowUnfree = true;
++              };
++              modules = [ self.modules.homeManager.greg ];
++            };
++          in
++          assert builtins.all (
++            p: pkgs.lib.meta.availableOn pkgs.stdenv.hostPlatform p
++          ) profile.config.home.packages;
++          pkgs.runCommand "check-arm-home-packages" { } "touch $out";
++      }
++      // pkgs.lib.optionalAttrs (system == "x86_64-linux") {
++        xii =
++          assert cfg.programs.sway.enable && cfg.programs.sway.xwayland.enable;
++          assert !cfg.programs.hyprland.enable;
++          assert
++            cfg.services.omnisearch.enable
++            &&
++              cfg.services.omnisearch.settings.server == {
++                host = "127.0.0.1";
++                port = 8087;
++              };
++          assert home.programs.noctalia.enable && home.programs.neovim.enable && home.programs.git.lfs.enable;
++          assert builtins.elem zotero home.home.packages;
++          assert cfg.system.stateVersion == "26.05" && home.home.stateVersion == "26.05";
++          cfg.system.build.toplevel;
++      };
++    };
++}
+diff --git a/install_files/nix/dentritic/modules/core/dev.nix b/install_files/nix/dentritic/modules/core/dev.nix
+deleted file mode 100644
+index e69de29b..00000000
+diff --git a/install_files/nix/dentritic/modules/core/nix.nix b/install_files/nix/dentritic/modules/core/nix.nix
+new file mode 100644
+index 00000000..4adc229d
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/core/nix.nix
+@@ -0,0 +1,11 @@
++{
++  flake.modules.nixos.nix = {
++    nixpkgs.config.allowUnfree = true;
++
++    nix.settings.experimental-features = [
++      "nix-command"
++      "flakes"
++    ];
++    programs.nix-ld.enable = true;
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/core/user.nix b/install_files/nix/dentritic/modules/core/user.nix
+deleted file mode 100644
+index e69de29b..00000000
+diff --git a/install_files/nix/dentritic/modules/desktop/fonts.nix b/install_files/nix/dentritic/modules/desktop/fonts.nix
+new file mode 100644
+index 00000000..0212e978
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/desktop/fonts.nix
+@@ -0,0 +1,8 @@
++{
++  flake.modules.nixos.fonts = { pkgs, ... }: {
++    fonts.packages = with pkgs; [
++      noto-fonts
++      noto-fonts-color-emoji
++    ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/desktop/hyprland.nix b/install_files/nix/dentritic/modules/desktop/hyprland.nix
+new file mode 100644
+index 00000000..2796ac5c
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/desktop/hyprland.nix
+@@ -0,0 +1,9 @@
++{
++  flake.modules.nixos.hyprland = {
++    programs.hyprland = {
++      enable = true;
++      xwayland.enable = true;
++      withUWSM = false;
++    };
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/desktop/integration.nix b/install_files/nix/dentritic/modules/desktop/integration.nix
+new file mode 100644
+index 00000000..561a0fd3
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/desktop/integration.nix
+@@ -0,0 +1,19 @@
++{
++  flake.modules.nixos.integration = {
++    services = {
++      gnome.gnome-keyring.enable = true;
++
++      udisks2.enable = true;
++      upower.enable = true;
++
++      fprintd.enable = false;
++      fstrim.enable = true;
++
++      gvfs.enable = true;
++
++      tumbler.enable = true;
++
++      printing.enable = true;
++    };
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/desktop/noctalia.nix b/install_files/nix/dentritic/modules/desktop/noctalia.nix
+index e69de29b..c86d3027 100644
+--- a/install_files/nix/dentritic/modules/desktop/noctalia.nix
++++ b/install_files/nix/dentritic/modules/desktop/noctalia.nix
+@@ -0,0 +1,10 @@
++{ inputs, ... }: {
++  flake.modules.homeManager.noctalia = {
++    imports = [ inputs.noctalia.homeModules.default ];
++    programs.noctalia = {
++      enable = true;
++      systemd.enable = true;
++      settings = ../../../../../config/noctalia/noctalia-full-config.toml;
++    };
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/desktop/pkgs.nix b/install_files/nix/dentritic/modules/desktop/pkgs.nix
+new file mode 100644
+index 00000000..a2b93bde
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/desktop/pkgs.nix
+@@ -0,0 +1,21 @@
++{
++  flake.modules.nixos.desktop-packages = { pkgs, ... }: {
++    programs.gamescope.enable = true;
++    environment.systemPackages = with pkgs; [
++      wl-clipboard
++      xfconf
++      libnotify
++      kitty
++      xdotool
++    ];
++  };
++
++  flake.modules.homeManager.desktop-packages = { pkgs, ... }: {
++    home.packages = with pkgs; [
++      adw-gtk3
++      nwg-look
++      gsettings-desktop-schemas
++      wofi
++    ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/desktop/sway.nix b/install_files/nix/dentritic/modules/desktop/sway.nix
+index e69de29b..05dd2923 100644
+--- a/install_files/nix/dentritic/modules/desktop/sway.nix
++++ b/install_files/nix/dentritic/modules/desktop/sway.nix
+@@ -0,0 +1,40 @@
++{ inputs, ... }: {
++  flake.modules.nixos.sway = { pkgs, ... }: {
++    xdg.portal = {
++      enable = true;
++      wlr.enable = true;
++      extraPortals = [
++        pkgs.xdg-desktop-portal-gtk
++      ];
++    };
++    programs.sway = {
++      enable = true;
++      xwayland.enable = true;
++      wrapperFeatures.gtk = true;
++      extraPackages = [ inputs.swaymonad.packages.${pkgs.stdenv.hostPlatform.system}.swaymonad ];
++    };
++  };
++
++  flake.modules.homeManager.sway = { lib, ... }: {
++    programs.bash.profileExtra = lib.mkAfter ''
++      export QT_QPA_PLATFORMTHEME=qt6ct
++      export QT_QPA_PLATFORM=wayland
++
++      export GDK_BACKEND=wayland,x11,*
++
++      export SDL_VIDEODRIVER=wayland,x11
++
++      export MOZ_ENABLE_WAYLAND=1
++
++      export ELECTRON_OZONE_PLATFORM_HINT=wayland
++      export OZONE_PLATFORM=wayland
++
++      # export LIBVA_DRIVER_NAME=nvidia
++      # export __GLX_VENDOR_LIBRARY_NAME=nvidia
++
++      if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
++        exec sway
++      fi
++    '';
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/development/pkgs.nix b/install_files/nix/dentritic/modules/development/pkgs.nix
+new file mode 100644
+index 00000000..2fb5c0bf
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/development/pkgs.nix
+@@ -0,0 +1,53 @@
++{
++  flake.modules.nixos.development-packages = { pkgs, lib, ... }: {
++    environment.systemPackages =
++      with pkgs;
++      [
++        cargo
++        cmake
++        stdenv
++        gnumake
++        gcc
++        pkg-config
++        sundials
++        superlu
++        eigen
++        hdf5
++      ]
++      ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [ mkl ];
++  };
++
++  flake.modules.homeManager.development-packages = { pkgs, lib, ... }: {
++    home.packages =
++      with pkgs;
++      [
++        jdk
++        julia
++        lua
++        nodejs
++        ruby
++        perl
++        luarocks
++        mariadb
++        ninja
++        (lib.lowPrio ncurses)
++        tree-sitter
++        zig
++        go
++        php
++        phpPackages.composer
++        elmPackages.nodejs
++        sqlite
++        ghostscript
++        composer-require-checker
++        mermaid-cli
++        qt6.qtbase
++        qt6.qtdeclarative
++        qt6.qttools
++        qt6.qtwebengine
++        tectonic
++        texliveFull
++      ]
++      ++ lib.optionals (lib.meta.availableOn pkgs.stdenv.hostPlatform conda) [ conda ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/gui/chromium.nix b/install_files/nix/dentritic/modules/gui/chromium.nix
+new file mode 100644
+index 00000000..7b252e74
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/gui/chromium.nix
+@@ -0,0 +1,184 @@
++{
++  flake.modules.nixos.chromium =
++    { pkgs, lib, ... }:
++
++    let
++      bookmarks = [
++        {
++          name = "YouTube";
++          type = "url";
++          url = "https://www.youtube.com";
++        }
++        {
++          name = "llm";
++          type = "folder";
++          children = [
++            {
++              name = "ChatGPT";
++              type = "url";
++              url = "https://chatgpt.com";
++            }
++            {
++              name = "NotebookLM";
++              type = "url";
++              url = "https://notebooklm.google.com";
++            }
++            {
++              name = "ResearchRabbit";
++              type = "url";
++              url = "https://app.researchrabbit.ai";
++            }
++          ];
++        }
++        {
++          name = "local";
++          type = "folder";
++          children = [
++            {
++              name = "Downloads";
++              type = "url";
++              url = "file:///home/greg/Downloads/";
++            }
++            {
++              name = "Documents";
++              type = "url";
++              url = "file:///home/greg/Documents/";
++            }
++            {
++              name = "PhD";
++              type = "url";
++              url = "file:///home/greg/Documents/PhD/";
++            }
++          ];
++        }
++        {
++          name = "school";
++          type = "folder";
++          children = [
++            {
++              name = "Moodle PolyMTL";
++              type = "url";
++              url = "https://moodle.polymtl.ca";
++            }
++            {
++              name = "CADET-Core";
++              type = "url";
++              url = "https://cadet.github.io";
++            }
++            {
++              name = "Dossier étudiant PolyMTL";
++              type = "url";
++              url = "https://dossieretudiant.polymtl.ca";
++            }
++            {
++              name = "SharePoint PolyMTL";
++              type = "url";
++              url = "https://polymtlca-my.sharepoint.com";
++            }
++          ];
++        }
++        {
++          name = "journals";
++          type = "folder";
++          children = [
++            {
++              name = "Web of Science";
++              type = "url";
++              url = "https://www.webofscience.com/wos/woscc/smart-search";
++            }
++            {
++              name = "Elservier";
++              type = "url";
++              url = "https://www.elsevier.com/products/journals";
++            }
++            {
++              name = "IEEE";
++              type = "url";
++              url = "https://ieeexplore.ieee.org/Xplore/home.jsp";
++            }
++            {
++              name = "Springer Link";
++              type = "url";
++              url = "https://link.springer.com/";
++            }
++            {
++              name = "Wiley Online Library";
++              type = "url";
++              url = "https://onlinelibrary.wiley.com/";
++            }
++            {
++              name = "Engineering Village";
++              type = "url";
++              url = "https://www.engineeringvillage.com/app/search/quick/";
++            }
++
++          ];
++        }
++      ];
++
++      renderBookmark =
++        item:
++        if item.type == "folder" then
++          ''
++            <DT><H3>${item.name}</H3>
++            <DL><p>
++            ${lib.concatMapStringsSep "\n" renderBookmark item.children}
++            </DL><p>
++          ''
++        else
++          ''
++            <DT><A HREF="${item.url}">${item.name}</A>
++          '';
++
++    in
++    {
++      environment.systemPackages = [
++        (pkgs.ungoogled-chromium.override {
++          enableWideVine = true;
++        })
++      ];
++
++      # Importable bookmarks for existing profiles
++      environment.etc."chromium/bookmarks-import.html".text = ''
++        <!DOCTYPE NETSCAPE-Bookmark-file-1>
++        <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
++        <TITLE>Bookmarks</TITLE>
++        <H1>Bookmarks</H1>
++        <DL><p>
++          <DT><H3 PERSONAL_TOOLBAR_FOLDER="true">Bookmarks bar</H3>
++          <DL><p>
++          ${lib.concatMapStringsSep "\n" renderBookmark bookmarks}
++          </DL><p>
++        </DL><p>
++      '';
++
++      programs.chromium = {
++        enable = true;
++
++        homepageLocation = "https://lite.duckduckgo.com/lite/";
++
++        defaultSearchProviderEnabled = true;
++        defaultSearchProviderSearchURL = "https://lite.duckduckgo.com/lite/search?q={searchTerms}";
++
++        extraOpts = {
++          DefaultSearchProviderName = "Local Search";
++          ShowHomeButton = true;
++          BookmarkBarEnabled = true;
++        };
++
++        initialPrefs = {
++          vertical_tabs = {
++            enabled = true;
++            expand_on_hover = true;
++          };
++          ntp = {
++            shortcust_visible = false;
++          };
++
++          # Place items directly on the bookmarks bar
++          # when creating a new Chromium profile.
++          bookmarks.first_run_bookmarks.children = bookmarks;
++        };
++      };
++    };
++}
+diff --git a/install_files/nix/dentritic/modules/gui/ghostty.nix b/install_files/nix/dentritic/modules/gui/ghostty.nix
+new file mode 100644
+index 00000000..91a7368b
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/gui/ghostty.nix
+@@ -0,0 +1,15 @@
++{
++  flake.modules.homeManager.ghostty = { pkgs, ... }: {
++    xdg.terminal-exec = {
++      enable = true;
++      settings = {
++        default = [
++          "com.michelly.ghostty"
++        ];
++      };
++    };
++    home.packages = with pkgs; [
++      ghostty
++    ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/gui/pkgs.nix b/install_files/nix/dentritic/modules/gui/pkgs.nix
+index e69de29b..ebc3a3d0 100644
+--- a/install_files/nix/dentritic/modules/gui/pkgs.nix
++++ b/install_files/nix/dentritic/modules/gui/pkgs.nix
+@@ -0,0 +1,17 @@
++{
++  flake.modules.homeManager.gui-packages = { pkgs, ... }: {
++    home.packages = with pkgs; [
++      qbittorrent
++      localsend
++      gimp
++      loupe
++      obs-studio
++      thunderbird
++      vlc
++      zathura
++      gnome-disk-utility
++      lutris
++      qjackctl
++    ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/gui/serein.nix b/install_files/nix/dentritic/modules/gui/serein.nix
+index e69de29b..dd79ec9b 100644
+--- a/install_files/nix/dentritic/modules/gui/serein.nix
++++ b/install_files/nix/dentritic/modules/gui/serein.nix
+@@ -0,0 +1,13 @@
++{ inputs, ... }:
++{
++  flake.modules.homeManager.serein =
++    { pkgs, lib, ... }:
++    let
++      system = pkgs.stdenv.hostPlatform.system;
++    in
++    {
++      home.packages = lib.optional (
++        inputs.serein.packages ? ${system}.default
++      ) inputs.serein.packages.${system}.default;
++    };
++}
+diff --git a/install_files/nix/dentritic/modules/gui/thunar.nix b/install_files/nix/dentritic/modules/gui/thunar.nix
+new file mode 100644
+index 00000000..52b01a9a
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/gui/thunar.nix
+@@ -0,0 +1,12 @@
++{
++  flake.modules.homeManager.thunar = { pkgs, ... }: {
++    home.packages = with pkgs; [
++      (thunar.override {
++        thunarPlugins = [
++          thunar-archive-plugin
++          thunar-volman
++        ];
++      })
++    ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/gui/wine.nix b/install_files/nix/dentritic/modules/gui/wine.nix
+new file mode 100644
+index 00000000..8c8b45e8
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/gui/wine.nix
+@@ -0,0 +1,19 @@
++{
++  flake.modules.homeManager.wine = { pkgs, lib, ... }: {
++    home.packages =
++      with pkgs;
++      [
++
++      ]
++      ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
++        wineWow64Packages.stable
++        winetricks
++        (wineasio.overrideAttrs {
++          buildInputs = [
++            pkgsi686Linux.pipewire.jack
++            pipewire.jack
++          ];
++        })
++      ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/gui/zapfast.nix b/install_files/nix/dentritic/modules/gui/zapfast.nix
+index e69de29b..49a22ec3 100644
+--- a/install_files/nix/dentritic/modules/gui/zapfast.nix
++++ b/install_files/nix/dentritic/modules/gui/zapfast.nix
+@@ -0,0 +1,6 @@
++{ inputs, ... }: {
++  flake.modules.homeManager.zapfast = {
++    imports = [ inputs.zapfast.homeManagerModules.default ];
++    programs.zapfast.enable = true;
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/gui/zotero.nix b/install_files/nix/dentritic/modules/gui/zotero.nix
+index e69de29b..a7ac8a85 100644
+--- a/install_files/nix/dentritic/modules/gui/zotero.nix
++++ b/install_files/nix/dentritic/modules/gui/zotero.nix
+@@ -0,0 +1,13 @@
++{ inputs, ... }: {
++  flake.modules.homeManager.zotero = { pkgs, ... }: {
++    home.packages = [
++      (
++        let
++          package = inputs.zotero-nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.zotero;
++        in
++        assert package.version == "10.0.2";
++        package
++      )
++    ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/hardware/amd.nix b/install_files/nix/dentritic/modules/hardware/amd.nix
+new file mode 100644
+index 00000000..0e0063bc
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/hardware/amd.nix
+@@ -0,0 +1,16 @@
++{
++  flake.modules.nixos.amd = { pkgs, ... }: {
++    hardware.enableAllFirmware = true;
++
++    hardware.graphics = {
++      enable = true;
++    };
++
++    hardware.amdgpu.opencl.enable = true;
++    environment.systemPackages = with pkgs; [
++      rocmPackages.rocm-runtime
++      rocmPackages.clr
++      rocmPackages.rocm-smi
++    ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/hardware/audio.nix b/install_files/nix/dentritic/modules/hardware/audio.nix
+index e69de29b..9f8c475d 100644
+--- a/install_files/nix/dentritic/modules/hardware/audio.nix
++++ b/install_files/nix/dentritic/modules/hardware/audio.nix
+@@ -0,0 +1,32 @@
++{
++  flake.modules.nixos.audio = { pkgs, ... }: {
++    services.pipewire = {
++      enable = true;
++
++      pulse.enable = true;
++      wireplumber.enable = true;
++      jack.enable = true;
++
++      alsa = {
++        enable = true;
++        support32Bit = true;
++      };
++
++      extraConfig.pipewire."92-low-latency" = {
++        "context.properties" = {
++          "default.clock.rate" = 48000;
++
++          # Low-latency audio.
++          "default.clock.quantum" = 128;
++          "default.clock.min-quantum" = 32;
++          "default.clock.max-quantum" = 256;
++        };
++      };
++    };
++    environment.systemPackages = with pkgs; [
++      pipewire
++      pipewire.jack
++      alsa-plugins
++    ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/hardware/bluetooth.nix b/install_files/nix/dentritic/modules/hardware/bluetooth.nix
+new file mode 100644
+index 00000000..d476c3c6
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/hardware/bluetooth.nix
+@@ -0,0 +1,5 @@
++{
++  flake.modules.nixos.bluetooth = {
++    hardware.bluetooth.enable = true;
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/hardware/bluetooth/bluetooth.nix b/install_files/nix/dentritic/modules/hardware/bluetooth/bluetooth.nix
+deleted file mode 100644
+index a3dc9604..00000000
+--- a/install_files/nix/dentritic/modules/hardware/bluetooth/bluetooth.nix
++++ /dev/null
+@@ -1,7 +0,0 @@
+-{...}: {
+-  # Define flake part nixosModule "networking"
+-  flake.nixosModules.bluetooth = {...}: {
+-        hardware.bluetooth.enable = true;
+-    }
+-}
+-
+diff --git a/install_files/nix/dentritic/modules/hardware/cpu.nix b/install_files/nix/dentritic/modules/hardware/cpu.nix
+deleted file mode 100644
+index e69de29b..00000000
+diff --git a/install_files/nix/dentritic/modules/hardware/gpu.nix b/install_files/nix/dentritic/modules/hardware/gpu.nix
+deleted file mode 100644
+index e69de29b..00000000
+diff --git a/install_files/nix/dentritic/modules/hardware/monitors.nix b/install_files/nix/dentritic/modules/hardware/monitors.nix
+deleted file mode 100644
+index e69de29b..00000000
+diff --git a/install_files/nix/dentritic/modules/hardware/network/network.nix b/install_files/nix/dentritic/modules/hardware/network/network.nix
+deleted file mode 100644
+index fc25db28..00000000
+--- a/install_files/nix/dentritic/modules/hardware/network/network.nix
++++ /dev/null
+@@ -1,31 +0,0 @@
+-{...}: {
+-  # Define flake part nixosModule "networking"
+-  flake.nixosModules.networking = {...}: {
+-        networking = {
+-            hostName = "xii";
+-
+-            networkmanager = {
+-                enable = true;
+-            }:
+-            wifi.scanRandMacAddress = false;
+-
+-            firewall.enable = true;
+-
+-            enableIPv6 = false;
+-
+-            hosts = {
+-                "100.86.86.51" = [
+-                    "greg-desktop"
+-                ];
+-
+-                "100.110.31.78" = [
+-                    "greg-phone"
+-                ];
+-
+-                "100.118.211.88" = [
+-                    "greg-initrd"
+-                ];
+-            };
+-        };
+-    }
+-}
+diff --git a/install_files/nix/dentritic/modules/hardware/power.nix b/install_files/nix/dentritic/modules/hardware/power.nix
+index e69de29b..04ffa640 100644
+--- a/install_files/nix/dentritic/modules/hardware/power.nix
++++ b/install_files/nix/dentritic/modules/hardware/power.nix
+@@ -0,0 +1,27 @@
++{
++  flake.modules.nixos.power = { pkgs, ... }: {
++    services.power-profiles-daemon.enable = false;
++    services.tlp = {
++      enable = true;
++
++      settings = {
++        TLP_DISABLE_DEFAULTS = 1;
++
++        CPU_DRIVER_OPMODE_ON_AC = "active";
++        CPU_SCALING_GOVERNOR_ON_AC = "performance";
++        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
++        CPU_BOOST_ON_AC = 1;
++
++        CPU_DRIVER_OPMODE_ON_BAT = "active";
++        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
++        CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
++        CPU_BOOST_ON_BAT = 1;
++      };
++    };
++    environment.systemPackages = with pkgs; [
++      acpi
++      acpid
++      brightnessctl
++    ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/hardware/storage.nix b/install_files/nix/dentritic/modules/hardware/storage.nix
+deleted file mode 100644
+index e69de29b..00000000
+diff --git a/install_files/nix/dentritic/modules/hardware/xii-boot.nix b/install_files/nix/dentritic/modules/hardware/xii-boot.nix
+new file mode 100644
+index 00000000..7fd4848e
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/hardware/xii-boot.nix
+@@ -0,0 +1,80 @@
++{
++  flake.modules.nixos.xii-boot = { pkgs, ... }: {
++    boot = {
++      kernelPackages = pkgs.linuxPackages_latest;
++
++      kernelParams = [
++        "quiet"
++        "rd.udev.log_level=3"
++        "rd.systemd.show_status=auto"
++        "preempt=lazy"
++      ];
++
++      kernel.sysfs = {
++        kernel.mm.transparent_hugepage = {
++          enabled = "madvise";
++          defrag = "defer";
++          shmem_enabled = "within_size";
++        };
++      };
++
++      zswap.enable = false;
++
++      # -------------------------------------------------------------------------
++      # Bootloader
++      # -------------------------------------------------------------------------
++
++      loader = {
++        efi.canTouchEfiVariables = true;
++        timeout = 5;
++
++        systemd-boot = {
++          enable = true;
++          configurationLimit = 8;
++          editor = false;
++        };
++      };
++
++      # -------------------------------------------------------------------------
++      # Initrd
++      # -------------------------------------------------------------------------
++
++      initrd = {
++        systemd.enable = true;
++        verbose = false;
++
++        # LUKS devices and LVM are configured separately
++        # in storage-configuration.nix.
++      };
++
++      # -------------------------------------------------------------------------
++      # Plymouth
++      # -------------------------------------------------------------------------
++
++      plymouth = {
++        enable = true;
++        theme = "watch-dogs";
++
++        themePackages = [
++          (pkgs.runCommand "watch-dogs-plymouth-theme" { } ''
++            themeDir="$out/share/plymouth/themes/watch-dogs"
++
++            mkdir -p "$themeDir"
++            cp -r ${../../../../../config/watch-dogs}/. "$themeDir/"
++
++            substituteInPlace "$themeDir/watch-dogs.plymouth" \
++              --replace-fail \
++              "/usr/share/plymouth/themes/watch-dogs" \
++              "$themeDir"
++          '')
++        ];
++      };
++    };
++    zramSwap = {
++      enable = true;
++      algorithm = "lz4";
++      memoryPercent = 50;
++      priority = 100;
++    };
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/hosts/xii.nix b/install_files/nix/dentritic/modules/hosts/xii.nix
+new file mode 100644
+index 00000000..3bdca6fc
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/hosts/xii.nix
+@@ -0,0 +1,78 @@
++{ inputs, config, ... }:
++{
++  flake.nixosConfigurations.xii = inputs.nixpkgs.lib.nixosSystem {
++    modules =
++      (with config.flake.modules.nixos; [
++        xii-boot
++        power
++        amd
++        bluetooth
++        audio
++        polkit
++        ssh
++        tailscale
++        integration
++        nix
++        fonts
++        sway
++        bash
++        git
++        cli-packages
++        desktop-packages
++        development-packages
++        chromium
++        omnisearch
++        greg
++      ])
++      ++ [
++        ../../hosts/xii/hardware-configuration.nix
++        ../../hosts/xii/storage-configuration.nix
++        inputs.home-manager.nixosModules.home-manager
++        {
++          home-manager = {
++            useGlobalPkgs = true;
++            useUserPackages = true;
++            backupFileExtension = "backup";
++            users.greg.imports = [ config.flake.modules.homeManager.greg ];
++          };
++          services.omnisearch = {
++            enable = true;
++            settings.server = {
++              host = "127.0.0.1";
++              port = 8087;
++            };
++          };
++          services.openssh.settings.AllowUsers = [ "greg" ];
++          services.getty.autologinUser = "greg";
++          networking = {
++            hostName = "xii";
++
++            networkmanager = {
++              enable = true;
++              wifi.scanRandMacAddress = false;
++            };
++
++            firewall.enable = true;
++
++            enableIPv6 = false;
++
++            hosts = {
++              "100.86.86.51" = [
++                "greg-desktop"
++              ];
++
++              "100.110.31.78" = [
++                "greg-phone"
++              ];
++
++              "100.118.211.88" = [
++                "greg-initrd"
++              ];
++            };
++          };
++          time.timeZone = "Canada/Eastern";
++          system.stateVersion = "26.05";
++        }
++      ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/part.nix b/install_files/nix/dentritic/modules/part.nix
+deleted file mode 100644
+index 657e3ca8..00000000
+--- a/install_files/nix/dentritic/modules/part.nix
++++ /dev/null
+@@ -1,10 +0,0 @@
+-{
+-  config = {
+-    systems = [
+-      "x86_64-linux"
+-      "x86_64-darwin"
+-      "aarch64-linux"
+-      "aarch64-darwin"
+-    ];
+-  };
+-}
+diff --git a/install_files/nix/dentritic/modules/services/omnisearch.nix b/install_files/nix/dentritic/modules/services/omnisearch.nix
+index 51d26fea..2455b473 100644
+--- a/install_files/nix/dentritic/modules/services/omnisearch.nix
++++ b/install_files/nix/dentritic/modules/services/omnisearch.nix
+@@ -1,136 +1,127 @@
+-{ config, lib, pkgs, inputs, ... }:
+-
++{ inputs, self, ... }:
+ let
+-  cfg = config.services.omnisearch;
+-
+-  beaker = pkgs.stdenv.mkDerivation {
+-    pname = "beaker";
+-    version = "git";
+-    src = inputs.beaker-src;
+-
+-    makeFlags = [
+-      "INSTALL_PREFIX=$(out)/"
+-      "LDCONFIG=true"
+-    ];
+-  };
+-
+-  omnisearchPackage = pkgs.stdenv.mkDerivation {
+-    pname = "omnisearch";
+-    version = "git";
+-    src = inputs.omnisearch;
+-
+-    buildInputs = [
+-      pkgs.libxml2.dev
+-      pkgs.curl.dev
+-      pkgs.openssl
+-      beaker
+-    ];
+-
+-    # OmniSearch's Makefile uses /usr/include/libxml2, which is absent on NixOS.
+-    NIX_CFLAGS_COMPILE = "-I${pkgs.libxml2.dev}/include/libxml2";
+-
+-    # DuckDuckGo Lite GET requests are receiving HTTP 202.
+-    # Use the tested form POST method for the DuckDuckGo engine only.
+-    postPatch = ''
+-      substituteInPlace src/Scraping/Scraping.c \
+-        --replace-fail \
+-        '  configure_curl_handle(job->handle, full_url, &job->response, headers);' \
+-        '  configure_curl_handle(job->handle, full_url, &job->response, headers);
+-
+-  if (strcmp(job->engine->name, "DuckDuckGo Lite") == 0) {
+-    char *escaped = curl_easy_escape(job->handle, job->query, 0);
+-    if (escaped) {
+-      size_t len = strlen(escaped) + 3;
+-      char *form = malloc(len);
+-      if (form) {
+-        snprintf(form, len, "q=%s", escaped);
+-        curl_easy_setopt(job->handle, CURLOPT_URL,
+-                         "https://lite.duckduckgo.com/lite/");
+-        curl_easy_setopt(job->handle, CURLOPT_COPYPOSTFIELDS, form);
+-        free(form);
+-      }
+-      curl_free(escaped);
+-    }
+-  }'
+-    '';
+-
+-    installPhase = ''
+-      runHook preInstall
+-      install -Dm755 bin/omnisearch "$out/bin/omnisearch"
+-      mkdir -p "$out/share/omnisearch/locales"
+-      cp -r templates static "$out/share/omnisearch/"
+-      if [ -d locales ]; then
+-        cp -r locales/. "$out/share/omnisearch/locales/"
+-      fi
+-      runHook postInstall
+-    '';
+-  };
+-
+-  configFile = pkgs.writeText "omnisearch.ini" ''
+-    [server]
+-    host = ${cfg.settings.server.host}
+-    port = ${toString cfg.settings.server.port}
+-    domain = http://${cfg.settings.server.host}:${toString cfg.settings.server.port}
+-
+-    [cache]
+-    dir = /var/cache/omnisearch
+-    ttl_search = 3600
+-    ttl_infobox = 86400
+-
+-    [engines]
+-    engines = "*"
+-  '';
++  mkPackage =
++    pkgs:
++    let
++      beaker = pkgs.stdenv.mkDerivation {
++        pname = "beaker";
++        version = "git";
++        src = inputs.beaker-src;
++
++        makeFlags = [
++          "INSTALL_PREFIX=$(out)/"
++          "LDCONFIG=true"
++        ];
++      };
+ 
++    in
++    pkgs.stdenv.mkDerivation {
++      pname = "omnisearch";
++      version = "git";
++      src = inputs.omnisearch;
++
++      buildInputs = [
++        pkgs.libxml2.dev
++        pkgs.curl.dev
++        pkgs.openssl
++        beaker
++      ];
++
++      # OmniSearch's Makefile uses /usr/include/libxml2, which is absent on NixOS.
++      NIX_CFLAGS_COMPILE = "-I${pkgs.libxml2.dev}/include/libxml2";
++
++      # The pinned source implements DuckDuckGo Lite form POSTs in configure_ddg_request.
++      installPhase = ''
++        runHook preInstall
++        install -Dm755 bin/omnisearch "$out/bin/omnisearch"
++        mkdir -p "$out/share/omnisearch/locales"
++        cp -r templates static "$out/share/omnisearch/"
++        if [ -d locales ]; then
++          cp -r locales/. "$out/share/omnisearch/locales/"
++        fi
++        runHook postInstall
++      '';
++    };
+ in
+ {
+-  options.services.omnisearch = {
+-    enable = lib.mkEnableOption "OmniSearch metasearch engine";
+-
+-    package = lib.mkOption {
+-      type = lib.types.package;
+-      default = omnisearchPackage;
+-      description = "OmniSearch package to run.";
+-    };
+-
+-    settings.server = {
+-      host = lib.mkOption {
+-        type = lib.types.str;
+-        default = "127.0.0.1";
+-      };
+-
+-      port = lib.mkOption {
+-        type = lib.types.port;
+-        default = 8087;
++  perSystem = { pkgs, ... }: { packages.omnisearch = mkPackage pkgs; };
++  flake.modules.nixos.omnisearch =
++    {
++      config,
++      lib,
++      pkgs,
++      ...
++    }:
++
++    let
++      cfg = config.services.omnisearch;
++
++      configFile = pkgs.writeText "omnisearch.ini" ''
++        [server]
++        host = ${cfg.settings.server.host}
++        port = ${toString cfg.settings.server.port}
++        domain = http://${cfg.settings.server.host}:${toString cfg.settings.server.port}
++
++        [cache]
++        dir = /var/cache/omnisearch
++        ttl_search = 3600
++        ttl_infobox = 86400
++
++        [engines]
++        engines = "*"
++      '';
++
++    in
++    {
++      options.services.omnisearch = {
++        enable = lib.mkEnableOption "OmniSearch metasearch engine";
++
++        package = lib.mkOption {
++          type = lib.types.package;
++          default = self.packages.${pkgs.stdenv.hostPlatform.system}.omnisearch;
++          description = "OmniSearch package to run.";
++        };
++
++        settings.server = {
++          host = lib.mkOption {
++            type = lib.types.str;
++            default = "127.0.0.1";
++          };
++
++          port = lib.mkOption {
++            type = lib.types.port;
++            default = 8087;
++          };
++        };
+       };
+-    };
+-  };
+-
+-  config = lib.mkIf cfg.enable {
+-    systemd.services.omnisearch = {
+-      description = "OmniSearch metasearch engine";
+-      wantedBy = [ "multi-user.target" ];
+-      after = [ "network.target" ];
+-
+-      serviceConfig = {
+-        ExecStart = "${cfg.package}/bin/omnisearch";
+-        WorkingDirectory = "/var/lib/omnisearch";
+-        StateDirectory = "omnisearch";
+-        CacheDirectory = "omnisearch";
+-
+-        BindReadOnlyPaths = [
+-          "${cfg.package}/share/omnisearch/templates:/var/lib/omnisearch/templates"
+-          "${cfg.package}/share/omnisearch/static:/var/lib/omnisearch/static"
+-          "${cfg.package}/share/omnisearch/locales:/var/lib/omnisearch/locales"
+-          "${configFile}:/var/lib/omnisearch/config.ini"
+-        ];
+ 
+-        DynamicUser = true;
+-        ProtectSystem = "strict";
+-        ProtectHome = true;
+-        PrivateTmp = true;
+-        Restart = "on-failure";
+-        RestartSec = 5;
++      config = lib.mkIf cfg.enable {
++        systemd.services.omnisearch = {
++          description = "OmniSearch metasearch engine";
++          wantedBy = [ "multi-user.target" ];
++          after = [ "network.target" ];
++
++          serviceConfig = {
++            ExecStart = "${cfg.package}/bin/omnisearch";
++            WorkingDirectory = "/var/lib/omnisearch";
++            StateDirectory = "omnisearch";
++            CacheDirectory = "omnisearch";
++
++            BindReadOnlyPaths = [
++              "${cfg.package}/share/omnisearch/templates:/var/lib/omnisearch/templates"
++              "${cfg.package}/share/omnisearch/static:/var/lib/omnisearch/static"
++              "${cfg.package}/share/omnisearch/locales:/var/lib/omnisearch/locales"
++              "${configFile}:/var/lib/omnisearch/config.ini"
++            ];
++
++            DynamicUser = true;
++            ProtectSystem = "strict";
++            ProtectHome = true;
++            PrivateTmp = true;
++            Restart = "on-failure";
++            RestartSec = 5;
++          };
++        };
+       };
+     };
+-  };
+ }
+diff --git a/install_files/nix/dentritic/modules/services/polkit.nix b/install_files/nix/dentritic/modules/services/polkit.nix
+index e69de29b..df9451d3 100644
+--- a/install_files/nix/dentritic/modules/services/polkit.nix
++++ b/install_files/nix/dentritic/modules/services/polkit.nix
+@@ -0,0 +1,20 @@
++{
++  flake.modules.nixos.polkit = { pkgs, ... }: {
++    security.polkit.enable = true;
++    systemd.user.services.polkit-gnome-authentication-agent-1 = {
++      description = "Polkit authentication agent";
++      wantedBy = [ "graphical-session.target" ];
++      wants = [ "graphical-session.target" ];
++      after = [ "graphical-session.target" ];
++
++      serviceConfig = {
++        Type = "simple";
++        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
++        Restart = "on-failure";
++      };
++    };
++    environment.systemPackages = with pkgs; [
++      polkit_gnome
++    ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/services/services.nix b/install_files/nix/dentritic/modules/services/services.nix
+deleted file mode 100644
+index e69de29b..00000000
+diff --git a/install_files/nix/dentritic/modules/services/ssh.nix b/install_files/nix/dentritic/modules/services/ssh.nix
+index e69de29b..8a7bb7ab 100644
+--- a/install_files/nix/dentritic/modules/services/ssh.nix
++++ b/install_files/nix/dentritic/modules/services/ssh.nix
+@@ -0,0 +1,16 @@
++{
++  flake.modules.nixos.ssh = {
++    services.openssh = {
++      enable = false;
++      openFirewall = true;
++      settings = {
++        PasswordAuthentication = true;
++        KbdInteractiveAuthentication = false;
++        PermitRootLogin = "no";
++
++        MaxAuthTries = 3;
++        PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
++      };
++    };
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/services/tailscale.nix b/install_files/nix/dentritic/modules/services/tailscale.nix
+index e69de29b..48fd191f 100644
+--- a/install_files/nix/dentritic/modules/services/tailscale.nix
++++ b/install_files/nix/dentritic/modules/services/tailscale.nix
+@@ -0,0 +1,5 @@
++{
++  flake.modules.nixos.tailscale = {
++    services.tailscale.enable = true;
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/tui/neovim.nix b/install_files/nix/dentritic/modules/tui/neovim.nix
+new file mode 100644
+index 00000000..173ed8d1
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/tui/neovim.nix
+@@ -0,0 +1,13 @@
++{ inputs, ... }: {
++  flake.modules.homeManager.neovim = { pkgs, ... }: {
++    programs.neovim = {
++      enable = true;
++      package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
++      sideloadInitLua = true;
++      withPython3 = true;
++    };
++    home.packages = with pkgs; [
++      python3Packages.pynvim
++    ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/tui/nvim.nix b/install_files/nix/dentritic/modules/tui/nvim.nix
+deleted file mode 100644
+index e69de29b..00000000
+diff --git a/install_files/nix/dentritic/modules/tui/pkgs.nix b/install_files/nix/dentritic/modules/tui/pkgs.nix
+index e69de29b..ca4c2e78 100644
+--- a/install_files/nix/dentritic/modules/tui/pkgs.nix
++++ b/install_files/nix/dentritic/modules/tui/pkgs.nix
+@@ -0,0 +1,15 @@
++{
++  flake.modules.homeManager.tui-packages = { lib, pkgs, ... }: {
++    home.packages =
++      with pkgs;
++      [
++        lazygit
++        sshs
++        tmux
++        ncdu
++        bluetui
++        wiremix
++      ]
++      ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [ btop-rocm ];
++  };
++}
+diff --git a/install_files/nix/dentritic/modules/users/greg.nix b/install_files/nix/dentritic/modules/users/greg.nix
+new file mode 100644
+index 00000000..db4cce83
+--- /dev/null
++++ b/install_files/nix/dentritic/modules/users/greg.nix
+@@ -0,0 +1,50 @@
++{ config, ... }: {
++  flake.modules.nixos.greg = { pkgs, ... }: {
++    users.users.greg = {
++      isNormalUser = true;
++
++      extraGroups = [
++        "networkmanager"
++        "wheel"
++        "rfkill"
++        "audio"
++        "pipewire"
++        "video"
++        "render"
++      ];
++
++      packages = with pkgs; [
++        tree
++      ];
++    };
++  };
++
++  flake.modules.homeManager.greg = {
++    imports = with config.flake.modules.homeManager; [
++      sway
++      noctalia
++      zapfast
++      serein
++      zotero
++      neovim
++      bash
++      git
++      ghostty
++      thunar
++      wine
++      ns
++      cli-packages
++      tui-packages
++      desktop-packages
++      gui-packages
++      development-packages
++    ];
++    home.username = "greg";
++    home.homeDirectory = "/home/greg";
++    home.stateVersion = "26.05";
++    programs.git.settings.user = {
++      name = "gregborane";
++      email = "madaradellac@gmail.com";
++    };
++  };
++}
+diff --git a/install_files/nix/flake.nix b/install_files/nix/flake.nix
+deleted file mode 100644
+index 9e968b8e..00000000
+--- a/install_files/nix/flake.nix
++++ /dev/null
+@@ -1,96 +0,0 @@
+-{
+-  description = "Hyprland on Nixos";
+-
+-  inputs = {
+-    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+-
+-    noctalia = {
+-      url = "github:noctalia-dev/noctalia";
+-      inputs.nixpkgs.follows = "nixpkgs";
+-    };
+-
+-    swaymonad = {
+-      url = "github:nicolasavru/swaymonad";
+-      inputs.nixpkgs.follows = "nixpkgs";
+-    };
+-
+-    neovim-nightly-overlay.url =
+-      "github:nix-community/neovim-nightly-overlay";
+-
+-    beaker-src = {
+-      url = "git+https://git.bwaaa.space/beaker";
+-      flake = false;
+-    };
+-
+-    serein = {
+-            url = "github:ViceVerse-cz/Serein";
+-            inputs.nixpkgs.follows = "nixpkgs-unstable";
+-    };
+-    
+-    zapfast = {
+-            url = "github:crmne/zapfast";
+-            inputs.nixpkgs.follows = "nixpkgs-unstable";
+-    };
+-
+-    omnisearch = {
+-      url = "git+https://git.bwaaa.space/omnisearch";
+-      flake = false;
+-    };
+-
+-    home-manager = {
+-      url = "github:nix-community/home-manager/release-26.05";
+-      inputs.nixpkgs.follows = "nixpkgs";
+-    };
+-
+-  };
+-
+-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, noctalia, ... } @ inputs:
+-  let
+-    system = "x86_64-linux";
+-
+-    pkgs-unstable = import nixpkgs-unstable {
+-      inherit system;
+-      config.allowUnfree = true;
+-    };
+-  in {
+-    packages.${system}.omnisearch =
+-      self.nixosConfigurations.xii.config.services.omnisearch.package;
+-
+-    nixosConfigurations.xii = nixpkgs.lib.nixosSystem {
+-      inherit system;
+-      specialArgs = { inherit inputs pkgs-unstable; };
+-
+-      modules = [
+-        ./configuration.nix
+-        ./omnisearch.nix
+-        home-manager.nixosModules.home-manager
+-
+-        {
+-          services.omnisearch = {
+-            enable = true;
+-            settings.server = {
+-              host = "127.0.0.1";
+-              port = 8087;
+-            };
+-          };
+-
+-          home-manager = {
+-            useGlobalPkgs = true;
+-            useUserPackages = true;
+-            extraSpecialArgs = {
+-              inherit inputs pkgs-unstable;
+-            };
+-            users.greg = {
+-              imports = [
+-                ./home.nix
+-                noctalia.homeModules.default
+-              ];
+-            };
+-            backupFileExtension = "backup";
+-          };
+-        }
+-      ];
+-    };
+-  };
+-}
+diff --git a/install_files/nix/home.nix b/install_files/nix/home.nix
+deleted file mode 100644
+index b00efc6e..00000000
+--- a/install_files/nix/home.nix
++++ /dev/null
+@@ -1,164 +0,0 @@
+-{ config, pkgs, pkgs-unstable, inputs, ... }:
+-
+-{
+-
+-  imports = [ inputs.zapfast.homeManagerModules.default ];
+-  home.username = "greg";
+-  home.homeDirectory = "/home/greg";
+-  home.stateVersion = "26.05";
+-
+-  home.packages = 
+-    # --- Stable Packages ---
+-    (with pkgs; [
+-      # Terminal & CLI Utilities
+-      btop-rocm eza fastfetch fd fzf lazygit less ripgrep sshs starship tmux zoxide blink dex ncdu chafa
+-      
+-      # Desktop & GUI Apps
+-      qbittorrent localsend ghostty gimp loupe obs-studio thunderbird vlc zathura
+-      gnome-disk-utility adw-gtk3 nwg-look gsettings-desktop-schemas (thunar.override { 
+-      thunarPlugins = [
+-        thunar-archive-plugin
+-        thunar-volman
+-        ];
+-      })
+-
+-      # Wayland / TUI Tools
+-      bluetui wofi wiremix
+-
+-      # Utilities
+-      lutris wineWow64Packages.stable winetricks qjackctl (wineasio.overrideAttrs {
+-        buildInputs = [
+-          pkgsi686Linux.pipewire.jack
+-          pipewire.jack
+-        ];
+-      })
+-
+-      # Development & Compilers
+-      cmake gcc hdf5 jdk julia lua nodejs ruby perl luarocks mariadb ninja (lib.lowPrio ncurses) tree-sitter zig go php phpPackages.composer 
+-      elmPackages.nodejs sqlite ghostscript
+-
+-      # Language Specific & Editor Tools
+-      composer-require-checker mermaid-cli python3Packages.pynvim conda
+-
+-      # Qt Development
+-      qt6.qtbase qt6.qtdeclarative qt6.qttools qt6.qtwebengine
+-
+-      # Typography, LaTeX, & Dictionaries
+-      aspell hspell nuspell tectonic texliveFull
+-
+-      # Miscellaneous / Media
+-      android-tools ffmpeg imagemagick ueberzug jq
+-
+-      # Custom Scripts
+-      (pkgs.writeShellApplication {
+-        name = "ns";
+-        runtimeInputs = with pkgs; [
+-          fzf
+-          nix-search-tv
+-        ];
+-        text = ''exec ${pkgs.bash}/bin/bash ${pkgs.nix-search-tv.src}/nixpkgs.sh "$@"'';
+-      })
+-    ])
+-
+-    ++
+-
+-    # --- Unstable Packages ---
+-    (with pkgs-unstable; [
+-    ])
+-
+-    ++
+-
+-    [
+-        (import ./zotero.nix { inherit pkgs; })
+-        inputs.serein.packages.${pkgs.stdenv.hostPlatform.system}.default
+-    ];
+-   
+-  programs.zapfast.enable = true;
+- 
+-  programs.noctalia = {
+-    enable = true;
+-    systemd.enable = true;
+-    settings = ../../config/noctalia/noctalia-full-config.toml;
+-  };
+-
+-  programs.git = {
+-    enable = true;
+-    lfs.enable = true;
+-    settings.user = {
+-      name = "gregborane";
+-      email = "madaradellac@gmail.com";
+-    };
+-  };
+-
+-  programs.bash = {   
+-    enable = true;
+-    shellAliases = {
+-      vim = "nvim";
+-      nano = "nvim";
+-      rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix#xii";
+-
+-      apply = ''
+-        cd ~/nixos-dotfiles/desktop-configs/install_files/nix
+-        git add ../.. &&
+-        git commit -m "tracking changed" &&
+-        sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix#xii
+-      '';
+-
+-      clean = ''
+-        nix-env --delete-generations old
+-        sudo nix-env -p /nix/var/nix/profiles/system --delete-generations old
+-        sudo nix-collect-garbage --delete-old
+-        sudo nix-collect-garbage -d
+-        '';
+-
+-    };
+-
+-    profileExtra = ''
+-      if [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+-        PATH="$PATH:$HOME/.local/bin"
+-      fi
+-
+-      export PATH
+-      export QT_QPA_PLATFORMTHEME=qt6ct
+-      export QT_QPA_PLATFORM=wayland
+-      
+-      export GDK_BACKEND=wayland,x11,*
+-      
+-      export SDL_VIDEODRIVER=wayland,x11
+-      
+-      export MOZ_ENABLE_WAYLAND=1
+-      
+-      export ELECTRON_OZONE_PLATFORM_HINT=wayland
+-      export OZONE_PLATFORM=wayland
+-
+-      # export LIBVA_DRIVER_NAME=nvidia
+-      # export __GLX_VENDOR_LIBRARY_NAME=nvidia
+-
+-      if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
+-        exec sway
+-      fi
+-    '';
+-
+-    bashrcExtra = ''
+-      source ~/.local/bash/rc;
+-      eval "$(/home/greg/.conda/bin/conda shell.bash hook)";
+-    '';
+-  };
+-
+-  xdg.terminal-exec = {
+-    enable = true;
+-    settings = {
+-      default = [
+-        "com.michelly.ghostty"
+-      ];
+-    };
+-  };     
+-
+-  programs.neovim = {
+-    enable = true;
+-    package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
+-    sideloadInitLua = true;
+-    withPython3 = true;
+-  };
+-
+-}
+diff --git a/install_files/nix/omnisearch.nix b/install_files/nix/omnisearch.nix
+deleted file mode 100644
+index 51d26fea..00000000
+--- a/install_files/nix/omnisearch.nix
++++ /dev/null
+@@ -1,136 +0,0 @@
+-{ config, lib, pkgs, inputs, ... }:
+-
+-let
+-  cfg = config.services.omnisearch;
+-
+-  beaker = pkgs.stdenv.mkDerivation {
+-    pname = "beaker";
+-    version = "git";
+-    src = inputs.beaker-src;
+-
+-    makeFlags = [
+-      "INSTALL_PREFIX=$(out)/"
+-      "LDCONFIG=true"
+-    ];
+-  };
+-
+-  omnisearchPackage = pkgs.stdenv.mkDerivation {
+-    pname = "omnisearch";
+-    version = "git";
+-    src = inputs.omnisearch;
+-
+-    buildInputs = [
+-      pkgs.libxml2.dev
+-      pkgs.curl.dev
+-      pkgs.openssl
+-      beaker
+-    ];
+-
+-    # OmniSearch's Makefile uses /usr/include/libxml2, which is absent on NixOS.
+-    NIX_CFLAGS_COMPILE = "-I${pkgs.libxml2.dev}/include/libxml2";
+-
+-    # DuckDuckGo Lite GET requests are receiving HTTP 202.
+-    # Use the tested form POST method for the DuckDuckGo engine only.
+-    postPatch = ''
+-      substituteInPlace src/Scraping/Scraping.c \
+-        --replace-fail \
+-        '  configure_curl_handle(job->handle, full_url, &job->response, headers);' \
+-        '  configure_curl_handle(job->handle, full_url, &job->response, headers);
+-
+-  if (strcmp(job->engine->name, "DuckDuckGo Lite") == 0) {
+-    char *escaped = curl_easy_escape(job->handle, job->query, 0);
+-    if (escaped) {
+-      size_t len = strlen(escaped) + 3;
+-      char *form = malloc(len);
+-      if (form) {
+-        snprintf(form, len, "q=%s", escaped);
+-        curl_easy_setopt(job->handle, CURLOPT_URL,
+-                         "https://lite.duckduckgo.com/lite/");
+-        curl_easy_setopt(job->handle, CURLOPT_COPYPOSTFIELDS, form);
+-        free(form);
+-      }
+-      curl_free(escaped);
+-    }
+-  }'
+-    '';
+-
+-    installPhase = ''
+-      runHook preInstall
+-      install -Dm755 bin/omnisearch "$out/bin/omnisearch"
+-      mkdir -p "$out/share/omnisearch/locales"
+-      cp -r templates static "$out/share/omnisearch/"
+-      if [ -d locales ]; then
+-        cp -r locales/. "$out/share/omnisearch/locales/"
+-      fi
+-      runHook postInstall
+-    '';
+-  };
+-
+-  configFile = pkgs.writeText "omnisearch.ini" ''
+-    [server]
+-    host = ${cfg.settings.server.host}
+-    port = ${toString cfg.settings.server.port}
+-    domain = http://${cfg.settings.server.host}:${toString cfg.settings.server.port}
+-
+-    [cache]
+-    dir = /var/cache/omnisearch
+-    ttl_search = 3600
+-    ttl_infobox = 86400
+-
+-    [engines]
+-    engines = "*"
+-  '';
+-
+-in
+-{
+-  options.services.omnisearch = {
+-    enable = lib.mkEnableOption "OmniSearch metasearch engine";
+-
+-    package = lib.mkOption {
+-      type = lib.types.package;
+-      default = omnisearchPackage;
+-      description = "OmniSearch package to run.";
+-    };
+-
+-    settings.server = {
+-      host = lib.mkOption {
+-        type = lib.types.str;
+-        default = "127.0.0.1";
+-      };
+-
+-      port = lib.mkOption {
+-        type = lib.types.port;
+-        default = 8087;
+-      };
+-    };
+-  };
+-
+-  config = lib.mkIf cfg.enable {
+-    systemd.services.omnisearch = {
+-      description = "OmniSearch metasearch engine";
+-      wantedBy = [ "multi-user.target" ];
+-      after = [ "network.target" ];
+-
+-      serviceConfig = {
+-        ExecStart = "${cfg.package}/bin/omnisearch";
+-        WorkingDirectory = "/var/lib/omnisearch";
+-        StateDirectory = "omnisearch";
+-        CacheDirectory = "omnisearch";
+-
+-        BindReadOnlyPaths = [
+-          "${cfg.package}/share/omnisearch/templates:/var/lib/omnisearch/templates"
+-          "${cfg.package}/share/omnisearch/static:/var/lib/omnisearch/static"
+-          "${cfg.package}/share/omnisearch/locales:/var/lib/omnisearch/locales"
+-          "${configFile}:/var/lib/omnisearch/config.ini"
+-        ];
+-
+-        DynamicUser = true;
+-        ProtectSystem = "strict";
+-        ProtectHome = true;
+-        PrivateTmp = true;
+-        Restart = "on-failure";
+-        RestartSec = 5;
+-      };
+-    };
+-  };
+-}
+diff --git a/install_files/nix/zotero.nix b/install_files/nix/zotero.nix
+deleted file mode 100644
+index dd791217..00000000
+--- a/install_files/nix/zotero.nix
++++ /dev/null
+@@ -1,11 +0,0 @@
+-{ pkgs }:
+-
+-let
+-  # nixpkgs commit that contains Zotero 10.0.2
+-  zoteroNixpkgs = builtins.getFlake
+-    "github:NixOS/nixpkgs/131cf0f911b8fee10ae531f91e391db3e74672a6";
+-
+-  system = pkgs.stdenv.hostPlatform.system;
+-in
+-
+-zoteroNixpkgs.legacyPackages.${system}.zotero
