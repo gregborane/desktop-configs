@@ -16,7 +16,7 @@
       # Desktop & GUI Apps
       qbittorrent localsend ghostty gimp loupe obs-studio thunderbird vlc zathura
       gnome-disk-utility adw-gtk3 nwg-look gsettings-desktop-schemas (pkgs.thunar.override { 
-      thunarPlugins = with pkgs; [
+      thunarPlugins = with pkgs [
         thunar-archive-plugin
         thunar-volman
         ];
