@@ -19,7 +19,7 @@
       "github:nix-community/neovim-nightly-overlay";
 
     beaker-src = {
-      url = "git+https://codeberg.org/gabrielf/beaker";
+      url = "https://git.bwaaa/beaker";
       flake = false;
     };
 
@@ -34,7 +34,7 @@
     };
 
     omnisearch = {
-      url = "git+https://codeberg.org/gabrielf/omnisearch";
+      url = "https://git.bwaaa.space/omnisearch";
       flake = false;
     };
 
