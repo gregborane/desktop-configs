@@ -156,7 +156,7 @@
     withPython3 = true;
   };
 
-  programs.thunar = { 
+  programs.Thunar = { 
     enable = true;
     plugins = with pkgs.xfce; [
     thunar-archive-plugin
