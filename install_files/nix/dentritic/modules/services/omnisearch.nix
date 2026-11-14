@@ -1,136 +1,127 @@
-{ config, lib, pkgs, inputs, ... }:
-
+{ inputs, self, ... }:
 let
-  cfg = config.services.omnisearch;
+  mkPackage =
+    pkgs:
+    let
+      beaker = pkgs.stdenv.mkDerivation {
+        pname = "beaker";
+        version = "git";
+        src = inputs.beaker-src;
 
-  beaker = pkgs.stdenv.mkDerivation {
-    pname = "beaker";
-    version = "git";
-    src = inputs.beaker-src;
+        makeFlags = [
+          "INSTALL_PREFIX=$(out)/"
+          "LDCONFIG=true"
+        ];
+      };
 
-    makeFlags = [
-      "INSTALL_PREFIX=$(out)/"
-      "LDCONFIG=true"
-    ];
-  };
+    in
+    pkgs.stdenv.mkDerivation {
+      pname = "omnisearch";
+      version = "git";
+      src = inputs.omnisearch;
 
-  omnisearchPackage = pkgs.stdenv.mkDerivation {
-    pname = "omnisearch";
-    version = "git";
-    src = inputs.omnisearch;
+      buildInputs = [
+        pkgs.libxml2.dev
+        pkgs.curl.dev
+        pkgs.openssl
+        beaker
+      ];
 
-    buildInputs = [
-      pkgs.libxml2.dev
-      pkgs.curl.dev
-      pkgs.openssl
-      beaker
-    ];
+      # OmniSearch's Makefile uses /usr/include/libxml2, which is absent on NixOS.
+      NIX_CFLAGS_COMPILE = "-I${pkgs.libxml2.dev}/include/libxml2";
 
-    # OmniSearch's Makefile uses /usr/include/libxml2, which is absent on NixOS.
-    NIX_CFLAGS_COMPILE = "-I${pkgs.libxml2.dev}/include/libxml2";
-
-    # DuckDuckGo Lite GET requests are receiving HTTP 202.
-    # Use the tested form POST method for the DuckDuckGo engine only.
-    postPatch = ''
-      substituteInPlace src/Scraping/Scraping.c \
-        --replace-fail \
-        '  configure_curl_handle(job->handle, full_url, &job->response, headers);' \
-        '  configure_curl_handle(job->handle, full_url, &job->response, headers);
-
-  if (strcmp(job->engine->name, "DuckDuckGo Lite") == 0) {
-    char *escaped = curl_easy_escape(job->handle, job->query, 0);
-    if (escaped) {
-      size_t len = strlen(escaped) + 3;
-      char *form = malloc(len);
-      if (form) {
-        snprintf(form, len, "q=%s", escaped);
-        curl_easy_setopt(job->handle, CURLOPT_URL,
-                         "https://lite.duckduckgo.com/lite/");
-        curl_easy_setopt(job->handle, CURLOPT_COPYPOSTFIELDS, form);
-        free(form);
-      }
-      curl_free(escaped);
-    }
-  }'
-    '';
-
-    installPhase = ''
-      runHook preInstall
-      install -Dm755 bin/omnisearch "$out/bin/omnisearch"
-      mkdir -p "$out/share/omnisearch/locales"
-      cp -r templates static "$out/share/omnisearch/"
-      if [ -d locales ]; then
-        cp -r locales/. "$out/share/omnisearch/locales/"
-      fi
-      runHook postInstall
-    '';
-  };
-
-  configFile = pkgs.writeText "omnisearch.ini" ''
-    [server]
-    host = ${cfg.settings.server.host}
-    port = ${toString cfg.settings.server.port}
-    domain = http://${cfg.settings.server.host}:${toString cfg.settings.server.port}
-
-    [cache]
-    dir = /var/cache/omnisearch
-    ttl_search = 3600
-    ttl_infobox = 86400
-
-    [engines]
-    engines = "*"
-  '';
-
+      # The pinned source implements DuckDuckGo Lite form POSTs in configure_ddg_request.
+      installPhase = ''
+        runHook preInstall
+        install -Dm755 bin/omnisearch "$out/bin/omnisearch"
+        mkdir -p "$out/share/omnisearch/locales"
+        cp -r templates static "$out/share/omnisearch/"
+        if [ -d locales ]; then
+          cp -r locales/. "$out/share/omnisearch/locales/"
+        fi
+        runHook postInstall
+      '';
+    };
 in
 {
-  options.services.omnisearch = {
-    enable = lib.mkEnableOption "OmniSearch metasearch engine";
+  perSystem = { pkgs, ... }: { packages.omnisearch = mkPackage pkgs; };
+  flake.modules.nixos.omnisearch =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
 
-    package = lib.mkOption {
-      type = lib.types.package;
-      default = omnisearchPackage;
-      description = "OmniSearch package to run.";
-    };
+    let
+      cfg = config.services.omnisearch;
 
-    settings.server = {
-      host = lib.mkOption {
-        type = lib.types.str;
-        default = "127.0.0.1";
+      configFile = pkgs.writeText "omnisearch.ini" ''
+        [server]
+        host = ${cfg.settings.server.host}
+        port = ${toString cfg.settings.server.port}
+        domain = http://${cfg.settings.server.host}:${toString cfg.settings.server.port}
+
+        [cache]
+        dir = /var/cache/omnisearch
+        ttl_search = 3600
+        ttl_infobox = 86400
+
+        [engines]
+        engines = "*"
+      '';
+
+    in
+    {
+      options.services.omnisearch = {
+        enable = lib.mkEnableOption "OmniSearch metasearch engine";
+
+        package = lib.mkOption {
+          type = lib.types.package;
+          default = self.packages.${pkgs.stdenv.hostPlatform.system}.omnisearch;
+          description = "OmniSearch package to run.";
+        };
+
+        settings.server = {
+          host = lib.mkOption {
+            type = lib.types.str;
+            default = "127.0.0.1";
+          };
+
+          port = lib.mkOption {
+            type = lib.types.port;
+            default = 8087;
+          };
+        };
       };
 
-      port = lib.mkOption {
-        type = lib.types.port;
-        default = 8087;
+      config = lib.mkIf cfg.enable {
+        systemd.services.omnisearch = {
+          description = "OmniSearch metasearch engine";
+          wantedBy = [ "multi-user.target" ];
+          after = [ "network.target" ];
+
+          serviceConfig = {
+            ExecStart = "${cfg.package}/bin/omnisearch";
+            WorkingDirectory = "/var/lib/omnisearch";
+            StateDirectory = "omnisearch";
+            CacheDirectory = "omnisearch";
+
+            BindReadOnlyPaths = [
+              "${cfg.package}/share/omnisearch/templates:/var/lib/omnisearch/templates"
+              "${cfg.package}/share/omnisearch/static:/var/lib/omnisearch/static"
+              "${cfg.package}/share/omnisearch/locales:/var/lib/omnisearch/locales"
+              "${configFile}:/var/lib/omnisearch/config.ini"
+            ];
+
+            DynamicUser = true;
+            ProtectSystem = "strict";
+            ProtectHome = true;
+            PrivateTmp = true;
+            Restart = "on-failure";
+            RestartSec = 5;
+          };
+        };
       };
     };
-  };
-
-  config = lib.mkIf cfg.enable {
-    systemd.services.omnisearch = {
-      description = "OmniSearch metasearch engine";
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network.target" ];
-
-      serviceConfig = {
-        ExecStart = "${cfg.package}/bin/omnisearch";
-        WorkingDirectory = "/var/lib/omnisearch";
-        StateDirectory = "omnisearch";
-        CacheDirectory = "omnisearch";
-
-        BindReadOnlyPaths = [
-          "${cfg.package}/share/omnisearch/templates:/var/lib/omnisearch/templates"
-          "${cfg.package}/share/omnisearch/static:/var/lib/omnisearch/static"
-          "${cfg.package}/share/omnisearch/locales:/var/lib/omnisearch/locales"
-          "${configFile}:/var/lib/omnisearch/config.ini"
-        ];
-
-        DynamicUser = true;
-        ProtectSystem = "strict";
-        ProtectHome = true;
-        PrivateTmp = true;
-        Restart = "on-failure";
-        RestartSec = 5;
-      };
-    };
-  };
 }

@@ -1,0 +1,19 @@
+{
+  flake.modules.homeManager.wine = { pkgs, lib, ... }: {
+    home.packages =
+      with pkgs;
+      [
+
+      ]
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [
+        wineWow64Packages.stable
+        winetricks
+        (wineasio.overrideAttrs {
+          buildInputs = [
+            pkgsi686Linux.pipewire.jack
+            pipewire.jack
+          ];
+        })
+      ];
+  };
+}

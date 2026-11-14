@@ -79,6 +79,21 @@
         "type": "github"
       }
     },
+    "import-tree": {
+      "locked": {
+        "lastModified": 1788467110,
+        "narHash": "sha256-ljEMTXP/rH0tOvDzc9gzwww6KcHRPRnEHzd9lK48V7s=",
+        "owner": "vic",
+        "repo": "import-tree",
+        "rev": "eb1b52eaecc57f7c136d07ae8a93e724dfecac46",
+        "type": "github"
+      },
+      "original": {
+        "owner": "vic",
+        "repo": "import-tree",
+        "type": "github"
+      }
+    },
     "neovim-nightly-overlay": {
       "inputs": {
         "flake-parts": "flake-parts",
@@ -202,7 +217,12 @@
     "root": {
       "inputs": {
         "beaker-src": "beaker-src",
+        "flake-parts": [
+          "neovim-nightly-overlay",
+          "flake-parts"
+        ],
         "home-manager": "home-manager",
+        "import-tree": "import-tree",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
@@ -210,7 +230,8 @@
         "omnisearch": "omnisearch",
         "serein": "serein",
         "swaymonad": "swaymonad",
-        "zapfast": "zapfast"
+        "zapfast": "zapfast",
+        "zotero-nixpkgs": "zotero-nixpkgs"
       }
     },
     "rust-overlay": {
@@ -327,6 +348,22 @@
       "original": {
         "owner": "crmne",
         "repo": "zapfast",
+        "type": "github"
+      }
+    },
+    "zotero-nixpkgs": {
+      "locked": {
+        "lastModified": 1789651005,
+        "narHash": "sha256-jTKJNKd3ZxB4yCYmpZPkCaXTfalpJNfAQFKMiUDNMbc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "131cf0f911b8fee10ae531f91e391db3e74672a6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "131cf0f911b8fee10ae531f91e391db3e74672a6",
         "type": "github"
       }
     }
