@@ -19,7 +19,7 @@
       "github:nix-community/neovim-nightly-overlay";
 
     beaker-src = {
-      url = "git+https://git.bwaaa/beaker";
+      url = "git+https://git.bwaaa.space/beaker";
       flake = false;
     };
 
