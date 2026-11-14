@@ -4,45 +4,45 @@
 * stylelint-disable at-rule-no-unknown
 */
 
-@define-color accent_color #a067e4;
-@define-color accent_bg_color #a067e4;
-@define-color accent_fg_color #1e1825;
+@define-color accent_color #f2acd4;
+@define-color accent_bg_color #f2acd4;
+@define-color accent_fg_color #211a23;
 
-@define-color destructive_bg_color #ee7894;
-@define-color destructive_fg_color #28151f;
+@define-color destructive_bg_color #ffb4ab;
+@define-color destructive_fg_color #690005;
 
-@define-color error_bg_color #ee7894;
-@define-color error_fg_color #28151f;
+@define-color error_bg_color #ffb4ab;
+@define-color error_fg_color #690005;
 
 @define-color window_bg_color #000000;
-@define-color window_fg_color #f4eff8;
+@define-color window_fg_color #f0ebf1;
 
 @define-color view_bg_color #000000;
-@define-color view_fg_color #f4eff8;
+@define-color view_fg_color #f0ebf1;
 
-@define-color headerbar_bg_color #1d1529;
-@define-color headerbar_fg_color #f4eff8;
+@define-color headerbar_bg_color #1a181b;
+@define-color headerbar_fg_color #f0ebf1;
 @define-color headerbar_backdrop_color @window_bg_color;
 
-@define-color popover_bg_color #1d1529;
-@define-color popover_fg_color #f4eff8;
+@define-color popover_bg_color #1a181b;
+@define-color popover_fg_color #f0ebf1;
 
-@define-color card_bg_color #1d1529;
-@define-color card_fg_color #f4eff8;
+@define-color card_bg_color #1a181b;
+@define-color card_fg_color #f0ebf1;
 
 @define-color dialog_bg_color #000000;
-@define-color dialog_fg_color #f4eff8;
+@define-color dialog_fg_color #f0ebf1;
 
-@define-color overview_bg_color #1d1529;
-@define-color overview_fg_color #f4eff8;
+@define-color overview_bg_color #1a181b;
+@define-color overview_fg_color #f0ebf1;
 
-@define-color sidebar_bg_color #1d1529;
-@define-color sidebar_fg_color #f4eff8;
+@define-color sidebar_bg_color #1a181b;
+@define-color sidebar_fg_color #f0ebf1;
 @define-color sidebar_backdrop_color @window_bg_color;
 @define-color sidebar_border_color @window_bg_color;
 
 @define-color secondary_sidebar_bg_color #000000;
-@define-color secondary_sidebar_fg_color #f4eff8;
+@define-color secondary_sidebar_fg_color #f0ebf1;
 
 /* Focused selection states */
 @define-color theme_selected_bg_color @accent_bg_color;

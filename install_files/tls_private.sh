@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -65,4 +64,3 @@ sudo nmcli connection up "$CONNECTION"
 nmcli -f GENERAL.STATE,GENERAL.CONNECTION device show "$INTERFACE"
 
 echo "Eduroam setup completed."
-

@@ -219,6 +219,9 @@ in
 
     fstrim.enable = true;
 
+    services.gvfs.enable = true;
+    services.tumbler.enable = true;
+
     printing.enable = true;
 
     pipewire = {
@@ -357,9 +360,6 @@ in
     alsa-plugins
 
     # Wayland / Hyprland
-    hypridle
-    hyprlock
-    hyprshot
     wl-clipboard
 
     # Desktop / integration
