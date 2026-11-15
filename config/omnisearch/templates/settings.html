@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="{{__locale_id}}" dir="{{__locale_direction}}">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+        <title>
+            OmniSearch - {{l("settings_title")}}
+        </title>
+        <link rel="stylesheet" href="static/main.css">
+        <link rel="stylesheet" href="static/themes/{{theme}}.css">
+        <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+        <link rel="search"
+        type="application/opensearchdescription+xml"
+        title="OmniSearch" href="/opensearch.xml">
+    </head>
+
+    <body class="settings-view">
+        <header>
+            <a href="/" class="logo-link"><h1>
+                Omni<span>Search</span>
+            </h1></a>
+            {{if query != ""}}
+            <form action="/search" method="GET" class="search-form">
+                <input name="q" type="text" class="search-box" autocomplete="off" placeholder="{{l("search_placeholder")}}"
+                value="{{query}}">
+            </form>
+            {{endif}}
+            {{if query != ""}}
+            <a href="/search?q={{query}}" class="nav-settings-icon active" title="{{l("settings_tab")}}"></a>
+            {{else}}
+            <a href="/" class="nav-settings-icon active" title="{{l("settings_tab")}}"></a>
+            {{endif}}
+        </header>
+        {{if query != ""}}
+        <nav class="nav-tabs">
+            <div class="nav-container">
+                <a href="/search?q={{query}}">
+                    {{l("all_tab")}}
+                </a>
+                <a href="/images?q={{query}}">
+                    {{l("images_tab")}}
+                </a>
+                <a href="/settings" class="active nav-settings-link">
+                    {{l("settings_tab")}}
+                </a>
+            </div>
+        </nav>
+        {{endif}}
+        <div class="settings-layout">
+            <main class="settings-container">
+                <form action="/save_settings" method="GET">
+                    <input type="hidden" name="q" value="{{query}}">
+                    <section class="settings-section">
+                        <h3 class="settings-section-title">{{l("theme_label")}}</h3>
+                        <p class="settings-section-desc">{{l("theme_desc")}}</p>
+                        <div class="settings-field">
+                            <label class="settings-label" for="theme">{{l("theme_label")}}</label>
+                            <select id="theme" name="theme" class="settings-select">
+                                {{for t in themes}}
+                                <option value="{{t[0]}}" {{if theme == t[0]}}selected{{endif}}>{{t[1]}}</option>
+                                {{endfor}}
+                            </select>
+                        </div>
+                    </section>
+                    <section class="settings-section">
+                        <h3 class="settings-section-title">{{l("language_label")}}</h3>
+                        <p class="settings-section-desc">{{l("language_desc")}}</p>
+                        <div class="settings-field">
+                            <label class="settings-label" for="locale">{{l("display_language_label")}}</label>
+                            <select id="locale" name="locale" class="settings-select">
+                                {{for loc in locales}}
+                                <option value="{{loc[0]}}" {{if __locale_id == loc[0]}}selected{{endif}}>{{loc[1]}}</option>
+                                {{endfor}}
+                            </select>
+                        </div>
+                    </section>
+                    {{if has_enabled_engines}}
+                    <section class="settings-section settings-engines-section">
+                        <h3 class="settings-section-title">{{l("engines_label")}}</h3>
+                        <p class="settings-section-desc">{{l("engines_desc")}}</p>
+                        <input type="hidden" name="engines_present" value="1">
+
+                        <div class="settings-engine-list">
+                            <div class="settings-engine-options">
+                                {{for eng in enabled_engines}}
+                                <label class="settings-engine-option" for="engine_{{eng[0]}}">
+                                    <span>{{eng[1]}}</span>
+                                    <input type="checkbox" id="engine_{{eng[0]}}" name="engine_{{eng[0]}}" value="1" class="settings-checkbox" {{eng[2]}}>
+                                </label>
+                                {{endfor}}
+                            </div>
+                        </div>
+
+                        <div class="settings-field settings-default-engine-field">
+                            <label class="settings-label" for="default_engine">{{l("default_engine_label")}}</label>
+                            <select id="default_engine" name="default_engine" class="settings-select">
+                                <option value="all" {{if default_engine == "all"}}selected{{endif}}>{{l("all_engines_option")}}</option>
+                                {{for eng in enabled_engines}}
+                                {{if eng[2] != ""}}
+                                <option value="{{eng[0]}}" {{eng[3]}}>{{eng[1]}}</option>
+                                {{endif}}
+                                {{endfor}}
+                            </select>
+                        </div>
+                    </section>
+                    {{endif}}
+                    <div class="settings-actions">
+                        <button type="submit" class="btn-primary">{{l("save_settings_button")}}</button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </body>
+
+</html>
