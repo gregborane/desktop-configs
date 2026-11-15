@@ -11,7 +11,7 @@
           cd ~/desktop-configs/install_files/nix-dendritic
           git add ../.. &&
           git commit -m "tracking changed" &&
-          sudo nixos-rebuild switch --flake ~/install_files/nix-dendritic#xii
+          sudo nixos-rebuild switch --flake ~/desktop-configs/install_files/nix-dendritic#xii
         '';
 
         clean = ''
