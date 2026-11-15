@@ -65,3 +65,10 @@ img2png() {
     -define png:exclude-chunk=all \
     "${1%.*}.png"
 }
+
+apply() {
+    cd ~/desktop-configs/install_files/nix-dendritic \
+    git add ../.. \
+    git commit -m "$1" \
+    sudo nixos-rebuild switch --flake ~/desktop-configs/install_files/nix-dendritic#xii
+}
