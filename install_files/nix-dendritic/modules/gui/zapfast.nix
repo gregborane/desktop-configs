@@ -1,6 +1,5 @@
 { inputs, ... }: {
-  flake.modules.homeManager.zapfast = {
-    imports = [ inputs.zapfast.homeManagerModules.default ];
-    programs.zapfast.enable = true;
+  flake.modules.nixos.zapfast = { pkgs, ... }: {
+    users.users.greg.packages = [ inputs.zapfast.packages.${pkgs.stdenv.hostPlatform.system}.default ];
   };
 }

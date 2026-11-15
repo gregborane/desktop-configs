@@ -21,10 +21,7 @@
         appimage-run
       ]
       ++ lib.optionals (lib.meta.availableOn pkgs.stdenv.hostPlatform rar) [ rar ];
-  };
-
-  flake.modules.homeManager.cli-packages = { pkgs, ... }: {
-    home.packages = with pkgs; [
+    users.users.greg.packages = with pkgs; [
       eza
       fastfetch
       fd

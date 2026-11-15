@@ -1,12 +1,12 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.serein =
+  flake.modules.nixos.serein =
     { pkgs, lib, ... }:
     let
       system = pkgs.stdenv.hostPlatform.system;
     in
     {
-      home.packages = lib.optional (
+      users.users.greg.packages = lib.optional (
         inputs.serein.packages ? ${system}.default
       ) inputs.serein.packages.${system}.default;
     };

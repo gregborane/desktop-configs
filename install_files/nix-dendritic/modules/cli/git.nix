@@ -1,15 +1,16 @@
 {
   flake.modules.nixos.git = { pkgs, ... }: {
-    environment.systemPackages = with pkgs; [
-      git
-    ];
-  };
-
-  flake.modules.homeManager.git = {
     programs.git = {
       enable = true;
       lfs.enable = true;
-
+      config.include.path = "~/.gitconfig-xii";
     };
+    systemd.tmpfiles.rules = [
+      "L+ /home/greg/.gitconfig-xii - - - - ${pkgs.writeText "greg-git-identity" ''
+        [user]
+            name = gregborane
+            email = madaradellac@gmail.com
+      ''}"
+    ];
   };
 }

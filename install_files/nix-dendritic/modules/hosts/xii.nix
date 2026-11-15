@@ -23,18 +23,22 @@
         chromium
         omnisearch
         greg
+        gui-packages
+        tui-packages
+        ns
+        wine
+        serein
+        zotero
+        ghostty
+        thunar
+        zapfast
+        noctalia
+        neovim
       ])
       ++ [
         ../../hosts/xii/hardware-configuration.nix
         ../../hosts/xii/storage-configuration.nix
-        inputs.home-manager.nixosModules.home-manager
         {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            backupFileExtension = "backup";
-            users.greg.imports = [ config.flake.modules.homeManager.greg ];
-          };
           services.omnisearch = {
             enable = true;
             settings.server = {

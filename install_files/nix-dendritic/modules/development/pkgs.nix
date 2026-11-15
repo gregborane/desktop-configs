@@ -15,10 +15,7 @@
         hdf5
       ]
       ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [ mkl ];
-  };
-
-  flake.modules.homeManager.development-packages = { pkgs, lib, ... }: {
-    home.packages =
+    users.users.greg.packages =
       with pkgs;
       [
         jdk

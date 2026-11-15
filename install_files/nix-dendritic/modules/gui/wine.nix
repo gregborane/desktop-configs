@@ -1,6 +1,6 @@
 {
-  flake.modules.homeManager.wine = { pkgs, lib, ... }: {
-    home.packages =
+  flake.modules.nixos.wine = { pkgs, lib, ... }: {
+    users.users.greg.packages =
       with pkgs;
       [
 

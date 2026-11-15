@@ -8,10 +8,7 @@
       kitty
       xdotool
     ];
-  };
-
-  flake.modules.homeManager.desktop-packages = { pkgs, ... }: {
-    home.packages = with pkgs; [
+    users.users.greg.packages = with pkgs; [
       adw-gtk3
       nwg-look
       gsettings-desktop-schemas

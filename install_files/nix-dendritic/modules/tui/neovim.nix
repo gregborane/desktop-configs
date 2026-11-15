@@ -1,13 +1,14 @@
 { inputs, ... }: {
-  flake.modules.homeManager.neovim = { pkgs, ... }: {
-    programs.neovim = {
-      enable = true;
-      package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      sideloadInitLua = true;
-      withPython3 = true;
-    };
-    home.packages = with pkgs; [
-      python3Packages.pynvim
+  flake.modules.nixos.neovim = { pkgs, ... }: {
+    users.users.greg.packages = [
+      (pkgs.wrapNeovimUnstable
+        inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default
+        {
+          withPython3 = true;
+          wrapRc = false;
+        }
+      )
+      pkgs.python3Packages.pynvim
     ];
   };
 }

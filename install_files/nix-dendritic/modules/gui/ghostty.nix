@@ -1,14 +1,14 @@
 {
-  flake.modules.homeManager.ghostty = { pkgs, ... }: {
+  flake.modules.nixos.ghostty = { pkgs, ... }: {
     xdg.terminal-exec = {
       enable = true;
       settings = {
         default = [
-          "com.michelly.ghostty"
+          "com.mitchellh.ghostty.desktop"
         ];
       };
     };
-    home.packages = with pkgs; [
+    users.users.greg.packages = with pkgs; [
       ghostty
     ];
   };

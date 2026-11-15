@@ -1,6 +1,6 @@
 {
-  flake.modules.homeManager.tui-packages = { lib, pkgs, ... }: {
-    home.packages =
+  flake.modules.nixos.tui-packages = { lib, pkgs, ... }: {
+    users.users.greg.packages =
       with pkgs;
       [
         lazygit

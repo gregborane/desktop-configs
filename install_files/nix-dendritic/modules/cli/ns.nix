@@ -1,6 +1,6 @@
 {
-  flake.modules.homeManager.ns = { pkgs, ... }: {
-    home.packages = with pkgs; [
+  flake.modules.nixos.ns = { pkgs, ... }: {
+    users.users.greg.packages = with pkgs; [
       (pkgs.writeShellApplication {
         name = "ns";
         runtimeInputs = with pkgs; [

@@ -1,19 +1,15 @@
 {
-  flake.modules.nixos.bash = {
-    programs.bash.completion.enable = true;
-  };
-
-  flake.modules.homeManager.bash = {
-    programs.bash = {
-      enable = true;
-      shellAliases = {
+  flake.modules.nixos.bash =
+    { lib, ... }:
+    let
+      aliases = {
         vim = "nvim";
         nano = "nvim";
         rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix-dendritic#xii";
 
         apply = ''
-          cd ~/nixos-dotfiles/desktop-configs/install_files/nix/dentritic
-          git add ../../.. &&
+          cd ~/nixos-dotfiles/desktop-configs/install_files/nix-dendritic
+          git add ../.. &&
           git commit -m "tracking changed" &&
           sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix-dendritic#xii
         '';
@@ -27,17 +23,25 @@
 
       };
 
-      profileExtra = ''
-        if [ -d "$HOME/.local/bin" ] && [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
-          PATH="$PATH:$HOME/.local/bin"
+    in
+    {
+      programs.bash.completion.enable = true;
+      programs.bash.loginShellInit = ''
+        if [ "$USER" = greg ] && [ -d "$HOME/.local/bin" ]; then
+          case ":$PATH:" in
+            *":$HOME/.local/bin:"*) ;;
+            *) export PATH="$PATH:$HOME/.local/bin" ;;
+          esac
         fi
-
-        export PATH
       '';
-      bashrcExtra = ''
-        source ~/.local/bash/rc;
-        eval "$(/home/greg/.conda/bin/conda shell.bash hook)";
+      programs.bash.interactiveShellInit = ''
+        if [[ $USER == greg ]]; then
+          ${lib.concatStringsSep "\n" (
+            lib.mapAttrsToList (name: value: "alias ${name}=${lib.escapeShellArg value}") aliases
+          )}
+          if [[ -r "$HOME/.local/bash/rc" ]]; then source "$HOME/.local/bash/rc"; fi
+          if [[ -x "$HOME/.conda/bin/conda" ]]; then eval "$("$HOME/.conda/bin/conda" shell.bash hook)"; fi
+        fi
       '';
     };
-  };
 }

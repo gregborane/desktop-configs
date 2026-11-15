@@ -1,6 +1,6 @@
 { inputs, ... }: {
-  flake.modules.homeManager.zotero = { pkgs, ... }: {
-    home.packages = [
+  flake.modules.nixos.zotero = { pkgs, ... }: {
+    users.users.greg.packages = [
       (
         let
           package = inputs.zotero-nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.zotero;

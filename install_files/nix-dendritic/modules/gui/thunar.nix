@@ -1,6 +1,6 @@
 {
-  flake.modules.homeManager.thunar = { pkgs, ... }: {
-    home.packages = with pkgs; [
+  flake.modules.nixos.thunar = { pkgs, ... }: {
+    users.users.greg.packages = with pkgs; [
       (thunar.override {
         thunarPlugins = [
           thunar-archive-plugin
