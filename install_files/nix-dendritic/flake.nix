@@ -21,11 +21,6 @@
 
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
-    beaker-src = {
-      url = "git+https://git.bwaaa.space/beaker";
-      flake = false;
-    };
-
     serein = {
       url = "github:ViceVerse-cz/Serein";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -37,8 +32,8 @@
     };
 
     omnisearch = {
-      url = "git+https://git.bwaaa.space/omnisearch";
-      flake = false;
+      url = "https://git.voidarc.co.uk/voidarc/omnisearch";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
