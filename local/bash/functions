@@ -67,8 +67,15 @@ img2png() {
 }
 
 apply() {
-    cd "$HOME/desktop-configs/install_files/nix-dendritic" \
-    git add ../.. \
-    git commit -m "$1" \
-    sudo nixos-rebuild switch --flake ~/desktop-configs/install_files/nix-dendritic#xii
+    local flake_dir="$HOME/desktop-configs/install_files/nix-dendritic"
+
+    cd "$flake_dir" || return 1
+
+    git add ../.. || return 1
+
+    if ! git diff --cached --quiet; then
+        git commit -m "${1:-Update NixOS configuration}" || return 1
+    fi
+
+    sudo nixos-rebuild switch --flake .#xii
 }
