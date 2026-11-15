@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.theme = {
+  flake.modules.nixos.theming = {
     programs = {
       xfconf.enable = true;
       dconf = {

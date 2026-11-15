@@ -29,6 +29,7 @@
         wine
         serein
         zotero
+        theming
         ghostty
         thunar
         zapfast
@@ -40,7 +41,7 @@
         ../../hosts/xii/storage-configuration.nix
         {
           services.omnisearch = {
-            enable = true;
+            enable = false;
             settings.server = {
               host = "127.0.0.1";
               port = 8087;

@@ -62,6 +62,7 @@
                   ns
                   wine
                   thunar
+                  theming
                   ghostty
                   serein
                   zapfast
