@@ -7,7 +7,7 @@
         enable = true;
 
         package =
-          omnisearch.packages.${pkgs.system}.default.overrideAttrs
+          inputs.omnisearch.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs
           (old: {
             installPhase = old.installPhase + ''
               cp -v ${../../../../config/omnisearch/templates}/*.html \
