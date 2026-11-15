@@ -4,7 +4,7 @@ format = "[$nix_shell$conda$directory$git_branch$git_status]($style)\n$character
 
 [conda]
 format = "\\([$environment]($style)\\) "
-style = "cyan"
+style = "white"
 ignore_base = false
 
 [character]
@@ -14,7 +14,7 @@ success_symbol = "[❯](bold cyan)"
 [directory]
 truncation_length = 4
 truncation_symbol = "…/"
-repo_root_style = "bold cyan"
+repo_root_style = "white"
 repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
 
 [git_branch]
