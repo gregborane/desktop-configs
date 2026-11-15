@@ -58,8 +58,9 @@
                 )
                 aliases
             )}
-      		source ~/.local/bash/rc;
-      		eval "$(/home/greg/.conda/bin/conda shell.bash hook)"
+
+      		source $HOME/.local/bash/rc;
+      		eval "$($HOME/.conda/bin/conda shell.bash hook)"
 	  fi
         '';
       };
