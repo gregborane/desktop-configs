@@ -40,13 +40,6 @@
         ../../hosts/xii/hardware-configuration.nix
         ../../hosts/xii/storage-configuration.nix
         {
-          services.omnisearch = {
-            enable = false;
-            settings.server = {
-              host = "127.0.0.1";
-              port = 8087;
-            };
-          };
           services.openssh.settings.AllowUsers = [ "greg" ];
           services.getty.autologinUser = "greg";
           networking = {
