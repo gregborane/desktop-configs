@@ -5,13 +5,13 @@
       aliases = {
         vim = "nvim";
         nano = "nvim";
-        rebuild = "sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix-dendritic#xii";
+        rebuild = "sudo nixos-rebuild switch --flake ~/desktop-configs/install_files/nix-dendritic#xii";
 
         apply = ''
           cd ~/nixos-dotfiles/desktop-configs/install_files/nix-dendritic
           git add ../.. &&
           git commit -m "tracking changed" &&
-          sudo nixos-rebuild switch --flake ~/nixos-dotfiles/desktop-configs/install_files/nix-dendritic#xii
+          sudo nixos-rebuild switch --flake ~/install_files/nix-dendritic#xii
         '';
 
         clean = ''
@@ -40,7 +40,7 @@
             lib.mapAttrsToList (name: value: "alias ${name}=${lib.escapeShellArg value}") aliases
           )}
           if [[ -r "$HOME/.local/bash/rc" ]]; then source "$HOME/.local/bash/rc"; fi
-          if [[ -x "$HOME/.conda/bin/conda" ]]; then eval "$("$HOME/.conda/bin/conda" shell.bash hook)"; fi
+          # if [[ -x "$HOME/.conda/bin/conda" ]]; then eval "$("$HOME/.conda/bin/conda" shell.bash hook)"; fi
         fi
       '';
     };
