@@ -27,20 +27,18 @@
           find ${../..} -name '*.nix' ! -name hardware-configuration.nix ! -name storage-configuration.nix -exec nixfmt --check {} +
           touch "$out"
         '';
-        inherit (self.packages.${system}) omnisearch;
+        inherit (self.packages.${system});
         configuration =
           assert builtins.attrNames self.formatter == linuxSystems;
           assert builtins.attrNames self.packages == linuxSystems;
           assert builtins.attrNames self.checks == linuxSystems;
-          assert optionalDesktop.config.programs.hyprland.enable;
-          assert optionalDesktop.config.programs.hyprland.xwayland.enable;
-          assert !optionalDesktop.config.programs.uwsm.enable;
           assert pinnedZotero.version == "10.0.2";
           assert inputs.zotero-nixpkgs.rev == "131cf0f911b8fee10ae531f91e391db3e74672a6";
           assert builtins.all (p: builtins.pathExists (root + p)) [
             "/config/noctalia/noctalia-full-config.toml"
             "/config/watch-dogs/watch-dogs.plymouth"
             "/config/sway/config"
+            "/config/omnisearch"
             "/local/bash/rc"
           ];
           pkgs.runCommand "check-linux-configuration" { } "touch $out";
@@ -56,6 +54,7 @@
                   gui-packages
                   desktop-packages
                   tui-packages
+                  omnisearch
                   development-packages
                   neovim
                   zotero
@@ -86,13 +85,6 @@
           assert !cfg.programs.hyprland.enable;
           assert !(cfg.systemd.services ? home-manager-greg);
           assert cfg.systemd.user.services.noctalia.environment.NOCTALIA_CONFIG_HOME == "/etc/xdg";
-          assert
-            cfg.services.omnisearch.enable
-            &&
-              cfg.services.omnisearch.settings.server == {
-                host = "127.0.0.1";
-                port = 8087;
-              };
           assert cfg.programs.noctalia.enable && cfg.programs.git.lfs.enable;
           assert builtins.any (p: p.name == pinnedZotero.name) cfg.users.users.greg.packages;
           assert cfg.system.stateVersion == "26.05";

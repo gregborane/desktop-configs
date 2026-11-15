@@ -13,6 +13,7 @@ configs=(
     background
     ghostty
     fontconfig
+    omnisearch
     gtk-3.0
     gtk-4.0
     qt5ct
