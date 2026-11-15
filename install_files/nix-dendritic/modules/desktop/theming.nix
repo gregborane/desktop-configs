@@ -8,7 +8,7 @@
             {
                 lockAll = false;
                 settings = {
-                "/org/gnome/desktop/interface" = {
+                "org/gnome/desktop/interface" = {
                     gtk-theme = "adw-gtk3-dark";
                     icon-theme = "WhiteSur-dark";
                     color-scheme = "prefer-dark";
