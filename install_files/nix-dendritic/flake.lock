@@ -8,10 +8,12 @@
         "ref": "refs/heads/master",
         "rev": "aedf6c0c93acb2a8f57ef3f94498332b3ab6db89",
         "revCount": 48,
+        "shallow": false,
         "type": "git",
         "url": "https://git.bwaaa.space/beaker"
       },
       "original": {
+        "shallow": false,
         "type": "git",
         "url": "https://git.bwaaa.space/beaker"
       }
@@ -178,24 +180,28 @@
       }
     },
     "omnisearch": {
-      "flake": false,
+      "inputs": {
+        "beaker-src": "beaker-src",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1794242581,
-        "narHash": "sha256-B5SPqLMmdJA+kc+Et1D/0eIxxsNv/gahJVNCAUmifl0=",
+        "lastModified": 1794567997,
+        "narHash": "sha256-8n2XHs/SZqivC/p6+BA0u7U0zPGfjnuaMWbi6HfVLUg=",
         "ref": "refs/heads/master",
-        "rev": "e72fadc791163ac7fd0eabb2aceec50942482ddd",
-        "revCount": 167,
+        "rev": "95a10c5f9bfa341b0422c4c04e1d5ff55c37ea35",
+        "revCount": 173,
         "type": "git",
-        "url": "https://git.bwaaa.space/omnisearch"
+        "url": "https://git.voidarc.co.uk/voidarc/omnisearch"
       },
       "original": {
         "type": "git",
-        "url": "https://git.bwaaa.space/omnisearch"
+        "url": "https://git.voidarc.co.uk/voidarc/omnisearch"
       }
     },
     "root": {
       "inputs": {
-        "beaker-src": "beaker-src",
         "flake-parts": [
           "neovim-nightly-overlay",
           "flake-parts"
