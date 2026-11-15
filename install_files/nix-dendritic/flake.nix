@@ -32,7 +32,7 @@
     };
 
     omnisearch = {
-      url = "https://git.voidarc.co.uk/voidarc/omnisearch";
+      url = "git+https://git.voidarc.co.uk/voidarc/omnisearch";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
