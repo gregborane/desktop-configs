@@ -5,14 +5,7 @@
       aliases = {
         vim = "nvim";
         nano = "nvim";
-        rebuild = "sudo nixos-rebuild switch --flake ~/desktop-configs/install_files/nix-dendritic#xii";
-
-        apply = ''
-          cd ~/desktop-configs/install_files/nix-dendritic
-          git add ../.. &&
-          git commit -m "tracking changed" &&
-          sudo nixos-rebuild switch --flake ~/desktop-configs/install_files/nix-dendritic#xii
-        '';
+        rebuild = "sudo nixos-rebuild switch --flake ~/desktop-configs/install_files/nix-dendritic#xii"; 
 
         clean = ''
           nix-env --delete-generations old
