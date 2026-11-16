@@ -27,6 +27,7 @@
       pipewire
       pipewire.jack
       alsa-plugins
+      pulseaudio
     ];
   };
 }
