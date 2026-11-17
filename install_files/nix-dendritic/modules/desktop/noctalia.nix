@@ -13,8 +13,8 @@
     {
       imports = [ inputs.noctalia.nixosModules.default ];
       programs.noctalia = {
-        enable = false;
-        systemd.enable = false;
+        enable = true;
+        systemd.enable = true;
       };
       environment.etc = {
         "xdg/noctalia/config.toml".source = pkgs.runCommand "noctalia-config.toml" { } ''
