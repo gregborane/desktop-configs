@@ -33,7 +33,7 @@
         ghostty
         thunar
         zapfast
-        # noctalia
+        noctalia
         neovim
       ])
       ++ [
