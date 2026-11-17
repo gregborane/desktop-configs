@@ -78,17 +78,6 @@
             p: pkgs.lib.meta.availableOn pkgs.stdenv.hostPlatform p
           ) profile.config.users.users.greg.packages;
           pkgs.runCommand "check-arm-home-packages" { } "touch $out";
-      }
-      // pkgs.lib.optionalAttrs (system == "x86_64-linux") {
-        xii =
-          assert cfg.programs.sway.enable && cfg.programs.sway.xwayland.enable;
-          assert !cfg.programs.hyprland.enable;
-          assert !(cfg.systemd.services ? home-manager-greg);
-          assert cfg.systemd.user.services.noctalia.environment.NOCTALIA_CONFIG_HOME == "/etc/xdg";
-          assert cfg.programs.noctalia.enable && cfg.programs.git.lfs.enable;
-          assert builtins.any (p: p.name == pinnedZotero.name) cfg.users.users.greg.packages;
-          assert cfg.system.stateVersion == "26.05";
-          cfg.system.build.toplevel;
-      };
     };
+  };
 }

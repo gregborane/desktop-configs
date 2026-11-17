@@ -50,7 +50,7 @@ for_window [app_id="^.*"] inhibit_idle fullscreen
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # Noctalia owns bar, wallpaper, notification daemon, launcher, and lock screen.
-# exec noctalia
+exec noctalia
 exec swaymonad --default-layout tall
 
 # Applications 
