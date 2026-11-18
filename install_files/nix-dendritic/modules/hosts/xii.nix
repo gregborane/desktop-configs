@@ -31,9 +31,11 @@
         amd
         audio
         bluetooth
+        network
         power
         xii-boot
 
+        getty
         omnisearch
         polkit
         ssh
@@ -47,37 +49,8 @@
       ++ [
         ../../hosts/xii/hardware-configuration.nix
         ../../hosts/xii/storage-configuration.nix
-        {
-          services.openssh.settings.AllowUsers = [ "greg" ];
-          services.getty.autologinUser = "greg";
-          networking = {
-            hostName = "xii";
-
-            networkmanager = {
-              enable = true;
-              wifi.scanRandMacAddress = false;
-            };
-
-            firewall.enable = true;
-
-            enableIPv6 = false;
-
-            hosts = {
-              "100.86.86.51" = [
-                "greg-desktop"
-              ];
-
-              "100.110.31.78" = [
-                "greg-phone"
-              ];
-
-              "100.118.211.88" = [
-                "greg-initrd"
-              ];
-            };
-          };
+        { 
           time.timeZone = "Canada/Eastern";
-          system.stateVersion = "26.05";
         }
       ];
   };
