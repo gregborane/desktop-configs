@@ -1,13 +1,14 @@
 { inputs, ... }: {
-  flake.modules.nixos.zotero = { pkgs, ... }: {
-    users.users.greg.packages = [
-      (
-        let
-          package = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.zotero;
-        in
-        # assert package.version == "10.0.2";
-        package
-      )
-    ];
-  };
+  flake.modules.nixos.zotero = { pkgs, ... }:
+    let
+      unstable = import inputs.nixpkgs-unstable {
+        system = pkgs.stdenv.hostPlatform.system;
+        config.allowUnfree = true;
+      };
+    in
+    {
+      users.users.greg.packages = [
+        unstable.zotero
+      ];
+    };
 }
