@@ -231,8 +231,7 @@
         "omnisearch": "omnisearch",
         "serein": "serein",
         "swaymonad": "swaymonad",
-        "zapfast": "zapfast",
-        "zotero-nixpkgs": "zotero-nixpkgs"
+        "zapfast": "zapfast"
       }
     },
     "rust-overlay": {
@@ -349,22 +348,6 @@
       "original": {
         "owner": "crmne",
         "repo": "zapfast",
-        "type": "github"
-      }
-    },
-    "zotero-nixpkgs": {
-      "locked": {
-        "lastModified": 1789651005,
-        "narHash": "sha256-jTKJNKd3ZxB4yCYmpZPkCaXTfalpJNfAQFKMiUDNMbc=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "131cf0f911b8fee10ae531f91e391db3e74672a6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "131cf0f911b8fee10ae531f91e391db3e74672a6",
         "type": "github"
       }
     }

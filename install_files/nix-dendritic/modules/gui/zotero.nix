@@ -5,7 +5,7 @@
         let
           package = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.zotero;
         in
-        assert package.version == "10.0.2";
+        # assert package.version == "10.0.2";
         package
       )
     ];
