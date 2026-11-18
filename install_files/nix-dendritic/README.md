@@ -22,6 +22,14 @@ git add $SRC
 sudo nixos-rebuild boot --flake .#xii
 ```
 
+Individual package :
+
+```sh
+nix flake lock --update-input zapfast
+git add $SRC
+sudo nixos-rebuild boot --flake .#xii
+```
+
 ## Verification and rollout.
 
 From the repository root, review changes to the flake and ensure new source assets or modules are tracked. Git-backed flakes exclude untracked files.
