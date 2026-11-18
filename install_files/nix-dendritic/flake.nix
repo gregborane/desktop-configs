@@ -8,7 +8,6 @@
 
     flake-parts.follows = "neovim-nightly-overlay/flake-parts";
     import-tree.url = "github:vic/import-tree";
-    zotero-nixpkgs.url = "github:NixOS/nixpkgs/131cf0f911b8fee10ae531f91e391db3e74672a6";
 
     noctalia = {
       url = "github:noctalia-dev/noctalia";
