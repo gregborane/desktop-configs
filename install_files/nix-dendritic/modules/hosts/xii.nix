@@ -3,39 +3,47 @@
   flake.nixosConfigurations.xii = inputs.nixpkgs.lib.nixosSystem {
     modules =
       (with config.flake.modules.nixos; [
-        xii-boot
-        power
+        bash
+        git
+        ns
+        cli-packages
+
+        nix
+
+        fonts
+        hyprland
+        integration
+        noctalia 
+        desktop-packages
+        sway
+        theming
+
+        chromium
+        ghostty
+        gui-packages
+        serein
+        thunar
+        wine 
+        zapfast
+        zotero
+
+
         amd
-        bluetooth
         audio
+        bluetooth
+        power
+        xii-boot
+
+        omnisearch
         polkit
         ssh
         tailscale
-        integration
-        nix
-        fonts
-        sway
-        bash
-        git
-        cli-packages
-        desktop-packages
-        development-packages
-        chromium
-        omnisearch
-        greg
-        gui-packages
-        tui-packages
-        ns
-        wine
-        serein
-        zotero
-        theming
-        ghostty
-        thunar
-        zapfast
-        noctalia
+
         neovim
-      ])
+        tui-packages
+
+        greg
+         ])
       ++ [
         ../../hosts/xii/hardware-configuration.nix
         ../../hosts/xii/storage-configuration.nix

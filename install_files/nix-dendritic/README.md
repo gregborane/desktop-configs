@@ -7,8 +7,8 @@ Run this flake from `install_files/nix-dendritic` in the full desktop-configs Gi
 From the repository root, review changes to the flake and ensure new source assets or modules are tracked. Git-backed flakes exclude untracked files.
 
 ```sh
-cd install_files/nix-dendritic
-nix flake check --all-systems --no-build --no-update-lock-file
+$SRC='../..'
+git add $SRC
 nix eval --raw .#nixosConfigurations.xii.config.system.build.toplevel.drvPath
 nix build --no-link .#nixosConfigurations.xii.config.system.build.toplevel
 sudo nixos-rebuild boot --flake .#xii
