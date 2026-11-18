@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-26.05-small";
+    nixpkgs-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
 
     flake-parts.follows = "neovim-nightly-overlay/flake-parts";
     import-tree.url = "github:vic/import-tree";
