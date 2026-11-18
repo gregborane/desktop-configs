@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.amd = { pkgs, ... }: {
+  flake.modules.nixos.network = { pkgs, ... }: {
     networking = {
         hostName = "xii";
 
