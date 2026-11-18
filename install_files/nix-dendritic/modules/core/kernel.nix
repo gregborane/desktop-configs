@@ -1,5 +1,5 @@
-{
-  flake.module.nixos.kernel = { inputs, pkgs, ... }:
+{inputs, ... }: {
+  flake.modules.nixos.kernel = { pkgs, ... }:
     let
       small = inputs.nixpkgs-small.legacyPackages.${pkgs.stdenv.hostPlatform.system};
     in
@@ -13,6 +13,14 @@
           "rd.systemd.show_status=auto"
           "preempt=lazy"
         ];
+
+        kernel.sysfs = {
+          kernel.mm.transparent_hugepage = {
+            enabled = "madvise";
+            defrag = "defer";
+            shmem_enabled = "within_size";
+          };
+        };
 
         zswap.enable = false;
       };
