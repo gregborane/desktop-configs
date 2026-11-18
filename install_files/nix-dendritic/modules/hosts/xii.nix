@@ -8,6 +8,7 @@
         ns
         cli-packages
 
+        kernel
         nix
 
         fonts
