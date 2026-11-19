@@ -4,12 +4,14 @@
       unstable = import inputs.nixpkgs-unstable {
         system = pkgs.stdenv.hostPlatform.system;
         config.allowUnfree = true;
-        config.allowInsecure = true;
       };
     in
     {
       users.users.greg.packages = [
         unstable.zotero
       ];
+      nixpkgs.config.permittedInsecurePackages = [
+    "firefox-esr-140-bin-unwrapped-140.17.0esr"
+  ];
     };
 }
