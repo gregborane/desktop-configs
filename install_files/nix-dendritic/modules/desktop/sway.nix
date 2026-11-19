@@ -1,4 +1,3 @@
-
 { inputs, ... }: {
   flake.modules.nixos.sway = { pkgs, ... }: {
     xdg.portal = {
