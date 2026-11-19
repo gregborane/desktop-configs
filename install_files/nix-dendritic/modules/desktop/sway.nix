@@ -8,10 +8,11 @@
         pkgs.xdg-desktop-portal-gtk
       ];
     };
-    programs.swayfx = {
+    programs.sway = {
       enable = true;
       xwayland.enable = true;
       wrapperFeatures.gtk = true;
+      package = pkgs.swayfx;
       #extraPackages = [ inputs.swaymonad.packages.${pkgs.stdenv.hostPlatform.system}.swaymonad ];
     };
   };
