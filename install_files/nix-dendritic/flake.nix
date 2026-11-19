@@ -15,7 +15,7 @@
     };
 
     swayfx = {
-        url = "https://github.com/wlrfx/swayfx";
+        url = "git+https://github.com/wlrfx/swayfx";
         inputs.nixpkgs.follows = "nixpkgs";
     };
 
