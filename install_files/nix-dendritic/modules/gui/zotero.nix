@@ -4,6 +4,7 @@
       unstable = import inputs.nixpkgs-unstable {
         system = pkgs.stdenv.hostPlatform.system;
         config.allowUnfree = true;
+        config.allowInsecure = true;
       };
     in
     {
