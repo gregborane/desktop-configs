@@ -1,38 +1,8 @@
 
 { inputs, ... }: {
   flake.modules.nixos.sway = { pkgs, lib, ... }:
-
-    let
-      swayPackage = pkgs.sway.override (prev: {
-        sway-unwrapped = prev.sway-unwrapped.overrideAttrs (old: {
-          patches =
-            builtins.filter
-              (patch:
-                !(builtins.elem (builtins.baseNameOf (toString patch)) [
-                  "sway-config-nixos-paths.patch"
-                  "sway-config-no-nix-store-references.patch"
-                ])
-              )
-              old.patches
-            ++ [
-              (pkgs.path + "/pkgs/by-name/sw/sway-unwrapped/sway-config-no-nix-store-references.patch")
-            ];
-        });
-      });
-    in
-    {
-      xdg.portal = {
+      programs.swayfx = {
         enable = true;
-        wlr.enable = true;
-        extraPortals = [
-          pkgs.xdg-desktop-portal-gtk
-        ];
-      };
-
-      programs.sway = {
-        enable = true;
-        package = swayPackage;
-
         extraPackages = lib.mkForce [
           inputs.swaymonad.packages.${pkgs.stdenv.hostPlatform.system}.swaymonad
         ];
