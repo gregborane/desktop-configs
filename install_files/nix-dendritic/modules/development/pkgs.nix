@@ -6,6 +6,7 @@
         cargo
         cmake
         stdenv
+        rustc
         gnumake
         gcc
         pkg-config
@@ -20,7 +21,6 @@
       [
         jdk
         julia
-        rust
         lua
         nodejs
         ruby

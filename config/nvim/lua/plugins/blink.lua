@@ -8,10 +8,6 @@ vim.pack.add({
 local cmp = require("blink.cmp")
 cmp.build():pwait()
 
-build = function()
-  require("blink.cmp").build():pwait()
-end
-
 cmp.setup({
   keymap = {
     preset = "none",
