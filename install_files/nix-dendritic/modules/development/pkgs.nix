@@ -20,6 +20,7 @@
       [
         jdk
         julia
+        rust
         lua
         nodejs
         ruby
