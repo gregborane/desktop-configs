@@ -3,10 +3,13 @@
     environment.systemPackages =
       with pkgs;
       [
-        cargo
+              ]
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [ mkl ];
+    users.users.greg.packages =
+      with pkgs;
+      [
         cmake
         stdenv
-        rustc
         gnumake
         gcc
         pkg-config
@@ -14,12 +17,9 @@
         superlu
         eigen
         hdf5
-      ]
-      ++ lib.optionals pkgs.stdenv.hostPlatform.isx86_64 [ mkl ];
-    users.users.greg.packages =
-      with pkgs;
-      [
         jdk
+        cargo
+        rustc
         julia
         lua
         nodejs
