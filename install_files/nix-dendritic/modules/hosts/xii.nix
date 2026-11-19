@@ -11,6 +11,8 @@
         kernel
         nix
 
+        development-packages
+
         fonts
         hyprland
         integration
