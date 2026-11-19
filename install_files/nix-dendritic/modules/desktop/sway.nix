@@ -12,8 +12,7 @@
       enable = true;
       xwayland.enable = true;
       wrapperFeatures.gtk = true;
-      package = pkgs.swayfx;
-      #extraPackages = [ inputs.swaymonad.packages.${pkgs.stdenv.hostPlatform.system}.swaymonad ];
+      extraPackages = [ inputs.swaymonad.packages.${pkgs.stdenv.hostPlatform.system}.swaymonad ];
     };
   };
 
