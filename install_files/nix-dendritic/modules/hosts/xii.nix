@@ -25,7 +25,7 @@
         serein
         thunar
         wine 
-        zapfast
+        # zapfast
         zotero
 
 
