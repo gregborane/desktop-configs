@@ -14,6 +14,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    swayfx = {
+        url = "https://github.com/wlrfx/swayfx";
+        inputs.nixpkgs.follows = "nixpkgs";
+    }
+
     swaymonad = {
       url = "github:nicolasavru/swaymonad";
       inputs.nixpkgs.follows = "nixpkgs";
