@@ -60,6 +60,27 @@
         "type": "github"
       }
     },
+    "flake-utils": {
+      "inputs": {
+        "systems": [
+          "swayfx",
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791914995,
+        "narHash": "sha256-Zf/xfQEAasnwnmEfHqW/4hjDE/s44yn2hD4RuVIZRjA=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "b7a79d3fea1e214f6d668d521cecec0c01e26544",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "import-tree": {
       "locked": {
         "lastModified": 1788467110,
@@ -230,6 +251,7 @@
         "noctalia": "noctalia",
         "omnisearch": "omnisearch",
         "serein": "serein",
+        "swayfx": "swayfx",
         "swaymonad": "swaymonad",
         "zapfast": "zapfast"
       }
@@ -255,6 +277,32 @@
         "type": "github"
       }
     },
+    "scenefx": {
+      "inputs": {
+        "flake-utils": [
+          "swayfx",
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "swayfx",
+          "nixpkgs"
+        ],
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1793478752,
+        "narHash": "sha256-0YT2DYCEYmzhQqYRVr2JtkJwEhs8vsASFmBkNLfXVKk=",
+        "owner": "wlrfx",
+        "repo": "scenefx",
+        "rev": "bef6e5e2566096cc0fd1b543c7830b4a1cd1d3b6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wlrfx",
+        "repo": "scenefx",
+        "type": "github"
+      }
+    },
     "serein": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -274,6 +322,29 @@
         "owner": "ViceVerse-cz",
         "repo": "Serein",
         "type": "github"
+      }
+    },
+    "swayfx": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "scenefx": "scenefx",
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1794612643,
+        "narHash": "sha256-gIbvWM8e37wHbX/ZCqJbPhR2BRdBb02PPEMYa81WT6w=",
+        "ref": "refs/heads/master",
+        "rev": "98429c6f98f77b08b10e8cedd780966a4fe446fc",
+        "revCount": 7163,
+        "type": "git",
+        "url": "https://github.com/wlrfx/swayfx"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/wlrfx/swayfx"
       }
     },
     "swaymonad": {
@@ -299,6 +370,36 @@
     },
     "systems": {
       "locked": {
+        "lastModified": 1689347949,
+        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "systems_2": {
+      "locked": {
+        "lastModified": 1689347949,
+        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "systems_3": {
+      "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
         "owner": "nix-systems",
@@ -314,7 +415,7 @@
     },
     "utils": {
       "inputs": {
-        "systems": "systems"
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1731533236,
