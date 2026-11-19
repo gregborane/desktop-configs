@@ -9,6 +9,7 @@
         curl
         wol
         openssl
+        openssl-sys
         inotify-tools
         unrar
         p7zip
