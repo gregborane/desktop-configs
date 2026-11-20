@@ -68,7 +68,7 @@
               # export __GLX_VENDOR_LIBRARY_NAME=nvidia
               
               if [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ]; then
-              exex sway
+              exec sway
               fi
           fi
         '';

@@ -30,7 +30,6 @@
         zapfast
         zotero
 
-
         amd
         audio
         bluetooth
