@@ -17,5 +17,4 @@
         systemd.enable = true;
       };
     };
-  };
-}
+  }
