@@ -2,7 +2,7 @@
 { inputs, ... }: {
   flake.modules.nixos.sway = { pkgs, ... }: 
     let
-      unstable = inputs.nixos-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+      unstable = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
     in {
     xdg.portal = {
       enable = true;
