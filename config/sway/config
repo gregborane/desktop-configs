@@ -13,10 +13,6 @@ default_border pixel 1
 default_floating_border pixel 1
 gaps inner 1
 gaps outer 1
-client.focused          #ffffff #181818 #ffffff #ffffff #ffffff
-client.focused_inactive #000000 #181818 #888888 #000000 #000000
-client.unfocused        #000000 #181818 #888888 #000000 #000000
-client.urgent           #ff5555 #181818 #ffffff #ff5555 #ff5555
 
 # Laptop output comes from original Hyprland config.
 # If 1920x1200@60Hz is not offered, remove 'mode' and let Sway choose.
@@ -125,3 +121,5 @@ for_window [app_id="com.Util"] floating enable, resize set 950 800, move positio
 
 # Optional: one-command config reload without re-running exec lines.
 bindsym $mod+Ctrl+r reload
+
+include ~/.config/sway/noctalia

@@ -1,6 +1,9 @@
 
 { inputs, ... }: {
-  flake.modules.nixos.sway = { pkgs, ... }: {
+  flake.modules.nixos.sway = { pkgs, ... }: 
+    let
+      unstable = inputs.nixos-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+    in {
     xdg.portal = {
       enable = true;
       wlr.enable = true;
@@ -10,12 +13,11 @@
       ];
     };
 
-    programs.sway = {
+    programs.swayfx = {
       enable = true;
+      package = unstable.swayfx;
       xwayland.enable = true;
-
       wrapperFeatures.gtk = true;
-
       extraPackages = [
         inputs.swaymonad.packages.${pkgs.stdenv.hostPlatform.system}.swaymonad
       ];
