@@ -6,26 +6,55 @@ set $terminal xdg-terminal-exec
 set $filemanager xdg-filemanager-exec
 set $browser xdg-browser-exec
 
-# Minimal decoration, matching the original Hyprland gaps and borders.
+# ------------------
+# Visual
+# Minimal decoration
+# ------------------
+
 include /etc/sway/config.d/*
+include ~/.config/sway/noctalia
 font SF Mono 12
 default_border pixel 1
 default_floating_border pixel 1
 gaps inner 1
 gaps outer 1
+animation_duration_ms 250
 
+corner_radius 0
+
+for_window [app_id="com.Util"] {
+    shadows enable
+    shadow_offset 0 0
+    shadow_blur_radius 35
+    shadow_color #000000FF
+    shadow_inactive_color #000000FF
+    corner_radius 20
+    shadows_on_csd enable
+}
+
+# ---------------------------------------------------
+# Monitors
 # Laptop output comes from original Hyprland config.
-# If 1920x1200@60Hz is not offered, remove 'mode' and let Sway choose.
+# ---------------------------------------------------
+
 output eDP-1 mode 1920x1200@60Hz position 0 0 scale 1
 
+# -----------------------------------------------------------------
+# Workspaces
 # Original layout: workspaces 1-3 on HDMI-A-1; 4-6 on eDP-1.
-# Fallback to the laptop panel for 1-3 if HDMI-A-1 is disconnected.
+# Fallback to the laptop panel for 1-3 is monitor get disconnected.
+# -----------------------------------------------------------------
+
 workspace 1 output HDMI-A-1 eDP-1
 workspace 2 output HDMI-A-1 eDP-1
 workspace 3 output HDMI-A-1 eDP-1
 workspace 4 output eDP-1
 workspace 5 output eDP-1
 workspace 6 output eDP-1
+
+# ------------------
+# Mouse and Keyboard
+# ------------------
 
 input type:keyboard {
     xkb_layout us
@@ -42,14 +71,21 @@ seat * xcursor_theme Bibata-Modern-Ice 24
 floating_modifier $alt normal
 for_window [app_id="^.*"] inhibit_idle fullscreen
 
-# Ensure PipeWire/portals launched via D-Bus see the Sway session.
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-
+# -----------------------------------------------------------------------------
+# Start up
 # Noctalia owns bar, wallpaper, notification daemon, launcher, and lock screen.
+# Ensure PipeWire/portals launched via D-Bus see the Sway session.
+# -----------------------------------------------------------------------------
+
 exec noctalia
 exec swaymonad --default-layout tall
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-# Applications 
+# --------
+# Bindings
+# --------
+
+# Applications
 bindsym $mod+Return exec $terminal
 bindsym $mod+b exec $filemanager
 bindsym $mod+y exec $browser
@@ -122,4 +158,3 @@ for_window [app_id="com.Util"] floating enable, resize set 950 800, move positio
 # Optional: one-command config reload without re-running exec lines.
 bindsym $mod+Ctrl+r reload
 
-include ~/.config/sway/noctalia
