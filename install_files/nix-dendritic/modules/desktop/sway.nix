@@ -13,7 +13,7 @@
       ];
     };
 
-    programs.swayfx = {
+    programs.sway = {
       enable = true;
       package = unstable.swayfx;
       xwayland.enable = true;
