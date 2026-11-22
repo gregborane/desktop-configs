@@ -9,6 +9,9 @@
       };
     in
     {
+
+      documentation.nixos.enable = false;
+
       # Import the service module from unstable Nixpkgs
       imports = [
         (inputs.nixpkgs-unstable
