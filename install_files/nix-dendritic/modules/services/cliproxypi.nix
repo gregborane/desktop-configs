@@ -41,8 +41,7 @@
           ];
 
           management = {
-            allow-remote = false;
-            secret-key = "";
+            _secret = "/var/lib/cliproxyapi-management-key";
           };
         };
       };
