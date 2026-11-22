@@ -53,3 +53,10 @@
     };
 }
 
+#sudo -u cliproxyapi sh -c '
+#  cd /var/lib/cliproxyapi
+#  exec cliproxyapi \
+#    -config /var/lib/cliproxyapi/config.yaml \
+#    --codex-login \
+#    --no-browser
+#'
