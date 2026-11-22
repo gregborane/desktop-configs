@@ -37,6 +37,7 @@
         power
         xii-boot
 
+        cliproxyapi
         getty
         omnisearch
         polkit

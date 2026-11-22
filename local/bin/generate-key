@@ -1,0 +1,23 @@
+#!/bin/bash
+set -euo pipefail
+
+[[ $# -eq 1 ]] || {
+  echo "Usage: $0 <filename>" >&2
+  exit 1
+}
+
+filename="$(basename -- "$1")"
+
+sudo bash -c '
+  set -euo pipefail
+  umask 077
+  destination="/var/lib/$1"
+
+  if [[ -e "$destination" || -L "$destination" ]]; then
+    echo "Error: destination already exists" >&2
+    exit 1
+  fi
+
+  openssl rand -hex 32 > "$destination"
+  echo "Created: $destination"
+' bash "$filename"
