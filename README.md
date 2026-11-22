@@ -50,7 +50,6 @@ My Sway setup includes custom patches and window rules for specific application 
 - `app-id = com.Utils`: 950 × 800, centered.
 - `app-id = steam.friends.list`: 1100 × 800, floating.
 - `app-id = steam`: Floating.
-- `app-id = pop-windows`: Centered.
 - Custom keyboard mappings.
 - Automatic tiling with a master layout through [swaymonad](https://github.com/nicolasavru/swaymonad).
 - Animations and shadows through SwayFX, a fork of Sway with additional compositor features.
