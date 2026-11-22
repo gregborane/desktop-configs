@@ -27,6 +27,7 @@
       fd
       fzf
       less
+      codex
       ripgrep
       starship
       zoxide

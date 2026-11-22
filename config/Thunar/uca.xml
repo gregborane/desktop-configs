@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+  <action>
+    <icon>utilities-terminal</icon>
+    <name>Open Terminal Here</name>
+    <unique-id>com.Terminal</unique-id>
+    <command>xdg-terminal-exec --working-directory %f</command>
+    <description>Open terminal here</description>
+    <patterns>*</patterns>
+    <startup-notify/>
+    <directories/>
+  </action>
+</actions>

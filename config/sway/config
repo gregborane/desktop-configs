@@ -28,7 +28,6 @@ for_window [app_id="com.Util"] {
     shadow_blur_radius 35
     shadow_color #000000FF
     shadow_inactive_color #000000FF
-    corner_radius 20
     shadows_on_csd enable
 }
 
