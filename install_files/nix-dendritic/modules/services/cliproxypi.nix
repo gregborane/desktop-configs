@@ -9,23 +9,32 @@
       };
     in
     {
+      # Import the service module from unstable Nixpkgs
+      imports = [
+        (inputs.nixpkgs-unstable
+          + "/nixos/modules/services/misc/cliproxyapi.nix")
+      ];
+
       services.cliproxyapi = {
         enable = true;
 
-        # Use the unstable package
+        # Use the CLIProxyAPI package from unstable
         package = unstable.cliproxyapi;
 
-        # Local access only
         openFirewall = false;
 
         settings = {
+          config-version = 8;
+
           server = {
             host = "127.0.0.1";
             port = 8317;
           };
 
           access.api-keys = [
-            { _secret = "/var/lib/cliproxyapi-client-key"; }
+            {
+              _secret = "/var/lib/cliproxyapi-client-key";
+            }
           ];
 
           management = {
@@ -35,7 +44,6 @@
         };
       };
 
-      # Make the CLI available system-wide
       environment.systemPackages = [
         config.services.cliproxyapi.package
       ];
