@@ -5,6 +5,8 @@
       localsend
       gimp
       loupe
+      libsForQt5.qt5ct
+      qt6Packages.qt6ct
       obs-studio
       thunderbird
       vlc
