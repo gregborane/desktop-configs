@@ -1,109 +1,111 @@
-# desktop-configs
+# Desktop Configs
 
-Find my different packages and app I usually use for my config
+This repository contains the packages, applications, and configuration files I use for my desktop setup.
 
-Bash:
+### Bash
+- Aliases
+- Functions
+- Configuration files
 
-- aliases
-- functions
-- configs
+### Local
+- `bin`
+- `bash`
 
-Local:
+### Config
+- Configuration files for desktop ricing
 
-- bin
-- bash
+This configuration works with Wayland compositors such as **Sway (SwayFX)** and **Hyprland**, using **Noctalia Shell**.
 
-Config:
+- The Bash setup is based on the [Omarchy](https://omarchy.org/) project.
+- The GRUB theme applier comes from Chris Titus Tech's repository: [GRUB Themes](https://christitus.com/bootloader-themes/).
 
-- config files for rice
+I enjoy using [Neovim](https://neovim.io/) with Sixel/Kitty graphics protocol support to create an IDE-like environment.
 
-This is config works for Wayland compositors : Sway(fx) or Hyprland based on noctalia shell.
+## Current Configuration
 
-- Bash set up is from the [Omarchy](https://omarchy.org/) project.
-- Grub theme applier is from christitus tech repo : [Grub themes](https://christitus.com/bootloader-themes/)
+[NixOS](https://nixos.org/) is my operating system of choice, built around a dendritic configuration system.
 
-I like to use [neovim](https://neovim.io/) with a sixel/ kitty graphic protocol support to emulate a IDE. 
+Reproducibility isn't my main priority; what interests me most is the configuration aspect.
 
----
+I like knowing that all my configurations are stored in one place, so I don't have to remember every command I used to set things up. If additional configuration steps are required, I document them in comments at the end of the relevant file.
 
-## Present configuration
+Since my "distro" is centered around this entire repository rather than just the `nix-dendritic` directory, configuring everything through Nix doesn't make much sense to me.
 
-[NIXOS](https://nixos.org/) is my os of choice and it evolves around a dendritic system.
-The reproducibility stuff is not my main intesrest but the config aspect is.
+That's partly why `symlink.sh` exists. Eventually, I plan to manage `.config` and `.local` directly through Bash rather than Nix, avoiding unnecessary file copying and long loading times at boot.
 
-I like to have in mind that the config are stored somewhere and that I won't bother remembering the command I used to configure them. If additionnal configs are required, I put them in comment at the end of the file which requires a config.
+I also plan to create flake-based packages for fonts, icons, and themes so I won't need to store them directly in the configuration repository.
 
-Since the "distro" is centered around this folder and not just the nix-dendritic folder, to me, it makes little sense to configure everything with nix. Thats why the symlink.sh file exists, to some extend I plan to set the .config and .local directly there but the bash way and not the nix way as it will take ages to load up (copy-copying every boot).
+My desktop environment is designed primarily for **keyboard-driven workflows**.
 
-I also plan and making flakes-packages for the fonts/icons/themes so I wont need to store them in the configuration folder.
-
-I use a desktop focused with a keyboard usage.
-Thanks to lightweight apps, the desktop uses around 1.2 GiB (one monitor) when idle and 2 GiB with two apps and chromium opened.
+Thanks to lightweight applications, the system uses approximately:
+- **1.2 GiB** of RAM when idle (single monitor).
+- **2 GiB** of RAM with two applications and Chromium open.
 
 [Ghostty](https://ghostty.org/) is my terminal of choice.
 
-### [SWAY](https://swaywm.org/)
+### [Sway](https://swaywm.org/)
 
-With custom patches for some app-id:
+My Sway setup includes custom patches and window rules for specific application IDs:
 
-- app-id = com.Utils  : 950 * 800, centered
-- app-id = steam.friends.list : 1100 * 800, floating
-- app-id = steam : floating
-- app-id = pop-windows : centered
-- keyboard mapping
-- auto tiling with master layout
-- animations ans shadows are supported using swayfx a forked and custom compositor
+- `app-id = com.Utils`: 950 × 800, centered.
+- `app-id = steam.friends.list`: 1100 × 800, floating.
+- `app-id = steam`: Floating.
+- `app-id = pop-windows`: Centered.
+- Custom keyboard mappings.
+- Automatic tiling with a master layout through [swaymonad](https://github.com/nicolasavru/swaymonad).
+- Animations and shadows through SwayFX, a fork of Sway with additional compositor features.
 
-### Desktop shell
+### Desktop Shell
 
-Desktop shell is only based on [noctalia shell v5](https://docs.noctalia.dev/noctalia/):
+My desktop shell is entirely based on [Noctalia Shell v5](https://docs.noctalia.dev/noctalia/), which handles:
 
-- notification center
-- lock screen
-- idle screen
-- background
-- bar
-- polkit
-- launcher
-- bluetooth
-- battery
-- wifi
-- system monitor
-- tailscale plugins
-- calendar
-- weather
-- sound
-- plugins are stored in ~/.config/noctalia/plugins
+- Notification center
+- Lock screen
+- Idle screen
+- Wallpapers
+- Status bar
+- Polkit authentication
+- Application launcher
+- Bluetooth
+- Battery management
+- Wi-Fi
+- System monitoring
+- Tailscale plugins
+- Calendar
+- Weather
+- Audio controls
 
-### TUI
+Plugins are stored in `~/.config/noctalia/plugins`.
 
-- [bluetui](https://github.com/pythops/bluetui)
-- [wiremix](https://github.com/tsowell/wiremix)
+### Terminal Applications (TUI)
+
+- [Bluetui](https://github.com/pythops/bluetui)
+- [Wiremix](https://github.com/tsowell/wiremix)
 - [ncdu](https://github.com/rofl0r/ncdu)
-- obligatory [neofetch](https://github.com/fastfetch-cli/fastfetch)
-- [wlctl](https://github.com/aashish-thapa/wlctl)
+- The obligatory [neofetch](https://github.com/fastfetch-cli/fastfetch)
+- [nmtui-go](https://github.com/doeixd/nmtui-go)
 - [btop](https://github.com/aristocratos/btop)
 
-### GTK / QT THEMES
+### GTK / Qt Themes
 
-- [ADW](https://github.com/lassekongo83/adw-gtk3) with noctalia themes
+- [adw-gtk3](https://github.com/lassekongo83/adw-gtk3), integrated with Noctalia's themes.
 
-### FONTS
+### Fonts
 
-- [SF](https://developer.apple.com/fonts/) Font
-- [NOTO](https://fonts.google.com/noto) Font
+- [SF Fonts](https://developer.apple.com/fonts/)
+- [Noto Fonts](https://fonts.google.com/noto)
 
-### ICONS
+### Icons and Cursors
 
-- [WhiteSur](https://github.com/vinceliuice/WhiteSur-icon-theme)
-- [Bibata modern ice](https://github.com/ful1e5/Bibata_Cursor)
+- [WhiteSur Icon Theme](https://github.com/vinceliuice/WhiteSur-icon-theme)
+- [Bibata Modern Ice Cursor](https://github.com/ful1e5/Bibata_Cursor)
 
 ---
 
-## Softwares I like to use
+## Software I Like to Use
 
-- [Serein](https://github.com/ViceVerse-cz/Serein) a discord frontend in rust
-- [Zapfast](https://github.com/crmne/zapfast) a whatsapp frontend in rust
+- [Serein](https://github.com/ViceVerse-cz/Serein) — A Rust-based Discord frontend.
+- [Zapfast](https://github.com/crmne/zapfast) — A Rust-based WhatsApp frontend.
 - [Ungoogled Chromium](https://ungoogled-software.github.io/)
 - [Zotero](https://www.zotero.org/)
 - [Deck and PDF Craft](https://getartcraft.com/)
