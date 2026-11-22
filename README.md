@@ -100,8 +100,6 @@ Plugins are stored in `~/.config/noctalia/plugins`.
 - [WhiteSur Icon Theme](https://github.com/vinceliuice/WhiteSur-icon-theme)
 - [Bibata Modern Ice Cursor](https://github.com/ful1e5/Bibata_Cursor)
 
----
-
 ## Software I Like to Use
 
 - [Serein](https://github.com/ViceVerse-cz/Serein) — A Rust-based Discord frontend.
