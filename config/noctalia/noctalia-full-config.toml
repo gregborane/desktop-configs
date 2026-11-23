@@ -223,7 +223,7 @@ width = 800
     show_week_numbers = false
 
     [control_center.media]
-    show_visualizer = true
+    show_visualizer = false
 
     [[control_center.shortcuts]]
     type = "yocraft/custom-shortcut:shortcut"
@@ -1084,7 +1084,7 @@ visualization = "none"
 [widget.tray]
 colorize_icons = false
 detached_panel = true
-drawer = true
+drawer = false
 type = "tray"
 
 [widget.workspaces]
