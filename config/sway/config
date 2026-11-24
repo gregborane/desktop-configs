@@ -93,6 +93,7 @@ bindsym $mod+space exec $ipc panel-toggle launcher
 bindsym $mod+r exec wofi-repos
 bindsym $mod+Shift+l exec $ipc session lock
 bindsym $mod+c exec sh -c 'cat "$HOME/Documents/PhD/papers/prompt.md" | wl-copy'
+
 bindsym --no-repeat $mod+a exec $ipc bar-show 
 bindsym --release $mod+a exec $ipc bar-hide 
 
