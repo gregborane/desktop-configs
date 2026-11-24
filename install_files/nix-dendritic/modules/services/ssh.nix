@@ -1,7 +1,7 @@
 {
   flake.modules.nixos.ssh = {
     services.openssh = {
-      enable = false;
+      enable = true;
       openFirewall = true;
       settings = {
         PasswordAuthentication = true;

@@ -21,6 +21,7 @@ configs=(
     qt6ct
     nvim
     starship.toml
+    mimeapps.list
     wofi
     xdg-desktop-portal
 )

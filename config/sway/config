@@ -19,18 +19,18 @@ default_floating_border pixel 1
 gaps inner 1
 gaps outer 1
 
-#animation_duration_ms 250
-#
-#corner_radius 0
-#
-#for_window [app_id="com.Util"] {
-#    shadows enable
-#    shadow_offset 0 0
-#    shadow_blur_radius 35
-#    shadow_color #000000FF
-#    shadow_inactive_color #000000FF
-#    shadows_on_csd enable
-#}
+animation_duration_ms 250
+
+corner_radius 0
+
+for_window [app_id="com.Util"] {
+    shadows enable
+    shadow_offset 0 0
+    shadow_blur_radius 35
+    shadow_color #000000FF
+    shadow_inactive_color #000000FF
+    shadows_on_csd enable
+}
 
 # ---------------------------------------------------
 # Monitors
