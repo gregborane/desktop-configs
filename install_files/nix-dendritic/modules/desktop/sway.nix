@@ -2,7 +2,7 @@
 { inputs, ... }: {
   flake.modules.nixos.sway = { pkgs, ... }: 
     let
-      stable = inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+      channe; = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
     in {
     xdg.portal = {
       enable = true;
@@ -15,7 +15,7 @@
 
     programs.sway = {
       enable = true;
-      package = stable.sway;
+      package = channel.swayfx;
       xwayland.enable = true;
       wrapperFeatures.gtk = true;
       extraPackages = [

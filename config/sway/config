@@ -147,6 +147,7 @@ bindsym $mod+comma exec $ipc notification-clear-active
 bindsym $mod+Shift+comma exec $ipc notification-dnd-toggle
 bindsym Print exec $ipc screenshot-region
 bindsym $mod+s exec $ipc screenshot-region
+bindsym $mod+Shift+s exec $ipc screenshot-region --save-to-file 
 
 # Original Steam rules (Xwayland typically exposes class=steam).
 for_window [class="^steam$"] floating enable
