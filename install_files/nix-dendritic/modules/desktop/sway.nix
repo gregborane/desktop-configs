@@ -2,7 +2,7 @@
 { inputs, ... }: {
   flake.modules.nixos.sway = { pkgs, ... }: 
     let
-      channe; = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+      channel = inputs.nixpkgs-unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
     in {
     xdg.portal = {
       enable = true;
