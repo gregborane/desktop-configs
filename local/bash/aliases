@@ -11,7 +11,7 @@ alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 
 alias connect-phone="ssh -p 2222 myphone@greg-phone"
 alias connect-initrd="ssh -p 222 root@greg-initrd"
-alias connect-desktop="ssh greg@greg-desktop"
+alias connect-desktop="ssh -Y greg@greg-desktop"
 
 alias vim="nvim"
 alias nano="nvim"

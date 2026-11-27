@@ -47,6 +47,7 @@ vim.api.nvim_create_autocmd("FileType", {
     ---------------------------------------------------------------------------
     keymap("i", "`e", "è", opts)
     keymap("i", "`a", "à", opts)
+    keymap("i", "`A", "À", opts)
     keymap("i", "`u", "ù", opts)
     keymap("i", "``", "`", opts) -- Double appui pour insérer un vrai backtick
 

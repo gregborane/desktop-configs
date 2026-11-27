@@ -1,6 +1,6 @@
 [accessibility]
 high_contrast = false
-ui_scale = 1.1499999761581421
+ui_scale = 1.1500000096857548
 
 [audio]
 colorize_icons = false
@@ -36,14 +36,14 @@ order = [ "default", "Utilities", "Workspace" ]
     capsule_group = []
     capsule_opacity = 1.0
     capsule_padding = 6.0
-    capsule_thickness = 0.84999996423721313
+    capsule_thickness = 0.84999998472630978
     center = []
     compositor_blur = true
     concave_edge_corners = true
     contact_shadow = false
     enabled = true
     end = [ "tray", "status_2", "network", "bluetooth", "battery" ]
-    font_scale = 1.1000000238418579
+    font_scale = 1.0999999828636646
     font_weight = 500
     hover_highlight = false
     layer = "top"
@@ -59,7 +59,7 @@ order = [ "default", "Utilities", "Workspace" ]
     radius_top_left = 0
     radius_top_right = 0
     reserve_space = false
-    scale = 1.1499999761581421
+    scale = 1.1500000096857548
     shadow = true
     show_on_workspace_switch = false
     show_tooltip = true
@@ -88,7 +88,7 @@ order = [ "default", "Utilities", "Workspace" ]
     capsule_group = []
     capsule_opacity = 1.0
     capsule_padding = 6.0
-    capsule_thickness = 0.84999996423721313
+    capsule_thickness = 0.84999998472630978
     center = [ "workspaces" ]
     compositor_blur = true
     concave_edge_corners = false
@@ -111,7 +111,7 @@ order = [ "default", "Utilities", "Workspace" ]
     radius_top_left = 0
     radius_top_right = 0
     reserve_space = false
-    scale = 1.2999999523162842
+    scale = 1.300000011920929
     shadow = true
     show_on_workspace_switch = true
     show_tooltip = true
@@ -140,7 +140,7 @@ order = [ "default", "Utilities", "Workspace" ]
     capsule_group = []
     capsule_opacity = 1.0
     capsule_padding = 6.0
-    capsule_thickness = 0.80000001192092896
+    capsule_thickness = 0.79999998584389687
     center = [ "clock" ]
     compositor_blur = true
     concave_edge_corners = true
@@ -148,7 +148,7 @@ order = [ "default", "Utilities", "Workspace" ]
     enabled = true
     end = []
     font_family = "Iosevka NFM"
-    font_scale = 1.1999999284744263
+    font_scale = 1.1999999806284904
     font_weight = 500
     hover_highlight = false
     layer = "overlay"
@@ -164,7 +164,7 @@ order = [ "default", "Utilities", "Workspace" ]
     radius_top_left = 80
     radius_top_right = 80
     reserve_space = false
-    scale = 1.25
+    scale = 1.2500000111758709
     shadow = true
     show_on_workspace_switch = true
     show_tooltip = false
@@ -207,7 +207,7 @@ refresh_minutes = 15
     use_event_reminders = true
 
 [control_center]
-hidden_tabs = [ "weather", "calendar", "notifications", "screen-time" ]
+hidden_tabs = []
 show_avatar_border = true
 show_session_button = true
 show_shortcut_labels = false
@@ -246,19 +246,22 @@ width = 800
 [desktop_widgets]
 enabled = false
 schema_version = 2
+widget_order = []
 
     [desktop_widgets.grid]
     cell_size = 16
     major_interval = 4
     visible = true
 
+    [desktop_widgets.widget]
+
 [dock]
 active_monitor_only = false
 active_opacity = 1.0
-active_scale = 0.69999998807907104
+active_scale = 0.70000001043081284
 auto_hide = false
 auto_hide_reveal_delay_ms = 250
-background_opacity = 1.0
+background_opacity = 0.99999997764825821
 border = "on_surface"
 border_width = 0.0
 colorize_icons = false
@@ -270,7 +273,7 @@ icon_saturation = 1.0
 icon_shadow = false
 icon_size = 40
 inactive_opacity = 0.85000002384185791
-inactive_scale = 0.55000001192092896
+inactive_scale = 0.55000000819563866
 item_spacing = 6
 launcher_custom_image = ""
 launcher_custom_image_colorize = false
@@ -389,19 +392,19 @@ sunset = ""
 
 [lockscreen]
 allow_empty_password = false
-blur_intensity = 0.39999997615814209
+blur_intensity = 0.39999999105930328
 blurred_desktop = false
 dnd = false
-edge_smoothness = 0.39999997615814209
+edge_smoothness = 0.39999999105930328
 enabled = true
 fingerprint = true
 grace_period_seconds = 0
 lock_before_suspend = true
 monitors = [ "eDP-1" ]
 tint_color = "surface"
-tint_intensity = 0.29999998211860657
+tint_intensity = 0.29999999329447746
 transition = [ "wipe" ]
-transition_duration = 1000.0
+transition_duration = 1000
 wallpaper = "/home/greg/.config/background/lock_voiture.jpg"
 
 [lockscreen_widgets]
@@ -851,7 +854,7 @@ umbriel_overview_type_to_launch_enabled = false
         variant = "default"
 
     [shell.shadow]
-    alpha = 1.0
+    alpha = 0.99999997764825821
     direction = "center"
 
     [shell.window_switcher]
@@ -871,7 +874,7 @@ key_source = "secret-service"
 [system.monitor]
 cpu_freq_activity_threshold = 2.5
 cpu_freq_critical_threshold = 4.5
-cpu_poll_seconds = 10.0
+cpu_poll_seconds = 10
 cpu_temp_activity_threshold = 60.0
 cpu_temp_critical_threshold = 85.0
 cpu_temp_sensor_path = ""
@@ -881,25 +884,25 @@ disk_free_activity_threshold = 80.0
 disk_free_critical_threshold = 95.0
 disk_free_pct_activity_threshold = 80.0
 disk_free_pct_critical_threshold = 95.0
-disk_poll_seconds = 0.0
+disk_poll_seconds = 0
 disk_used_activity_threshold = 80.0
 disk_used_critical_threshold = 95.0
 disk_used_pct_activity_threshold = 80.0
 disk_used_pct_critical_threshold = 95.0
 enabled = true
-gpu_poll_seconds = 0.0
+gpu_poll_seconds = 0
 gpu_temp_activity_threshold = 60.0
 gpu_temp_critical_threshold = 85.0
 gpu_usage_activity_threshold = 50.0
 gpu_usage_critical_threshold = 95.0
 gpu_vram_activity_threshold = 50.0
 gpu_vram_critical_threshold = 90.0
-memory_poll_seconds = 5.0
+memory_poll_seconds = 5
 net_rx_activity_threshold = 1.0
 net_rx_critical_threshold = 50.0
 net_tx_activity_threshold = 1.0
 net_tx_critical_threshold = 50.0
-network_poll_seconds = 0.0
+network_poll_seconds = 0
 ram_pct_activity_threshold = 60.0
 ram_pct_critical_threshold = 90.0
 swap_pct_activity_threshold = 20.0
@@ -934,7 +937,7 @@ fill_mode = "crop"
 per_monitor_directories = false
 sync_transitions = true
 transition = [ "fade" ]
-transition_duration = 1000.0
+transition_duration = 1000
 transition_on_startup = false
 
     [wallpaper.automation]
@@ -943,6 +946,18 @@ transition_on_startup = false
     order = "random"
     pause_on_fullscreen = false
     recursive = true
+
+    [wallpaper.default]
+    path = "/home/greg/.config/background/lock_voiture.jpg"
+
+    [wallpaper.last]
+    path = "/home/greg/.config/background/lock_voiture.jpg"
+
+    [wallpaper.monitors.HDMI-A-1]
+    path = "/home/greg/.config/background/lock_voiture.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/greg/.config/background/lock_voiture.jpg"
 
 [weather]
 effects = true
